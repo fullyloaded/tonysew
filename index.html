@@ -1,42 +1,53 @@
-<!DOCTYPE html>
-<!-- saved from url=(0066)file:///Users/apple/Desktop/index%20%E4%B8%8B%E5%8D%886.09.26.html -->
-<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TONY SEWING MACHINE Co., Ltd. - Supplier, Distributor, and Service Provider of Industrial Sewing Machine Parts and Cutting Equipment.">
+    <meta name="keywords" content="sewing machine, industrial parts, cutting equipment, TONY SEWING MACHINE">
     <title>TONY SEWING MACHINE Co., Ltd.</title>
-    <!-- 引入 Bootstrap 5.3 CSS -->
+    <link href="www-player.css" rel="stylesheet">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <style>
-        .video-frame {
-            max-width: 100%;
-            height: auto;
-        }
-        .logo {
-            max-width: 100%;
-            height: auto;
-        }
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    <link href="custom.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container my-5">
-        <!-- 加入公司的logo -->
-        <div class="text-center mb-4">
-            <img src="logo.png" alt="Company Logo" class="img-fluid" style="max-width: 600px;">
-        </div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="TONY SEWING MACHINE Co., Ltd. Logo" class="logo" class="img-fluid" style="max-width: 400px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-        <div class="text-center">
-            <h1 class="mb-4">TONY SEWING MACHINE Co., Ltd.</h1>
-            <p>Supplier, Distributor, and Service Provider of Industrial Sewing Machine Parts and Cutting Equipment.<br>
+    <main>
+        <section id="home" class="py-5">
+            <div class="container text-center">
+                <h1 class="mb-4">TONY SEWING MACHINE Co., Ltd.</h1>
+                <p>Supplier, Distributor, and Service Provider of Industrial Sewing Machine Parts and Cutting Equipment.<br>
                 長年の経験と実績に基づき、高品質な工業用ミシン部品および裁断設備を販売し、専門的なメンテナンスサービスを提供しております。</p>
-        </div>
+            </div>
+        </section>
 
- <!-- 投影片功能 -->
+        <section id="products" class="py-5 bg-light">
+            <!div class="container">
+                <h2 class="text-center mb-4">Our Products</h2>
+                <!div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Carousel content here --> <!-- 投影片功能 -->
 <div id="productCarousel" class="carousel slide my-5 text-center" data-bs-ride="carousel">
-    <div class="carousel-inner mx-auto" style="max-width: 600px;"> <!-- 設置最大寬度以保持居中 -->
+    <div class="carousel-inner mx-auto" style="max-width: 1000px;"> <!-- 設置最大寬度以保持居中 -->
         <div class="carousel-item active">
             <img src="product1.jpg" class="d-block w-100" alt="Product 1">
             <div class="carousel-caption d-none d-md-block">
@@ -58,7 +69,7 @@
                 <p>長年の経験と実績</p>
             </div>
         </div>
-    </div>
+    
     <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -68,25 +79,29 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-
-        <!-- 按鈕區域 -->
-        <div class="text-center my-5">
-            <h2 class="mb-4">Explore Our Products</h2>
-            <a href="https://drive.google.com/drive/folders/1t1l9TlYRAdn9C_mPdSEMeoFNjZfFvPz-" target="_blank" class="btn btn-primary btn-lg mx-2">Sewing Machine Parts</a>
-            <a href="https://drive.google.com/drive/folders/1TMkyRfFnjfBydFArlIa8Q1Nr3n2_EEGs" target="_blank" class="btn btn-success btn-lg mx-2">Cutting Equipment</a>
-        </div>
-
-        <!-- 螢幕框內的影片播放 -->
-        <div class="text-center my-5">
-            <h2 class="mb-4">Watch Our Introduction Video</h2>
-            <div class="video-frame mx-auto">
-                <iframe width="560" height="315" src="kWV5klkSA88.html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="https://drive.google.com/drive/folders/1t1l9TlYRAdn9C_mPdSEMeoFNjZfFvPz-" target="_blank" class="btn btn-primary btn-lg mx-2">Sewing Machine Parts</a>
+                    <a href="https://drive.google.com/drive/folders/1TMkyRfFnjfBydFArlIa8Q1Nr3n2_EEGs" target="_blank" class="btn btn-success btn-lg mx-2">Cutting Equipment</a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <section class="my-5">
-            <h2 class="text-primary">ABOUT US</h2>
-            <p><strong>夢の実現と事業発展を支えるトニーソウ</strong><br><br>
+        <section id="video" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">See Us in Action</h2>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/kWV5klkSA88" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-primary mb-4">ABOUT US</h2>
+                <!-- About content here --> 
+<p><strong>夢の実現と事業発展を支えるトニーソウ</strong><br><br>
                 トニーソウは、金属加工製品や工業部品の調達をお考えの方々に、質の高い製品と堅実なサービスを提供しています。生産・製造、コンサルティングからOEM対応まで、幅広いニーズにお応えします。</p>
 
             <p>トニーソウの強みは、グローバルな視点と豊富な経験に基づいたトラブルソリューションです。海外生産に伴う課題や貿易トラブルにも、私たちは迅速かつ的確に対応いたします。なぜなら、私たちは海外貿易における課題を深く理解しているからです。</p>
@@ -94,41 +109,48 @@
             <p>少量・多品種の製品にも柔軟に対応し、製品の精度ニーズに沿った基準を守りながら、コスト削減と生産効率の向上をお約束します。トニーソウは30年以上の経験を活かし、品質管理から生産過程まで全面的にサポートします。</p>
 
             <p>1999年には、国際的なサプライチェーンの構築の一環として中国・寧波に子会社を設立し、日本、アメリカ、ドイツなどの大手メーカーからも高い評価をいただいてきました。今後もお客様の期待に応えるため、台湾製造を中心にさらなるサービス向上に努めてまいります。</p>
+            <!/div>
         </section>
 
-        <!-- 在 Our New Products 和 TONYSEW 之間放商品圖片 -->
-        <section class="my-5">
-            <h2 class="text-primary">Our New Products / 注目商品</h2>
-            <div class="text-center my-4">
-                <img src="our new products.jpg" alt="Product" class="product-image">
-            </div>
+        <section id="new-products" class="py-5">
+            <div class="container">
+                <h2 class="text-primary mb-4">Our New Products / 注目商品</h2>
+                <div class="text-center mb-4">
+                    <img src="our new products.jpg" alt="New Products Showcase" class="img-fluid">
+                </div>
+      
+            <!-- New products content here --> 
             <p><strong>TONYSEW: Where Your Business Dreams Come True</strong><br><br>
                 TONYSEW is your trusted partner in creating and expanding your business. We understand the challenges of finding the right factory or ensuring top-quality processing for products and industrial parts. At TONYSEW, we excel in delivering small-quantity, high-quality products with precision manufacturing to meet customer specifications while offering exceptional economic benefits.</p>
 
             <p>With over 30 years of experience, our team will oversee every stage of the production process, ensuring quality control and efficiency. Our global services have established strong relationships with leading manufacturers in Japan, the U.S., Germany, and other countries.</p>
 
             <p>In response to growing customer needs, we established a subsidiary in Ningbo, China, in 1999. While leveraging this, we continue to focus on offering world-class service and maintaining the highest standards across all our operations. Clients worldwide rely on TONYSEW's professionalism and expertise.</p>
-        </section>
+        </div>
+    </section>
 
-        <section class="my-5">
-            <h2 class="text-primary">Contact Us</h2>
-            <address>
-                <strong>TONY SEWING MACHINE Co., Ltd.</strong><br>
-                6F-1, No.20, Wu Chuang 2nd Rd.,<br>
-                Hsinchung District. New Taipei City, Taiwan, R.O.C.<br>
-                TEL：+886-2-2299-2015<br>
-                FAX：+886-2-2299-1863<br>
-                Mail: <a href="mailto:tonysew@ms3.hinet.net">tonysew@ms3.hinet.net</a>
-            </address>
-        </section>
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-primary mb-4">Contact Us</h2>
+            <!-- Contact information -->
+            <strong>TONY SEWING MACHINE Co., Ltd.</strong><br>
+            6F-1, No.20, Wu Chuang 2nd Rd.,<br>
+            Hsinchung District. New Taipei City, Taiwan, R.O.C.<br>
+            TEL：+886-2-2299-2015<br>
+            FAX：+886-2-2299-1863<br>
+            Mail: <a href="mailto:tonysew@ms3.hinet.net">tonysew@ms3.hinet.net</a>
+        </div>
+    </section>
 
-        <footer class="text-center mt-5">
-            <p>© 2020 TONY SEWING MACHINE Co. Ltd. All rights reserved.</p>
-        </footer>
-    </div>
+   <footer class="text-center py-3" style="background-color: #3498db;">
+        <div class="container text-center">
+            <p>© 2024 TONY SEWING MACHINE Co. Ltd. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <!-- 引入 Bootstrap 5.3 JavaScript -->
+    <!-- 引入 Bootstrap 和自定義腳本 -->
     <script src="bootstrap.bundle.min.js"></script>
+    <script src="custom.js"></script>
 
-
-</body></html>
+</body>
+</html>
