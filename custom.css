@@ -1,6 +1,6 @@
 .navbar-brand {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px; /* 400px */
 }
 
 .navbar-brand img {
@@ -8,20 +8,26 @@
     height: auto;
 }
 
+@media (max-width: 1200px) {
+    .navbar-brand {
+        max-width: 400px; /*  */
+    }
+}
+
 @media (max-width: 992px) {
     .navbar-brand {
-        max-width: 300px;
+        max-width: 350px; /* 300px */
     }
 }
 
 @media (max-width: 768px) {
     .navbar-brand {
-        max-width: 250px;
+        max-width: 300px; /* 250px */
     }
 }
 
 @media (max-width: 576px) {
     .navbar-brand {
-        max-width: 200px;
+        max-width: 250px; /* 200px */
     }
 }
