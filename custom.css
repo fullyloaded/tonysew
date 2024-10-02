@@ -1,6 +1,6 @@
 .navbar-brand {
     width: 100%;
-    max-width: 500px; /* 400px */
+    max-width: 600px; /* 400px */
 }
 
 .navbar-brand img {
@@ -10,24 +10,24 @@
 
 @media (max-width: 1200px) {
     .navbar-brand {
-        max-width: 400px; /*  */
+        max-width: 500px; /*  */
     }
 }
 
 @media (max-width: 992px) {
     .navbar-brand {
-        max-width: 350px; /* 300px */
+        max-width: 400px; /* 300px */
     }
 }
 
 @media (max-width: 768px) {
     .navbar-brand {
-        max-width: 300px; /* 250px */
+        max-width: 350px; /* 250px */
     }
 }
 
 @media (max-width: 576px) {
     .navbar-brand {
-        max-width: 250px; /* 200px */
+        max-width: 300px; /* 200px */
     }
 }
