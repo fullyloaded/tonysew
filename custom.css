@@ -8,8 +8,7 @@
     height: auto;
 }
 
-body {
-    font-size: 18px; /* 字體大小將根據視窗寬度變動 */
+
 }
 
 @media (max-width: 1200px) {
