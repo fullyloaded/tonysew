@@ -67,6 +67,12 @@
     animation: scroll 60s linear infinite; /* 持續時間改為 30 秒 */
     animation-delay: 5s; /* 延遲滾動的開始時間 */
   }
+    .marquee {
+    display: flex;
+}
+.marquee span {
+    animation: scroll 30s linear infinite;
+}
   @keyframes scroll {
     0% {
       transform: translateX(100%); /* 起始位置在畫面外的右側 */
