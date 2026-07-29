@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SUOU FieldSense v1.2 Emotional Coach Edition — Field Intelligence Dashboard" />
-  <title>SUOU FieldSense™ v1.2 Emotional Coach Edition</title>
+  <meta name="description" content="SUOU FieldSense v1.3 Context Language Edition — Field Intelligence Dashboard" />
+  <title>SUOU FieldSense™ v1.3 Context Language Edition</title>
   <style>
     :root{
       --bg:#07111f;
@@ -274,7 +274,7 @@
       </div>
     </div>
     <div class="toolbar">
-      <span class="badge">v1.2 Emotional Coach Edition</span>
+      <span class="badge">v1.3 Context Language Edition</span>
       <button class="btn secondary no-print" id="printBtn">列印／匯出 PDF</button>
     </div>
   </header>
@@ -321,13 +321,13 @@
             <polygon id="radarShape" points="0,-70 58,-46 70,16 30,62 -26,54 -55,12 -50,-40"
               fill="rgba(66,232,199,.18)" stroke="#42e8c7" stroke-width="2"/>
             <g fill="#92a9bf" font-size="11" text-anchor="middle">
-              <text x="0" y="-125">主動力</text>
-              <text x="104" y="-76">資源量</text>
-              <text x="126" y="29">穩定度</text>
-              <text x="58" y="120">開放度</text>
-              <text x="-58" y="120">適應力</text>
-              <text x="-126" y="29">衝突張力</text>
-              <text x="-104" y="-76">轉型壓力</text>
+              <text id="radarLabel0" x="0" y="-125">執行動力</text>
+              <text id="radarLabel1" x="104" y="-76">可用支持</text>
+              <text id="radarLabel2" x="126" y="29">穩定程度</text>
+              <text id="radarLabel3" x="58" y="120">開放程度</text>
+              <text id="radarLabel4" x="-58" y="120">調整能力</text>
+              <text id="radarLabel5" x="-126" y="29">壓力張力</text>
+              <text id="radarLabel6" x="-104" y="-76">改變需求</text>
             </g>
           </g>
         </svg>
@@ -513,15 +513,64 @@
 </div>
 
 <script>
-  const dimensions = [
-    ["主動力","我現在有多想採取行動？",7],
-    ["資源量","我手上有多少可運用資源？",6],
-    ["穩定度","我現在是否站得穩？",6],
-    ["開放度","我是否願意接受新可能？",8],
-    ["適應力","情勢改變時我能否調整？",8],
-    ["衝突張力","內外衝突目前有多強？",4],
-    ["轉型壓力","我有多強烈的改變需要？",7]
-  ];
+  const contextSemanticMap = {
+    "工作": [
+      ["執行動力","我現在有多大意願推進工作或採取行動？"],
+      ["可用支持","我目前擁有多少時間、資訊、工具與團隊支持？"],
+      ["工作穩定","目前的工作節奏與發展是否讓我感到踏實？"],
+      ["學習開放","我是否願意接觸新方法、角色或工作機會？"],
+      ["應變能力","工作條件改變時，我能否調整方法與節奏？"],
+      ["工作壓力","目前的責任、摩擦或期限帶來多大壓力？"],
+      ["職涯轉變","我有多強烈的需要改變職務、方向或工作方式？"]
+    ],
+    "投資": [
+      ["進場意願","面對目前機會，我有多想採取投資行動？"],
+      ["資金餘裕","扣除生活與緊急預備後，我有多少可承受風險的資金？"],
+      ["持倉穩定","目前部位與策略是否仍在我的風險承受範圍內？"],
+      ["策略開放","我是否願意接受新資訊並修正原有判斷？"],
+      ["行情應變","市場變化時，我能否按照規則調整而不被情緒帶走？"],
+      ["市場壓力","波動、虧損或不確定性目前帶給我多大壓力？"],
+      ["策略調整","我有多強烈的需要改變配置、進出場或風控方式？"]
+    ],
+    "感情": [
+      ["主動表達","我有多願意主動表達關心、需要與真實感受？"],
+      ["情感連結","我和對方之間是否仍有信任、交流、支持與願意靠近的力量？"],
+      ["關係安全","這段關係是否讓我感到安心、被尊重，而不是經常患得患失？"],
+      ["敞開心扉","我是否願意誠實表達自己，也願意聽見對方的感受？"],
+      ["包容理解","遇到差異時，我們是否能理解彼此，而不只爭論誰對誰錯？"],
+      ["情緒摩擦","最近是否常因誤解、期待落差或未說出口的感受而產生壓力？"],
+      ["關係變化","我有多強烈地感受到這段關係需要調整、確認或重新定位？"]
+    ],
+    "家庭": [
+      ["關心投入","我現在有多少意願投入時間與關心在家庭上？"],
+      ["家庭支持","家人之間是否有可依靠的情感、照顧與實際協助？"],
+      ["家庭安定","目前的家庭氣氛與生活安排是否讓人安心？"],
+      ["彼此接納","家人是否能容納不同想法、個性與生活選擇？"],
+      ["溝通彈性","發生變化時，家人是否能協調並重新分工？"],
+      ["家庭摩擦","目前家庭內的誤解、責任或情緒累積有多強？"],
+      ["家庭轉折","家庭是否正在面臨搬遷、照護、角色或關係上的改變？"]
+    ],
+    "人際": [
+      ["互動意願","我有多願意主動建立或維持人際互動？"],
+      ["支持網絡","我身邊是否有能信任、交流與互相支持的人？"],
+      ["關係穩定","目前的重要人際關係是否可靠且有界線？"],
+      ["認識新朋友","我是否願意接觸不同背景與觀點的人？"],
+      ["相處彈性","面對不同個性時，我能否調整溝通方式？"],
+      ["人際摩擦","誤解、比較或界線問題目前帶來多大壓力？"],
+      ["圈層變化","我是否正在重新選擇想靠近或離開的人際圈？"]
+    ],
+    "自我成長": [
+      ["成長動力","我現在有多想改變現況並採取行動？"],
+      ["內在支持","我是否擁有足夠的時間、能量、知識與自我信任？"],
+      ["內在穩定","面對壓力時，我是否仍能保持基本秩序與安全感？"],
+      ["探索開放","我是否願意認識新的自己與新的可能？"],
+      ["調整能力","發現方法不適合時，我能否溫柔地修正？"],
+      ["內在拉扯","理想、現實與自我期待之間目前有多大衝突？"],
+      ["蛻變需求","我有多強烈地感受到自己需要進入下一個階段？"]
+    ]
+  };
+
+  const dimensions = contextSemanticMap["工作"].map((item, i) => [item[0], item[1], [7,6,6,8,8,4,7][i]]);
 
   const patternLibrary = {
     gradual: {
@@ -663,6 +712,33 @@
   let selectedContext = "工作";
   const sliders = document.getElementById("sliders");
 
+  const contextWordMap = {
+    "感情": [["資源配置","情感與注意力的投入"],["資源支撐","信任與情感支持"],["資源不足","情感支持不足"],["資源量","情感連結"],["資源","情感支持"]],
+    "家庭": [["資源配置","家庭支持與責任分配"],["資源支撐","家庭支持"],["資源量","家庭支持"],["資源","家庭支持"]],
+    "人際": [["資源配置","人際支持與注意力配置"],["資源支撐","支持網絡"],["資源量","支持網絡"],["資源","支持"],],
+    "自我成長": [["資源配置","時間、能量與注意力配置"],["資源支撐","內在支持"],["資源量","內在支持"],["資源","能量與支持"]]
+  };
+
+  function contextualize(text){
+    let output = String(text);
+    (contextWordMap[selectedContext] || []).forEach(([from,to]) => {
+      output = output.split(from).join(to);
+    });
+    return output;
+  }
+
+  function applyContextLanguage(){
+    const map = contextSemanticMap[selectedContext] || contextSemanticMap["工作"];
+    map.forEach((item,i)=>{
+      dimensions[i][0] = item[0];
+      dimensions[i][1] = item[1];
+      const radar = document.getElementById(`radarLabel${i}`);
+      if(radar) radar.textContent = item[0];
+    });
+    renderSliders();
+    setText("reportContext", selectedContext);
+  }
+
   function renderSliders(){
     sliders.innerHTML = "";
     dimensions.forEach((d, i) => {
@@ -714,7 +790,10 @@
     return "gradual";
   }
 
-  function setText(id, text){ document.getElementById(id).textContent = text; }
+  function setText(id, text){
+    const el = document.getElementById(id);
+    if(el) el.textContent = contextualize(text);
+  }
 
   function applyPattern(mode, scores){
     const cfg = patternLibrary[mode];
@@ -797,6 +876,7 @@
       document.querySelectorAll(".context-btn").forEach(b=>b.classList.remove("active"));
       btn.classList.add("active");
       selectedContext = btn.dataset.context;
+      applyContextLanguage();
     });
   });
 
@@ -834,7 +914,7 @@
     el.addEventListener("input",()=>localStorage.setItem("suou_"+id,el.value));
   });
 
-  renderSliders();
+  applyContextLanguage();
 </script>
 </body>
 </html>
