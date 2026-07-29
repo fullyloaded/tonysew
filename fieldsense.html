@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SUOU FieldSense v1.0 Prototype — Field Intelligence Dashboard" />
-  <title>SUOU FieldSense™ v1.0 Prototype</title>
+  <meta name="description" content="SUOU FieldSense v1.2 Emotional Coach Edition — Field Intelligence Dashboard" />
+  <title>SUOU FieldSense™ v1.2 Emotional Coach Edition</title>
   <style>
     :root{
       --bg:#07111f;
@@ -137,6 +137,15 @@
     .node{padding:13px 16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
     .arrow{color:var(--accent);font-size:22px}
 
+    .coach-state-row{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px;margin-bottom:18px}
+    .state-panel{padding:18px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
+    .state-panel .kicker{font-size:11px;color:var(--muted);margin-bottom:6px}
+    .state-panel .state-name{font-size:22px;font-weight:900;color:var(--accent)}
+    .state-panel .state-copy{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.65}
+    .emotion-line{margin-top:14px;padding:14px 16px;border-radius:16px;background:rgba(255,211,109,.07);border:1px solid rgba(255,211,109,.18);line-height:1.75}
+    .emotion-line b{color:var(--warning)}
+    .risk-line{margin-top:12px;padding:14px 16px;border-radius:16px;background:rgba(255,141,152,.06);border:1px solid rgba(255,141,152,.16);line-height:1.7}
+    .risk-line b{color:var(--danger)}
     .brief-card{
       padding:20px;border-radius:20px;background:linear-gradient(135deg,rgba(66,232,199,.09),rgba(101,168,255,.08));
       border:1px solid rgba(66,232,199,.2)
@@ -164,6 +173,33 @@
     }
     .practice-step:last-child{border-bottom:0}
     .practice-step b{color:var(--accent)}
+
+
+    .heart-section{position:relative;overflow:hidden}
+    .heart-section:before{content:"";position:absolute;inset:auto -90px -110px auto;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,141,198,.12),transparent 68%);pointer-events:none}
+    .emotion-journey{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}
+    .heart-card{padding:22px;border-radius:22px;background:linear-gradient(145deg,rgba(255,141,198,.07),rgba(101,168,255,.07));border:1px solid rgba(255,174,215,.18);position:relative}
+    .heart-card .heart-kicker{font-size:11px;letter-spacing:.13em;color:#ffb4d7;font-weight:900;margin-bottom:10px}
+    .heart-card h3{font-size:22px;margin:0 0 12px}
+    .heart-card p{margin:0;line-height:1.95;color:#e8f1fa}
+    .permission-card{padding:18px;border-radius:18px;background:rgba(255,211,109,.07);border:1px solid rgba(255,211,109,.18)}
+    .permission-card h4{margin:0 0 8px;color:var(--warning)}
+    .permission-card p{margin:0;line-height:1.85}
+    .companion-card{padding:18px;border-radius:18px;background:rgba(66,232,199,.065);border:1px solid rgba(66,232,199,.18)}
+    .companion-card h4{margin:0 0 8px;color:var(--accent)}
+    .companion-card p{margin:0;line-height:1.85}
+    .ritual-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .ritual{padding:17px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line);min-height:150px}
+    .ritual .ritual-icon{font-size:21px;margin-bottom:11px}
+    .ritual b{display:block;margin-bottom:8px;color:var(--accent)}
+    .ritual p{margin:0;color:var(--muted);line-height:1.75;font-size:13px}
+    .gift-quote{margin-top:18px;padding:25px 28px;border-radius:22px;text-align:center;background:linear-gradient(135deg,rgba(101,168,255,.1),rgba(255,141,198,.08));border:1px solid rgba(151,186,220,.2)}
+    .gift-quote .quote-label{font-size:11px;letter-spacing:.16em;color:var(--accent2);font-weight:900}
+    .gift-quote blockquote{font-size:21px;line-height:1.8;margin:13px auto 8px;max-width:780px;font-weight:750}
+    .gift-quote small{color:var(--muted)}
+    .tomorrow-wish{margin-top:16px;padding:18px 20px;border-radius:18px;background:rgba(101,168,255,.06);border-left:3px solid var(--accent2);line-height:1.85}
+    .micro-check{display:flex;align-items:flex-start;gap:10px;margin-top:12px;color:var(--muted);font-size:13px}
+    .micro-check input{margin-top:3px;accent-color:var(--accent)}
 
     .focus-list{display:grid;gap:10px;margin-top:14px}
     .focus-item{
@@ -199,7 +235,8 @@
       .grid,.grid-2{grid-template-columns:1fr}
       .metric-grid{grid-template-columns:repeat(2,1fr)}
       .context-row{grid-template-columns:repeat(3,1fr)}
-      .grid-3{grid-template-columns:1fr}
+      .grid-3,.coach-state-row,.emotion-journey{grid-template-columns:1fr}
+      .ritual-list{grid-template-columns:1fr}
       .report-meta{grid-template-columns:repeat(2,1fr)}
       .hero h2{font-size:29px}
     }
@@ -237,7 +274,7 @@
       </div>
     </div>
     <div class="toolbar">
-      <span class="badge">v1.0 Prototype</span>
+      <span class="badge">v1.2 Emotional Coach Edition</span>
       <button class="btn secondary no-print" id="printBtn">列印／匯出 PDF</button>
     </div>
   </header>
@@ -341,7 +378,26 @@
     </div>
 
     <h2 class="section-title">AI 教練簡報</h2>
-    <div class="grid-2">
+    <div class="coach-state-row">
+      <div class="state-panel">
+        <div class="kicker">CURRENT COACHING STATE</div>
+        <div class="state-name" id="coachStateName">漸進蓄力</div>
+        <div class="state-copy" id="coachStateCopy">你不是停滯，而是在把力量收回來，準備形成更穩定的推進。</div>
+      </div>
+      <div class="state-panel">
+        <div class="kicker">ACTION RHYTHM</div>
+        <div class="state-name" id="actionRhythm">小步穩進</div>
+        <div class="state-copy">今天適合的行動節奏</div>
+      </div>
+      <div class="state-panel">
+        <div class="kicker">COACHING TONE</div>
+        <div class="state-name" id="coachTone">溫和堅定</div>
+        <div class="state-copy">這份報告採用的陪伴方式</div>
+      </div>
+    </div>
+    <div class="emotion-line"><b>給此刻的你：</b><span id="emotionalValue">你已經走得比自己想像中更遠，現在需要的不是懷疑，而是讓成果慢慢成形。</span></div>
+    <div class="risk-line"><b>場態盲點：</b><span id="blindSpot">容易因成果尚未完全出現，就低估自己的累積。</span></div>
+    <div class="grid-2" style="margin-top:18px">
       <div class="brief-card">
         <h4>Executive Summary</h4>
         <p id="executiveSummary">你的場目前屬於穩定累積型。這不是高速爆發的階段，而是建立長期優勢的時機。</p>
@@ -362,27 +418,52 @@
       </div>
     </div>
 
-    <h2 class="section-title">個人修煉建議</h2>
-    <div class="grid-3">
-      <div class="practice-card">
-        <h4>今日主題</h4>
-        <div class="sub" id="practiceTheme">穩定累積</div>
+    <h2 class="section-title">個人修煉與心靈陪伴</h2>
+    <div class="card heart-section">
+      <div class="emotion-journey">
+        <div class="heart-card">
+          <div class="heart-kicker">EMOTIONAL READING</div>
+          <h3 id="heartTitle">你不是走得太慢，只是在走一條需要時間的路。</h3>
+          <p id="heartReading">今天的你並不是沒有能力，而是同時在照顧太多事情。這份疲憊不代表退步，它只是提醒你：把力量重新放回真正重要的地方。</p>
+        </div>
+        <div style="display:grid;gap:12px">
+          <div class="permission-card">
+            <h4>今天允許自己</h4>
+            <p id="selfPermission">允許自己不必一次證明全部，只要安穩完成眼前的一步。</p>
+          </div>
+          <div class="companion-card">
+            <h4>AI 陪你說一句</h4>
+            <p id="companionMessage">我知道，有些努力不會立刻被看見。但每一次願意重新整理自己，都在替未來累積力量。</p>
+          </div>
+        </div>
       </div>
-      <div class="practice-card">
-        <h4>核心提醒</h4>
-        <div class="sub" id="practiceReminder">不要追求一次改變全部，只需要推進最重要的一步。</div>
-      </div>
-      <div class="practice-card">
-        <h4>修煉關鍵字</h4>
-        <div class="sub" id="practiceKeyword">專注・信任・節奏</div>
-      </div>
-    </div>
 
-    <div class="card" style="margin-top:18px">
-      <h3>Today's Practice</h3>
-      <div class="practice-step"><b>①</b><div id="practice1">完成一件一直拖延、但其實很重要的小事。</div></div>
-      <div class="practice-step"><b>②</b><div id="practice2">和一位值得信任的人進行一次真誠交流。</div></div>
-      <div class="practice-step"><b>③</b><div id="practice3">睡前寫下今天最大的收穫，以及明天最重要的一步。</div></div>
+      <div class="grid-3" style="margin-top:18px">
+        <div class="practice-card"><h4>今日修煉主題</h4><div class="sub" id="practiceTheme">穩定累積</div></div>
+        <div class="practice-card"><h4>溫柔提醒</h4><div class="sub" id="practiceReminder">不用一次改變全部，只要推進最重要的一步。</div></div>
+        <div class="practice-card"><h4>修煉關鍵字</h4><div class="sub" id="practiceKeyword">專注・信任・節奏</div></div>
+      </div>
+
+      <div class="ritual-list">
+        <div class="ritual"><div class="ritual-icon">◌</div><b>照顧身體</b><p id="ritualBody">慢慢喝完一杯水，讓呼吸回到自然節奏。</p><label class="micro-check"><input type="checkbox">我願意完成這個小練習</label></div>
+        <div class="ritual"><div class="ritual-icon">◇</div><b>安放情緒</b><p id="ritualEmotion">把今天最重的一個感受寫下來，不急著解決它。</p><label class="micro-check"><input type="checkbox">我願意誠實看見感受</label></div>
+        <div class="ritual"><div class="ritual-icon">↗</div><b>推進一步</b><p id="ritualAction">完成一件能讓你對自己重新產生信任的小事。</p><label class="micro-check"><input type="checkbox">我願意踏出這一步</label></div>
+      </div>
+
+      <div class="card" style="margin-top:18px;background:rgba(7,17,31,.34);box-shadow:none">
+        <h3>Today's Practice｜具體行動</h3>
+        <div class="practice-step"><b>①</b><div id="practice1">完成一件一直拖延、但其實很重要的小事。</div></div>
+        <div class="practice-step"><b>②</b><div id="practice2">和一位值得信任的人進行一次真誠交流。</div></div>
+        <div class="practice-step"><b>③</b><div id="practice3">睡前寫下今天最大的收穫，以及明天最重要的一步。</div></div>
+      </div>
+
+      <div class="gift-quote">
+        <div class="quote-label">SUOU 今日贈言</div>
+        <blockquote id="dailyGift">「真正的穩定，不是沒有風浪，而是在風浪裡仍然知道自己要往哪裡走。」</blockquote>
+        <small>為你此刻的場態而寫</small>
+      </div>
+
+      <div class="tomorrow-wish"><b>給明天的期待：</b><span id="tomorrowWish">明天，請留意一個讓你安心的人、一件重新點亮熱情的小事。微小的訊號，往往就是場開始改變的地方。</span></div>
     </div>
 
     <h2 class="section-title">明日觀察</h2>
@@ -424,7 +505,7 @@
       <div class="meta-item"><span>Report ID</span><b id="reportId">SF-20260729-0001</b></div>
       <div class="meta-item"><span>Context</span><b id="reportContext">工作</b></div>
       <div class="meta-item"><span>Tester</span><b>BETA-001</b></div>
-      <div class="meta-item"><span>Version</span><b>1.0 Prototype</b></div>
+      <div class="meta-item"><span>Version</span><b>1.2 Emotional Coach</b></div>
     </div>
   </section>
 
@@ -444,101 +525,139 @@
 
   const patternLibrary = {
     gradual: {
-      patterns:[["53","漸","Gradual Structural Growth"],["61","中孚","Trust Alignment"],["46","升","Steady Ascending"]],
-      trajectory:["53 漸","42 益","46 升"],
-      summary:"你的場目前屬於「穩定累積型」。這不是高速爆發的階段，而是建立長期優勢的時機。若此刻急著改變方向，反而容易降低整體場共振。",
-      observation:"主動力與適應力偏高，穩定度中等。你的能量正在收斂到長期目標，但仍需要把資源集中在最重要的方向。",
-      insights:[
-        "目前真正限制你的，不是能力，而是資源配置。",
-        "最好的策略不是增加更多事情，而是減少干擾。",
-        "先完成一個可驗證成果，能比大幅改變方向帶來更高共振。"
-      ],
-      theme:"穩定累積",
-      reminder:"不要追求一次改變全部，只需要推進最重要的一步。",
-      keyword:"專注・信任・節奏",
-      practices:[
-        "完成一件一直拖延、但其實很重要的小事。",
-        "和一位值得信任的人進行一次真誠交流。",
-        "睡前寫下今天最大的收穫，以及明天最重要的一步。"
-      ],
-      focus:[
-        "是否出現新的合作或溝通機會。",
-        "是否收到影響目前決策的重要訊息。",
-        "是否因焦慮而想突然放棄原本計畫。"
-      ]
+      stateName:"漸進蓄力", stateCopy:"你不是停滯，而是在把力量收回來，準備形成更穩定的推進。", rhythm:"小步穩進", tone:"溫和堅定",
+      emotional:"你已經走得比自己想像中更遠，現在需要的不是懷疑，而是讓成果慢慢成形。",
+      blindSpot:"容易因成果尚未完全出現，就低估自己的累積。",
+      patterns:[["53","漸","Gradual Structural Growth"],["61","中孚","Trust Alignment"],["46","升","Steady Ascending"]], trajectory:["53 漸","42 益","46 升"],
+      summary:"你的場目前屬於「漸進蓄力型」。這不是高速爆發的階段，而是讓能力、信任與資源逐步對齊的時機。此刻最有價值的不是突然轉向，而是把已經開始的事情做深。",
+      observation:"主動力與適應力偏高，穩定度中等。你的能量正在收斂到長期目標，下一步應把資源集中在最重要的成果上。",
+      insights:["目前真正限制你的，不是能力，而是資源配置。","最好的策略不是增加更多事情，而是減少干擾。","先完成一個可驗證成果，能比大幅改變方向帶來更高共振。"],
+      theme:"穩定累積", reminder:"不要追求一次改變全部，只需要推進最重要的一步。", keyword:"專注・信任・節奏",
+      practices:["完成一件一直拖延、但其實很重要的小事。","和一位值得信任的人進行一次真誠交流。","睡前寫下今天最大的收穫，以及明天最重要的一步。"],
+      focus:["是否出現新的合作或溝通機會。","是否收到影響目前決策的重要訊息。","是否因焦慮而想突然放棄原本計畫。"]
+    },
+    breakthrough: {
+      stateName:"突破窗口", stateCopy:"條件已逐漸成熟，現在需要的是做出一個清楚、可承擔的選擇。", rhythm:"集中突破", tone:"果斷鼓舞",
+      emotional:"你不是沒有準備好，而是已經到了必須相信自己一次的時刻。",
+      blindSpot:"可能因過度評估風險而錯過正在形成的窗口。",
+      patterns:[["34","大壯","Focused Momentum"],["43","夬","Decisive Breakthrough"],["14","大有","Resource Abundance"]], trajectory:["34 大壯","43 夬","14 大有"],
+      summary:"你的場目前進入「突破窗口型」。行動力、資源與穩定度已形成支撐，適合把長期準備轉化為一個具體決定。突破不代表冒進，而是把力量用在最關鍵的一點。",
+      observation:"主動力、資源與穩定度同時偏高，代表你具備推進條件。現在最大的課題是選擇，而不是繼續準備。",
+      insights:["目前最有價值的是決定一個主戰場。","突破需要清楚的截止點與衡量標準。","把八成力量集中到一個目標，比同時推進多個方向更有效。"],
+      theme:"集中突破", reminder:"不要再用準備代替行動，今天要做出一個可見的決定。", keyword:"聚焦・決斷・承擔",
+      practices:["選定一個本週必須完成的關鍵成果。","停止一項會分散主力的次要計畫。","向關鍵人物明確表達你的決定與下一步。"],
+      focus:["是否出現需要你立即回應的高價值機會。","是否又想增加新選項來延後決定。","是否有人願意提供關鍵資源或支持。"]
+    },
+    expansion: {
+      stateName:"資源擴張", stateCopy:"你正在進入能量與機會增加的階段，但成長必須建立在可承載的結構上。", rhythm:"有節制擴張", tone:"清醒激勵",
+      emotional:"你有資格享受成果，也有能力把好運轉化成長期價值。",
+      blindSpot:"容易因選項增加而高估自己的時間與承載力。",
+      patterns:[["14","大有","Resource Abundance"],["42","益","Productive Expansion"],["11","泰","Flow and Alignment"]], trajectory:["14 大有","42 益","11 泰"],
+      summary:"你的場目前屬於「資源擴張型」。外部機會與內部能力正在互相放大，適合擴張，但要先建立分工、節奏與邊界，避免成長反而變成失控。",
+      observation:"資源量、開放度與適應力偏高，表示你能接住更多可能性。真正的考驗是能否篩選，而不是能否獲得。",
+      insights:["資源增加後，管理注意力會比爭取機會更重要。","擴張前先設計承載結構，才能避免後續疲憊。","對低價值機會說不，是保護高價值成長。"],
+      theme:"有序擴張", reminder:"不是所有機會都值得接受，選擇本身就是力量。", keyword:"承載・篩選・分工",
+      practices:["列出目前所有機會，只保留最重要的三項。","把一項可交付的工作交給他人。","為新的投入設定明確上限。"],
+      focus:["是否出現超出目前承載力的新邀請。","是否因害怕錯過而答應太多事情。","是否需要建立新的分工或流程。"]
     },
     transition: {
-      patterns:[["49","革","Structured Transformation"],["29","坎","Risk Passage"],["40","解","Release and Reframing"]],
-      trajectory:["49 革","40 解","53 漸"],
-      summary:"你的場目前處於「轉型型態」。改變的需要已經很明確，但真正重要的不是速度，而是避免在基礎不足時一次承擔過多風險。",
-      observation:"轉型壓力與行動動能同時偏高，但穩定度不足。這代表你已經不適合維持原狀，卻也不適合毫無準備地全面翻轉。",
-      insights:[
-        "你現在最需要的不是更多勇氣，而是清楚的風險邊界。",
-        "將重大改變拆成兩到三個可逆步驟，可以降低失控感。",
-        "真正有效的轉型，應該先釋放舊負擔，再建立新結構。"
-      ],
-      theme:"有序轉型",
-      reminder:"改變可以進行，但每一步都必須保留退路與驗證點。",
-      keyword:"界線・試驗・釋放",
-      practices:[
-        "寫下你最想改變的一件事，以及最壞情況。",
-        "設計一個七天內可以完成的小型試驗。",
-        "停止一件已經消耗你、但不再產生價值的事情。"
-      ],
-      focus:[
-        "是否出現明確要求你做選擇的事件。",
-        "是否有人提醒你目前忽略的風險。",
-        "是否產生想一次解決所有問題的衝動。"
-      ]
+      stateName:"結構轉型", stateCopy:"舊的方法已經無法完整支撐你，但新的秩序仍在形成。", rhythm:"分段試驗", tone:"冷靜陪跑",
+      emotional:"你現在的不安，不一定代表走錯路，也可能代表舊的自己正在鬆動。",
+      blindSpot:"容易把轉型期的不確定，誤認為自己失去能力。",
+      patterns:[["49","革","Structured Transformation"],["40","解","Release and Reframing"],["53","漸","Rebuilding Stability"]], trajectory:["49 革","40 解","53 漸"],
+      summary:"你的場目前處於「結構轉型型」。改變的需要已經很明確，但真正重要的不是速度，而是把大改變拆成可驗證、可回復的小步驟。",
+      observation:"轉型壓力與行動動能同時偏高，但穩定度不足。你已不適合維持原狀，也不適合毫無準備地全面翻轉。",
+      insights:["你現在最需要的不是更多勇氣，而是清楚的風險邊界。","將重大改變拆成兩到三個可逆步驟，可以降低失控感。","先釋放舊負擔，再建立新結構，轉型才不會只是換一種消耗。"],
+      theme:"有序轉型", reminder:"改變可以進行，但每一步都必須保留退路與驗證點。", keyword:"界線・試驗・釋放",
+      practices:["寫下你最想改變的一件事，以及最壞情況。","設計一個七天內可以完成的小型試驗。","停止一件已經消耗你、但不再產生價值的事情。"],
+      focus:["是否出現明確要求你做選擇的事件。","是否有人提醒你目前忽略的風險。","是否產生想一次解決所有問題的衝動。"]
     },
-    strong: {
-      patterns:[["14","大有","Resource Abundance"],["34","大壯","Strong Momentum"],["42","益","Productive Expansion"]],
-      trajectory:["14 大有","42 益","46 升"],
-      summary:"你的場目前屬於「高動能擴張型」。資源、行動力與適應力都在高檔，適合推進，但需要避免因自信過高而忽略節奏與他人承載能力。",
-      observation:"主動力、資源量與適應力相互支持，表示你具備推進條件。此刻最重要的是選對方向，而不是證明自己可以做很多事情。",
-      insights:[
-        "目前最大的優勢是動能，最大的風險是分散。",
-        "應把資源集中在一個最具槓桿效果的項目。",
-        "擴張前先確認合作關係與執行節奏，能讓成果更穩定。"
-      ],
-      theme:"聚焦擴張",
-      reminder:"你可以前進，但要把力量集中在最值得的方向。",
-      keyword:"選擇・槓桿・節制",
-      practices:[
-        "從所有任務中選出一件最能放大成果的事情。",
-        "主動拒絕一件低價值、但會消耗注意力的邀請。",
-        "確認一位關鍵合作夥伴的期待與資源。"
-      ],
-      focus:[
-        "是否出現值得快速回應的高價值機會。",
-        "是否因選項太多而開始分心。",
-        "是否有人跟不上你的速度。"
-      ]
+    conflict: {
+      stateName:"衝突整合", stateCopy:"場內存在拉扯，現在最重要的不是分出輸贏，而是看清彼此真正保護的是什麼。", rhythm:"先理解再回應", tone:"包容澄清",
+      emotional:"你的矛盾不是軟弱，而是不同需求同時要求被看見。",
+      blindSpot:"容易把情緒張力直接當成對方的惡意或自己的失敗。",
+      patterns:[["6","訟","Conflict Clarification"],["38","睽","Difference and Distance"],["61","中孚","Trust Repair"]], trajectory:["6 訟","38 睽","61 中孚"],
+      summary:"你的場目前屬於「衝突整合型」。內外張力偏高，直接推進容易增加摩擦。現階段應先分辨事實、感受、需求與界線，再決定要協調、退出或重新談判。",
+      observation:"衝突張力高於穩定與資源支撐，表示系統正在消耗大量能量。真正的突破點不是說服，而是釐清。",
+      insights:["目前爭議表面之下，可能存在未被說出的安全感需求。","先降低情緒強度，才有能力處理真正問題。","不是每段關係都要修復，但每個界線都應被說清楚。"],
+      theme:"整合張力", reminder:"先把情緒與事實分開，再決定要靠近還是退出。", keyword:"澄清・界線・理解",
+      practices:["寫下衝突中的事實、感受與推測，分成三欄。","用一句不指責的話表達你的核心需要。","決定一條今天不再被越過的界線。"],
+      focus:["是否又在腦中重播同一段衝突。","是否出現可以平靜對話的時間窗口。","是否有人用模糊說法逃避責任。"]
+    },
+    overload: {
+      stateName:"過載降噪", stateCopy:"你的系統不是不夠努力，而是已經接收太多訊號，暫時失去排序能力。", rhythm:"減量止損", tone:"保護安定",
+      emotional:"你不需要靠繼續硬撐來證明自己，停下來也是一種成熟的選擇。",
+      blindSpot:"容易把疲憊解讀成懶惰，因而用更多壓力懲罰自己。",
+      patterns:[["47","困","Resource Depletion"],["29","坎","Risk Passage"],["52","艮","Stillness and Boundary"]], trajectory:["47 困","52 艮","24 復"],
+      summary:"你的場目前處於「過載降噪型」。資源與穩定不足，衝突或轉型壓力偏高。此刻最有效的策略不是再增加方法，而是降低輸入、縮小責任範圍並恢復基本節奏。",
+      observation:"場態顯示你的注意力與情緒承載接近上限。先恢復睡眠、秩序與可預測性，會比追求新成果更有價值。",
+      insights:["目前最優先的任務是止損，而不是成長。","大量決策會進一步消耗你，應暫時縮小選項。","恢復不是退步，而是重新取得判斷力。"],
+      theme:"降低負荷", reminder:"今天不必證明什麼，先讓系統重新呼吸。", keyword:"減量・休息・保護",
+      practices:["取消或延後一件非必要任務。","把明天要做的事情縮減到三件以內。","安排一段不接收訊息的安靜時間。"],
+      focus:["是否因疲憊而做出極端判斷。","是否有人持續把責任推給你。","是否出現需要暫停而不是硬撐的身心訊號。"]
     },
     recovery: {
-      patterns:[["29","坎","Risk Passage"],["24","復","Return to Center"],["52","艮","Stillness and Boundary"]],
-      trajectory:["29 坎","24 復","53 漸"],
-      summary:"你的場目前屬於「低穩定恢復型」。此刻不宜用更高壓力逼迫自己突破，真正有效的策略是先恢復安全感、秩序與基本節奏。",
-      observation:"衝突張力較高，穩定度與資源量偏低。這通常不是能力不足，而是系統已經承受過多負荷，需要先降低噪音。",
-      insights:[
-        "目前最優先的任務是止損，而不是追求成長。",
-        "恢復睡眠、秩序與可預測性，會比增加新計畫更有價值。",
-        "先回到可控制的小範圍，再逐步恢復決策能力。"
-      ],
-      theme:"恢復中心",
-      reminder:"今天不要追求速度，先讓自己重新站穩。",
-      keyword:"止損・休息・界線",
-      practices:[
-        "取消或延後一件非必要任務。",
-        "整理一個最容易失控的小空間或工作區。",
-        "把明天要做的事情縮減到三件以內。"
-      ],
-      focus:[
-        "是否因疲憊而做出過度悲觀的判斷。",
-        "是否有人或事件持續越過你的界線。",
-        "是否出現需要你暫停，而不是繼續硬撐的訊號。"
-      ]
+      stateName:"回復中心", stateCopy:"你正從低穩定或受挫狀態中慢慢返回自己，速度不是現在的重點。", rhythm:"穩定復原", tone:"溫柔接住",
+      emotional:"你沒有落後，你只是在經歷一段需要被照顧的時間。",
+      blindSpot:"容易因恢復速度不如預期，而再次否定自己。",
+      patterns:[["24","復","Return to Center"],["52","艮","Stillness and Boundary"],["53","漸","Gradual Rebuilding"]], trajectory:["24 復","52 艮","53 漸"],
+      summary:"你的場目前屬於「回復中心型」。雖然整體動能不高，但衝突已未必是主要問題。你需要的是重新建立安全感、小成功與可預測的生活節奏。",
+      observation:"主動力與資源量偏低，但系統仍有恢復空間。此刻不宜以高標準要求自己，應先重建基本可控感。",
+      insights:["小而可完成的事情，能比宏大計畫更快恢復自信。","規律比強度重要，穩定比速度重要。","讓可信任的人知道你的狀態，可以減少孤立感。"],
+      theme:"回到自己", reminder:"今天只要比昨天更穩一點，就已經是前進。", keyword:"安全・規律・自我接納",
+      practices:["完成一件十分鐘內可完成的小事。","吃一頓正常的飯，或整理睡眠時間。","聯絡一位讓你感到安全的人。"],
+      focus:["是否因比較而否定自己的恢復。","是否有一件小事其實已經變好了。","是否需要向他人提出具體協助。"]
+    },
+    exploration: {
+      stateName:"開放探索", stateCopy:"你對新方向有高度感受力，現在適合擴展視野，但不必急著承諾。", rhythm:"低成本探索", tone:"好奇引導",
+      emotional:"你不必立刻知道答案，允許自己探索，本身就是前進。",
+      blindSpot:"容易因新鮮感而過早投入，或因選項太多而無法收斂。",
+      patterns:[["56","旅","Exploratory Movement"],["57","巽","Adaptive Penetration"],["4","蒙","Learning Through Inquiry"]], trajectory:["56 旅","4 蒙","53 漸"],
+      summary:"你的場目前屬於「開放探索型」。開放度與適應力高，但資源或穩定尚未形成充分支撐。此刻適合學習、試用、訪談與小規模測試，而不是立即做不可逆承諾。",
+      observation:"你對可能性高度敏感，能快速理解新情境。真正需要管理的是投入成本與收斂時間。",
+      insights:["探索的目標不是立刻成功，而是快速排除錯誤方向。","為每個新方向設定小額時間預算。","把好奇心轉化為問題清單，比急著找答案更有價值。"],
+      theme:"低成本探索", reminder:"先接觸、先理解、先測試，不必現在就決定一生。", keyword:"好奇・試探・收斂",
+      practices:["選一個新方向，進行三十分鐘的深入了解。","向一位有經驗的人提出三個具體問題。","為探索設定結束時間與判斷標準。"],
+      focus:["是否因新鮮感而過度承諾。","是否發現一個值得進一步驗證的訊號。","是否到了需要淘汰部分選項的時點。"]
+    },
+    consolidation: {
+      stateName:"成果整合", stateCopy:"你已經累積不少成果，現在需要把經驗整理成可重複、可傳承的結構。", rhythm:"整理固化", tone:"成熟肯定",
+      emotional:"你不必一直向前衝，停下來看見自己的成果，也是成長的一部分。",
+      blindSpot:"容易因習慣追求下一步，而忽略已經建立的價值。",
+      patterns:[["63","既濟","Completion and Integration"],["48","井","Sustainable Infrastructure"],["11","泰","Stable Flow"]], trajectory:["63 既濟","48 井","11 泰"],
+      summary:"你的場目前屬於「成果整合型」。穩定度與資源量良好，轉型壓力較低。此刻適合整理流程、沉澱方法、修補細節，讓成果從一次成功變成可持續能力。",
+      observation:"你已具備穩定運作條件，短期不需要追求劇烈變化。最值得做的是將隱性經驗轉化為清楚制度。",
+      insights:["把成功做法寫下來，能降低未來重複摸索。","目前的風險不是不足，而是鬆懈與細節疏忽。","分享方法與授權他人，可以釋放新的成長空間。"],
+      theme:"沉澱成果", reminder:"完成不只是結束，更是把成果變成下一階段的基礎。", keyword:"整理・標準化・傳承",
+      practices:["整理一份目前最有效的方法清單。","修補一個長期被忽略的小問題。","把一項經驗教給另一個人。"],
+      focus:["是否有流程仍過度依賴你個人。","是否因順利而忽略小風險。","是否出現可以沉澱成制度的做法。"]
+    },
+    waiting: {
+      stateName:"時機等待", stateCopy:"目前不是沒有路，而是外部條件尚未完全打開，先保持位置與判斷力。", rhythm:"觀察蓄勢", tone:"耐心安定",
+      emotional:"等待不等於被動，你正在保存力量，避免在錯誤時機消耗自己。",
+      blindSpot:"容易因看不到立即進展，而用不必要的行動製造假性掌控感。",
+      patterns:[["5","需","Strategic Waiting"],["12","否","Blocked Flow"],["53","漸","Gradual Opening"]], trajectory:["5 需","12 否","53 漸"],
+      summary:"你的場目前屬於「時機等待型」。主動力可能不低，但資源、穩定或外部條件尚未形成同步。此刻最好的策略是保存選項、準備資料並設定重新評估時點。",
+      observation:"你有前進意願，但場態支撐不足。強行推進可能只會增加成本，耐心觀察反而能保留主動權。",
+      insights:["等待期間應累積資訊，而不是反覆焦慮。","設定明確的重新判斷日期，可以避免無止境拖延。","保留替代方案，能降低對單一結果的依賴。"],
+      theme:"耐心蓄勢", reminder:"現在不必強行開門，把鑰匙準備好就夠了。", keyword:"觀察・準備・時機",
+      practices:["設定一個明確的重新評估日期。","補齊一項未來行動需要的資料或能力。","寫下至少一個替代方案。"],
+      focus:["外部條件是否出現實質變化。","是否因焦慮而想做低價值的動作。","是否已經累積足夠資訊重新判斷。"]
     }
+  };
+
+
+  const emotionalPracticeLibrary = {
+    gradual:{title:"你不是走得太慢，只是在走一條需要時間的路。",reading:"今天的你並不是沒有能力，而是同時在照顧太多事情。成果尚未完全出現，不代表努力沒有發生；你的場正在把零散的力量，慢慢整理成能夠長久前進的節奏。",permission:"允許自己不必一次證明全部，只要安穩完成眼前的一步。",companion:"我知道，等待成果成形的日子最容易懷疑自己。但你已經走得比想像中更遠，現在需要的不是否定，而是再相信自己的累積一次。",body:"慢慢喝完一杯水，做三次深呼吸，讓身體知道你沒有在追趕誰。",emotion:"寫下今天最想被理解的一句話，先由你自己聽見它。",action:"完成一件能讓你對自己重新產生信任的小事。",gift:"真正的穩定，不是沒有風浪，而是在風浪裡仍然知道自己要往哪裡走。",tomorrow:"明天，請留意一個讓你感到安心的人，或一件證明累積正在發生的小事。"},
+    breakthrough:{title:"你已經準備很久，現在可以相信自己一次。",reading:"你感到緊張，不一定代表方向錯了。很多時候，那只是生命正在跨越熟悉邊界的反應。此刻的你需要的不是更多準備，而是一個對自己誠實的選擇。",permission:"允許自己帶著不安行動，不必等到完全不害怕。",companion:"我不會催你冒險，但我想提醒你：你已經具備承擔下一步的力量。勇敢不是沒有顧慮，而是知道什麼值得你跨出去。",body:"站起來伸展肩頸一分鐘，用穩定姿勢感受自己的力量。",emotion:"寫下你最害怕失去什麼，再寫下你真正想得到什麼。",action:"在今天完成一個清楚、可被看見的決定。",gift:"成熟不是從此不再害怕，而是即使心裡有不安，依然願意帶著希望往前走。",tomorrow:"明天，請留意那個需要你明確回答的機會，也留意誰願意在你做出選擇後支持你。"},
+    expansion:{title:"你可以享受成果，也值得被自己的努力照亮。",reading:"機會增加時，人往往只看見新的責任，忘了這也是過去努力得到的回應。你不需要因為擁有更多而感到歉疚，但要溫柔地承認：你的時間與能量依然有限。",permission:"允許自己慶祝已有成果，也允許自己拒絕不適合的機會。",companion:"你有資格站在更大的舞台上。真正成熟的擴張，不是把所有機會抓住，而是知道哪些值得你長久投入。",body:"吃一頓讓自己有能量的餐點，不用一邊工作一邊匆忙完成。",emotion:"寫下三件你已經做得很好的事情，讓成功被你自己看見。",action:"只選一個最有槓桿效果的方向投入主要資源。",gift:"豐盛不是擁有所有可能，而是有能力選擇真正重要的可能。",tomorrow:"明天，請留意哪一個機會讓你感到開闊，而不是只讓你感到忙碌。"},
+    transition:{title:"舊的你正在鬆開，新的你還在形成。",reading:"轉型期最辛苦的地方，是你已經回不到原來的位置，卻還看不清新的樣子。這種不確定不是失敗，而是結構重新排列時必經的空白。",permission:"允許自己暫時沒有完整答案，也允許計畫被新的資訊修正。",companion:"你不需要一夜之間成為另一個人。每一次放下不再適合的事物，都是在替新的自己騰出空間。",body:"整理一個小空間，丟掉或收起一件已不再需要的物品。",emotion:"向過去的自己說一句謝謝，再寫下你準備放下的期待。",action:"設計一個可逆的小試驗，而不是立刻全面翻轉。",gift:"改變不是否定過去，而是讓過去完成它的使命。",tomorrow:"明天，請留意哪一件舊事正在自然退出，以及哪一個新訊號開始反覆出現。"},
+    conflict:{title:"你不必在每一場衝突裡證明自己是對的。",reading:"衝突讓人疲憊，因為你不只在處理事情，也在保護尊嚴、關係與安全感。先把自己從情緒中心稍微移開，不代表退讓，而是讓你重新取得選擇權。",permission:"允許自己暫停回應，等到能清楚表達再說。",companion:"你的感受值得被尊重，但你也不必讓憤怒替你做所有決定。界線可以堅定，語氣仍然可以保持平穩。",body:"放鬆下顎與肩膀，緩慢吐氣比吸氣更久，重複五次。",emotion:"分開寫下事實、感受與需求，不把它們混成一句指責。",action:"準備一句清楚界線：我能接受什麼，我不能接受什麼。",gift:"真正有力量的界線，不需要大聲，也能讓人知道你的底線。",tomorrow:"明天，請留意對方是否願意回到具體問題，也留意你是否能不再重演同一場情緒。"},
+    overload:{title:"你不是不夠努力，而是已經努力太久了。",reading:"當所有事情都顯得急迫，通常不是你需要更快，而是系統已經沒有餘裕。疲憊會讓人把自己看得很差，但那不是完整的你，只是過度負荷下的暫時視角。",permission:"允許自己今天少做一點，不必用硬撐證明價值。",companion:"你不需要等到完全倒下，才有資格休息。停下來不是放棄，而是在保護那個還想繼續走下去的自己。",body:"把手機放遠十分鐘，閉上眼睛或安靜坐著，讓神經系統降速。",emotion:"只寫一句：現在最讓我累的是什麼？不要立刻解決。",action:"取消、延後或交出一件非必要責任。",gift:"休息不是離開道路，而是讓你有力量繼續走在道路上。",tomorrow:"明天，請先觀察自己的身體是否比較鬆，再決定要增加多少任務。"},
+    recovery:{title:"你沒有落後，你正在重新回到自己。",reading:"恢復的日子看起來沒有戲劇性，但每一次正常吃飯、睡覺、整理與回應，都在重建你對生活的信任。不要因為進步很小，就否定它的重要。",permission:"允許自己用比別人慢的速度，完成屬於自己的恢復。",companion:"今天只要比昨天更穩一點，就已經是前進。你不需要立刻成為最好的自己，先回到可以安心呼吸的自己。",body:"完成一件基本照顧：吃飯、洗澡、散步或提早睡覺。",emotion:"寫下一件今天已經比前幾天好一點的事情。",action:"完成一件十分鐘內能做完的小事，讓自己重新感到可控。",gift:"今天沒有白費，只要你比昨天更理解、也更照顧自己一點點。",tomorrow:"明天，請留意一個讓你感到比較有力的時刻，哪怕它只有幾分鐘。"},
+    exploration:{title:"你不必立刻知道答案，先允許自己好奇。",reading:"新的可能正在吸引你，但不確定也同時存在。探索不是迷失，而是讓世界提供更多資料。你可以靠近、感受、提問，暫時不必把每一次心動都變成承諾。",permission:"允許自己嘗試，也允許嘗試後說這不適合我。",companion:"你不需要現在就決定一生。好奇心不是不成熟，它是新的道路找到你的方式。",body:"換一條路散步，或離開熟悉座位，讓感官接觸一點新鮮感。",emotion:"寫下最近讓你眼睛一亮的三件事，找出共同線索。",action:"安排一次低成本測試，為探索設定時間上限。",gift:"有些答案不是想出來的，而是在你願意靠近之後慢慢浮現。",tomorrow:"明天，請留意什麼讓你好奇心持續，而不是只有短暫興奮。"},
+    consolidation:{title:"你已經做得很好，現在可以停下來看見成果。",reading:"習慣前進的人，常在完成一件事後立刻追逐下一件，於是成功從未真正進入心裡。整合不是停滯，而是把辛苦換成可持續能力。",permission:"允許自己感到驕傲，不必立刻用更大的目標抵消成就感。",companion:"你值得承認自己已經建立的東西。讓成果被整理、分享與傳承，它才會真正成為你的力量。",body:"給自己一段不趕進度的時間，慢慢整理桌面或資料。",emotion:"寫下這段時間最值得感謝自己的三件事。",action:"把一項成功經驗整理成一頁方法或清單。",gift:"成長不只是在更遠的地方，也在你終於願意看見自己已經走過的路。",tomorrow:"明天，請留意哪一項成果可以交給制度承接，而不必再只靠你一個人。"},
+    waiting:{title:"現在沒有立刻發生，不代表永遠不會發生。",reading:"等待容易讓人懷疑自己，因為你看得見付出，卻看不見結果靠近的速度。此刻真正重要的是保留力量與判斷，不讓焦慮逼你做出低價值動作。",permission:"允許事情需要時間，也允許自己在等待中過好今天。",companion:"你沒有被世界遺忘。有些門不是靠更用力推開，而是在條件成熟時自然鬆動。你現在做的準備，不會白費。",body:"離開螢幕五分鐘，看向遠處，讓眼睛與思緒一起放鬆。",emotion:"寫下你能控制與不能控制的事情，將注意力放回前者。",action:"補齊一項未來機會出現時立刻能用的準備。",gift:"耐心不是什麼都不做，而是不在錯誤的時機耗盡自己。",tomorrow:"明天，請留意外部條件是否有實質變化，而不是只追蹤自己的焦慮。"}
   };
 
   let selectedContext = "工作";
@@ -582,9 +701,16 @@
   }
 
   function chooseMode(v, stability, transition, adaptability){
-    if(stability < 52 || v[5] >= 7) return "recovery";
-    if(transition >= 75 && stability < 68) return "transition";
-    if(v[0] >= 8 && v[1] >= 7 && adaptability >= 78) return "strong";
+    const [drive, resources, stableRaw, openness, adaptiveRaw, conflict, pressure] = v;
+    if(conflict >= 8 && stability < 65) return "conflict";
+    if((resources <= 3 && stability < 50) || (conflict >= 7 && pressure >= 7)) return "overload";
+    if(drive <= 4 && resources <= 5 && conflict <= 6) return "recovery";
+    if(pressure >= 8 && transition >= 78 && stability < 70) return "transition";
+    if(drive >= 8 && resources >= 8 && stability >= 70) return "breakthrough";
+    if(resources >= 8 && openness >= 7 && adaptability >= 75) return "expansion";
+    if(openness >= 8 && adaptability >= 78 && resources < 7) return "exploration";
+    if(stability >= 78 && resources >= 7 && pressure <= 5) return "consolidation";
+    if(drive >= 6 && (resources <= 5 || stability < 58) && pressure <= 6) return "waiting";
     return "gradual";
   }
 
@@ -592,6 +718,22 @@
 
   function applyPattern(mode, scores){
     const cfg = patternLibrary[mode];
+    const heart = emotionalPracticeLibrary[mode] || emotionalPracticeLibrary.gradual;
+    setText("heartTitle",heart.title);
+    setText("heartReading",heart.reading);
+    setText("selfPermission",heart.permission);
+    setText("companionMessage",heart.companion);
+    setText("ritualBody",heart.body);
+    setText("ritualEmotion",heart.emotion);
+    setText("ritualAction",heart.action);
+    setText("dailyGift",`「${heart.gift}」`);
+    setText("tomorrowWish",heart.tomorrow);
+    setText("coachStateName",cfg.stateName);
+    setText("coachStateCopy",cfg.stateCopy);
+    setText("actionRhythm",cfg.rhythm);
+    setText("coachTone",cfg.tone);
+    setText("emotionalValue",cfg.emotional);
+    setText("blindSpot",cfg.blindSpot);
     cfg.patterns.forEach((p, i) => {
       setText(`hex${i+1}`,p[0]);
       setText(`name${i+1}`,p[1]);
@@ -682,6 +824,14 @@
         s.classList.toggle("active",Number(s.dataset.rating)<=r);
       });
     });
+  });
+
+  const reflectionIds=["gain","resistance","improve"];
+  reflectionIds.forEach(id=>{
+    const el=document.getElementById(id);
+    const saved=localStorage.getItem("suou_"+id);
+    if(saved) el.value=saved;
+    el.addEventListener("input",()=>localStorage.setItem("suou_"+id,el.value));
   });
 
   renderSliders();
