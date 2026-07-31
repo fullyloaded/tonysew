@@ -1,240 +1,589 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="SUOU FieldSense — multilingual life-field reflection and adaptive coaching tool.">
-<meta name="author" content="周易先">
-<title>SUOU FieldSense™ v2.3.2 Multilingual Playful Edition</title>
-<style>
-:root{--a:#63a9ff;--ar:99,169,255;--b:#07111f;--p:rgba(16,31,52,.82);--t:#eef7ff;--m:#94abc0;--l:rgba(157,190,220,.17);--s:0 20px 55px rgba(0,0,0,.28)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--t);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Noto Sans JP","Noto Sans KR",sans-serif;background:radial-gradient(circle at 10% 10%,rgba(var(--ar),.18),transparent 28%),linear-gradient(145deg,#040a12,#0a1a2d 48%,#07111f)}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{max-width:1200px;margin:auto;padding:22px 16px 52px}.top{position:sticky;top:10px;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 17px;border:1px solid var(--l);border-radius:19px;background:rgba(5,14,26,.78);backdrop-filter:blur(16px);box-shadow:var(--s)}.brand{display:flex;gap:11px;align-items:center}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--a),#42e8c7);color:#06111d;font-weight:900}.brand h1{margin:0;font-size:18px}.brand p{margin:3px 0 0;color:var(--m);font-size:12px}.tools{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:13px;padding:11px 15px;font-weight:800}.pri{background:linear-gradient(135deg,var(--a),#42e8c7);color:#06111d}.sec{background:rgba(255,255,255,.055);color:var(--t);border:1px solid var(--l)}select.sec{padding-right:32px}.hero{margin-top:20px;padding:32px;border:1px solid var(--l);border-radius:27px;background:linear-gradient(135deg,rgba(var(--ar),.12),rgba(15,30,50,.86));box-shadow:var(--s)}.eye{color:var(--a);font-size:12px;font-weight:900;letter-spacing:.14em}.hero h2{font-size:36px;margin:8px 0 10px;line-height:1.18}.hero p,.sub{color:var(--m);line-height:1.75}.coaches{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:22px}.coach{padding:12px 8px;min-height:92px;color:var(--t);border:1px solid var(--l);border-radius:16px;background:rgba(255,255,255,.04)}.coach.active{border-color:rgba(var(--ar),.65);background:rgba(var(--ar),.15)}.coach .i{display:block;font-size:24px;margin-bottom:5px}.coach small{display:block;color:var(--m);margin-top:3px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{padding:21px;border:1px solid var(--l);border-radius:21px;background:var(--p);box-shadow:var(--s);backdrop-filter:blur(14px)}.card h3,.card h4{margin:0 0 7px}.headrow{display:flex;align-items:center;justify-content:space-between;gap:12px}.chip{font-size:12px;padding:7px 10px;border-radius:999px;border:1px solid rgba(var(--ar),.3);color:var(--a);background:rgba(var(--ar),.1)}.slider{padding:12px 0;border-bottom:1px solid var(--l)}.slider:last-child{border-bottom:0}.lab{display:flex;justify-content:space-between;gap:13px;margin-bottom:7px}.lab b{display:block}.lab small{color:var(--m);line-height:1.45}.score{font-size:20px;color:var(--a);font-weight:900}input[type=range]{width:100%;accent-color:var(--a)}.radar{display:grid;place-items:center}.radar svg{width:min(100%,430px)}.notice{margin-top:8px;padding:11px 13px;border-radius:13px;background:rgba(255,211,109,.07);border:1px solid rgba(255,211,109,.22);color:#e9d59e;font-size:12px}.title{font-size:22px;margin:28px 0 12px}.banner{display:grid;grid-template-columns:auto 1fr auto;gap:15px;align-items:center;padding:18px;border:1px solid rgba(var(--ar),.3);border-radius:18px;background:linear-gradient(135deg,rgba(var(--ar),.13),rgba(66,232,199,.06))}.sym{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:24px;background:rgba(var(--ar),.14)}.banner h3{margin:0 0 4px}.banner p{margin:0;color:var(--m)}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:15px}.metric{padding:14px;border:1px solid var(--l);border-radius:16px;background:rgba(255,255,255,.04)}.metric small{color:var(--m)}.metric strong{display:block;font-size:27px;margin:5px 0}.brief,.emotion,.practice,.gift{padding:19px;border:1px solid var(--l);border-radius:18px;background:rgba(255,255,255,.04)}.brief{background:linear-gradient(135deg,rgba(var(--ar),.1),rgba(66,232,199,.05))}.brief h4,.kicker{color:var(--a);font-size:12px;letter-spacing:.08em}.brief p,.emotion p,.practice p{line-height:1.8;margin:0}.quote{font-size:20px;font-weight:800;line-height:1.65;margin:8px 0}.insights{display:grid;gap:10px;margin-top:13px}.insight{display:grid;grid-template-columns:32px 1fr;gap:10px;padding:13px;border:1px solid var(--l);border-radius:14px;background:rgba(255,255,255,.035)}.insight b{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;color:var(--a);background:rgba(var(--ar),.12)}.practice .pi{font-size:22px;margin-bottom:7px}.task{display:grid;grid-template-columns:30px 1fr;gap:9px;padding:11px 0;border-bottom:1px solid var(--l)}.task:last-child{border-bottom:0}.task b{color:var(--a)}.gift{text-align:center;background:linear-gradient(135deg,rgba(var(--ar),.13),rgba(66,232,199,.07))}.gift .gt{font-size:22px;font-weight:800;line-height:1.7;margin-top:8px}.focus{display:flex;gap:9px;padding:12px;border:1px solid var(--l);border-radius:13px;background:rgba(255,255,255,.035);margin-top:9px}textarea{width:100%;min-height:88px;padding:11px 12px;margin-top:6px;border-radius:13px;border:1px solid var(--l);background:rgba(5,14,26,.6);color:var(--t);resize:vertical}.reflection label{display:block;color:var(--m);font-size:13px;margin-top:12px}.stars{display:flex;gap:6px;margin-top:8px}.star{border:0;background:transparent;color:#60758a;font-size:25px;padding:0}.star.on{color:#ffd36d}.patterns{display:grid}.pat{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--l)}.pat:last-child{border-bottom:0}.patl{display:flex;gap:10px;align-items:center;flex:1}.hex{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:rgba(var(--ar),.12);font-weight:900}.bar{height:7px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),#42e8c7)}.path{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.node{padding:11px 13px;border:1px solid var(--l);border-radius:14px;background:rgba(255,255,255,.04)}.arrow{color:var(--a)}.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:17px}.meta div{padding:11px;border:1px solid var(--l);border-radius:13px;background:rgba(255,255,255,.03)}.meta span{display:block;color:var(--m);font-size:11px}.journal{display:grid;gap:10px;max-height:500px;overflow:auto}.jitem{padding:13px;border:1px solid var(--l);border-radius:14px;background:rgba(255,255,255,.035)}.jhead{display:flex;justify-content:space-between;gap:10px}.jitem p{color:var(--m);font-size:13px;line-height:1.55}.timeline{display:flex;gap:9px;overflow:auto}.tn{min-width:145px;padding:12px;border:1px solid var(--l);border-radius:14px;background:rgba(255,255,255,.035)}.hidden{display:none!important}.footer{text-align:center;color:var(--m);font-size:12px;margin-top:25px;line-height:1.7}
-@media(max-width:930px){.grid,.grid2{grid-template-columns:1fr}.coaches{grid-template-columns:repeat(3,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:580px){.wrap{padding:12px 10px 34px}.top{position:static;align-items:flex-start}.hero{padding:23px}.hero h2{font-size:29px}.coaches{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}.grid4{grid-template-columns:1fr}.meta{grid-template-columns:repeat(2,1fr)}.banner{grid-template-columns:auto 1fr}.banner .chip{grid-column:1/-1;width:max-content}}
-@media print{body{background:#fff;color:#111}.top,.hero,#input,#journal,.footer,.no-print{display:none!important}#report{display:block!important}.card,.brief,.emotion,.practice,.gift,.metric,.banner,.insight,.focus,.node,.meta div{background:#fff!important;color:#111!important;box-shadow:none!important;border:1px solid #ddd!important}.sub,.banner p,.metric small{color:#555!important}}
-
-.app-error{display:none;margin-top:16px;padding:13px 15px;border:1px solid rgba(255,120,120,.42);border-radius:14px;background:rgba(120,20,20,.22);color:#ffd6d6;line-height:1.6}
-.app-error.show{display:block}
-
-
-/* playful interactions */
-.coach{transition:transform .2s ease,box-shadow .2s ease}.coach:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.22)}
-.btn{transition:transform .18s ease,filter .18s ease}.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}.btn:active{transform:scale(.98)}
-.logo{animation:logoPulse 4s ease-in-out infinite}@keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05);box-shadow:0 0 28px rgba(var(--ar),.28)}}
-#shape{transition:points .45s ease,fill .35s ease,stroke .35s ease}.sparkle{position:fixed;pointer-events:none;z-index:9999;font-size:20px;animation:sparkFly .9s ease-out forwards}@keyframes sparkFly{0%{opacity:0;transform:translate(-50%,-20%) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-160%) scale(1.4) rotate(18deg)}}
-.funbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.fun-card{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid var(--l);border-radius:16px;background:rgba(255,255,255,.04)}
-.fun-icon{font-size:28px}.fun-card b{display:block}.fun-card small{color:var(--m)}.mood-orb{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff,rgba(var(--ar),.85) 22%,rgba(var(--ar),.25) 62%,transparent 70%);box-shadow:0 0 26px rgba(var(--ar),.35);animation:orbFloat 3.6s ease-in-out infinite}@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.badge-pop{animation:badgePop .45s ease}@keyframes badgePop{0%{transform:scale(.75);opacity:.2}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
-.task.done{opacity:.65}.task.done div{text-decoration:line-through}.task-check{appearance:none;width:20px;height:20px;border:1px solid var(--l);border-radius:6px;background:rgba(255,255,255,.04);display:grid;place-items:center}.task-check:checked{background:linear-gradient(135deg,var(--a),#42e8c7)}.task-check:checked::after{content:"✓";color:#06111d;font-weight:900;font-size:13px}
-.state-reveal{animation:stateReveal .65s cubic-bezier(.2,.8,.2,1)}@keyframes stateReveal{0%{opacity:0;transform:translateY(16px) scale(.98)}100%{opacity:1;transform:none}}
-.confetti{position:fixed;top:-20px;z-index:9998;pointer-events:none;animation:confettiFall 1.4s linear forwards}@keyframes confettiFall{to{transform:translateY(110vh) rotate(540deg);opacity:.1}}
-@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Back to the ’80s | Morning Drive Memories</title>
+    <style>
+        *{box-sizing:border-box;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-tap-highlight-color:transparent}
+        body,html{margin:0;padding:0;width:100%;height:100%;background:#05050d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Helvetica,Arial,sans-serif;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e2e8f0}
+        #game-wrapper{position:relative;width:100%;max-width:480px;height:100%;max-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#030712}
+        canvas{width:100%;height:100%;display:block;background:#000}
+        .touch-ui{position:absolute;bottom:22px;left:0;right:0;padding:0 18px;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none;z-index:15}
+        .btn-group{display:flex;gap:14px;pointer-events:auto}
+        .touch-btn{width:70px;height:70px;border-radius:50%;background:rgba(15,23,42,.78);border:2px solid rgba(148,163,184,.35);color:#f1f5f9;font-size:1.55rem;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,.45);transition:transform .08s,background .1s,border-color .1s}
+        .touch-btn:active,.touch-btn.active{transform:scale(.88);background:rgba(56,189,248,.55);border-color:#38bdf8}
+        .touch-btn.nitro{background:linear-gradient(145deg,rgba(217,119,6,.88),rgba(245,158,11,.78));border-color:#fbbf24;width:80px;height:80px;font-size:1.75rem}
+        .touch-btn.nitro:active,.touch-btn.nitro.active{background:rgba(251,191,36,.95);box-shadow:0 0 22px rgba(251,191,36,.55)}
+        .touch-btn.brake{background:rgba(239,68,68,.55);border-color:#f87171}
+        .overlay{position:absolute;inset:0;background:rgba(3,7,18,.88);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:30;backdrop-filter:blur(12px);padding:24px;text-align:center}
+        .overlay h1{margin:0 0 8px;font-size:1.7rem;letter-spacing:1px}
+        .overlay .subtitle{color:#94a3b8;font-size:.95rem;margin-bottom:22px}
+        .overlay .stats{background:rgba(15,23,42,.75);border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:14px 22px;margin-bottom:22px;min-width:240px;font-size:1.05rem}
+        .btn-primary{background:linear-gradient(135deg,#38bdf8,#0ea5e9);color:#0f172a;border:none;padding:14px 36px;font-size:1.15rem;font-weight:700;border-radius:30px;cursor:pointer;box-shadow:0 0 24px rgba(56,189,248,.45);margin:6px}
+        .btn-primary:active{transform:scale(.96)}
+        .hud-top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;z-index:12;pointer-events:none}
+        .hud-panel{background:rgba(15,23,42,.7);border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:8px 12px;backdrop-filter:blur(6px);font-size:.85rem}
+        .hud-panel .label{color:#94a3b8;font-size:.7rem}
+        .hud-panel .value{font-weight:700;font-size:1.2rem;color:#f1f5f9}
+        .speed-value{color:#38bdf8}
+        .dist-value{color:#a78bfa}
+        .nitro-wrap{position:absolute;top:70px;right:14px;width:110px;z-index:12;pointer-events:none}
+        .nitro-bg{height:8px;background:rgba(15,23,42,.8);border-radius:4px;overflow:hidden;border:1px solid rgba(251,191,36,.3)}
+        .nitro-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:4px;transition:width .1s}
+        .best-score{position:absolute;top:70px;left:14px;font-size:.75rem;color:#94a3b8;z-index:12;pointer-events:none}
+    </style>
 </head>
-<body><div class="wrap">
-<header class="top"><div class="brand"><div class="logo">S</div><div><h1>SUOU FieldSense™</h1><p>Six Life Fields · Ten Adaptive States</p></div></div><div class="tools"><select class="btn sec no-print" id="languageSelect"><option value="zh-TW">繁體中文</option><option value="zh-CN">简体中文</option><option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option></select><span class="chip">v2.3.2 Multilingual</span><button class="btn sec no-print" id="print" data-i18n="print">列印／匯出 PDF</button></div></header>
-<div id="appError" class="app-error" role="alert">
-介面腳本未完整啟動，目前先顯示繁體中文基本內容。請重新整理頁面或清除瀏覽器快取。
+<body>
+<div id="game-wrapper">
+    <canvas id="gameCanvas"></canvas>
+    <div class="hud-top">
+        <div class="hud-panel"><div class="label">時速</div><div class="value speed-value" id="hudSpeed">0</div></div>
+        <div class="hud-panel" style="text-align:right"><div class="label">距離</div><div class="value dist-value" id="hudDist">0</div></div>
+    </div>
+    <div class="best-score" id="bestScore">最佳：0 m</div>
+    <div class="nitro-wrap">
+        <div style="font-size:0.65rem;color:#fbbf24;margin-bottom:2px;text-align:right">NITRO</div>
+        <div class="nitro-bg"><div class="nitro-fill" id="nitroBar" style="width:100%"></div></div>
+    </div>
+    <div class="touch-ui" id="touchUI">
+        <div class="btn-group">
+            <div class="touch-btn" id="btn-left">◀</div>
+            <div class="touch-btn" id="btn-right">▶</div>
+        </div>
+        <div class="btn-group">
+            <div class="touch-btn brake" id="btn-brake">🛑</div>
+            <div class="touch-btn nitro" id="btn-nitro">🔥</div>
+        </div>
+    </div>
+    <div class="overlay" id="startOverlay" style="display:flex">
+        <h1 style="background:linear-gradient(90deg,#f472b6,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Back to the ’80s</h1>
+        <div class="subtitle">Morning Drive Memories</div>
+        <div class="stats" style="font-size:0.9rem;color:#94a3b8;line-height:1.6">
+            ◀▶ 左右移動<br>🔥 氮氣加速 · 🛑 煞車<br>避開其他車輛，跑越遠越好
+        </div>
+        <button class="btn-primary" id="btnStart">開始狂飆 🏎️</button>
+    </div>
+    <div class="overlay" id="crashOverlay">
+        <h1 style="color:#f87171">事故發生！</h1>
+        <div class="subtitle">再來一次吧</div>
+        <div class="stats">
+            <div>距離：<span id="finalDist">0</span> m</div>
+            <div>得分：<span id="finalScore">0</span></div>
+            <div style="margin-top:6px;color:#fbbf24">最佳：<span id="finalBest">0</span> m</div>
+        </div>
+        <button class="btn-primary" id="btnRestart">再次挑戰</button>
+    </div>
 </div>
-<section class="hero"><div class="eye">FIELD INTELLIGENCE & EMOTIONAL COACHING</div><h2 id="heroTitle">💼 工作教練</h2><p id="heroText">整理工作動能、支持系統與職涯方向。</p><div class="coaches" id="coaches">
-<button class="coach active" type="button"><span class="i">💼</span><b>工作</b><small>工作教練</small></button>
-<button class="coach" type="button"><span class="i">📈</span><b>投資</b><small>財富教練</small></button>
-<button class="coach" type="button"><span class="i">❤️</span><b>感情</b><small>感情教練</small></button>
-<button class="coach" type="button"><span class="i">👨‍👩‍👧</span><b>家庭</b><small>家庭教練</small></button>
-<button class="coach" type="button"><span class="i">🩺</span><b>健康</b><small>健康教練</small></button>
-<button class="coach" type="button"><span class="i">🤝</span><b>人際</b><small>人際教練</small></button>
-</div><div class="actions"><button class="btn pri" id="start" data-i18n="start">開始量測</button><button class="btn sec" id="demo" data-i18n="demo">載入示範數據</button><button class="btn sec" id="journalBtn" data-i18n="viewJournal">查看場態日記</button></div><div class="funbar"><div class="fun-card"><div class="mood-orb" id="moodOrb">✨</div><div><b id="moodLabel">今日場感</b><small id="moodText">先量測，再看看今天的你是哪一種節奏。</small></div></div><div class="fun-card"><div class="fun-icon" id="dailyBadge">🌱</div><div><b id="badgeTitle">每日徽章</b><small id="badgeText">完成分析後解鎖。</small></div></div></div></section>
-<section id="input" class="grid"><div class="card"><div class="headrow"><div><h3 id="measureTitle">工作場態量測</h3><div class="sub" data-i18n="measureHelp">請依照此刻真實感受調整；0 很低，10 很高。</div></div><span class="chip" id="coachName">工作教練</span></div><div id="sliders"><div class="slider"><div class="lab"><div><b>執行力</b><small>我現在有多想把事情真正推進？</small></div>
-<span class="score" id="sc0">7</span></div>
-<input type="range" min="0" max="10" value="7" data-i="0" aria-label="執行力"></div><div class="slider"><div class="lab"><div><b>資源支持</b><small>我是否擁有足夠時間、資訊、工具或協助？</small></div>
-<span class="score" id="sc1">6</span></div>
-<input type="range" min="0" max="10" value="6" data-i="1" aria-label="資源支持"></div><div class="slider"><div class="lab"><div><b>工作穩定</b><small>目前節奏與環境是否讓我安心？</small></div>
-<span class="score" id="sc2">6</span></div>
-<input type="range" min="0" max="10" value="6" data-i="2" aria-label="工作穩定"></div><div class="slider"><div class="lab"><div><b>學習成長</b><small>我是否願意吸收新方法並提升能力？</small></div>
-<span class="score" id="sc3">8</span></div>
-<input type="range" min="0" max="10" value="8" data-i="3" aria-label="學習成長"></div><div class="slider"><div class="lab"><div><b>應變能力</b><small>面對變動時，我能否調整做法？</small></div>
-<span class="score" id="sc4">8</span></div>
-<input type="range" min="0" max="10" value="8" data-i="4" aria-label="應變能力"></div><div class="slider"><div class="lab"><div><b>工作壓力</b><small>責任、衝突或期限壓力有多高？</small></div>
-<span class="score" id="sc5">4</span></div>
-<input type="range" min="0" max="10" value="4" data-i="5" aria-label="工作壓力"></div><div class="slider"><div class="lab"><div><b>職涯轉型</b><small>我有多強烈想改變角色、方向或工作方式？</small></div>
-<span class="score" id="sc6">7</span></div>
-<input type="range" min="0" max="10" value="7" data-i="6" aria-label="職涯轉型"></div></div><button class="btn pri" id="analyze" data-i18n="analyze" style="margin-top:15px">產生完整 Field Report</button></div><div class="card"><h3 data-i18n="fieldRadar">Field Radar</h3><div class="sub" data-i18n="radarHelp">七個維度共同形成你此刻的情境場態。</div><div class="radar"><svg viewBox="0 0 360 325"><g transform="translate(180 158)"><g fill="none" stroke="rgba(157,190,220,.17)"><polygon points="0,-116 91,-72 113,26 50,104 -50,104 -113,26 -91,-72"/><polygon points="0,-82 64,-51 80,18 35,73 -35,73 -80,18 -64,-51"/><polygon points="0,-48 38,-30 47,11 21,43 -21,43 -47,11 -38,-30"/></g><polygon id="shape" points="" fill="rgba(99,169,255,.18)" stroke="var(--a)" stroke-width="2.3"/><g id="labels" fill="#94abc0" font-size="11" text-anchor="middle"></g></g></svg></div><div class="notice" id="notice">工作模式聚焦執行、支持、穩定、成長、應變、壓力與轉型。</div></div></section>
-<section id="report" class="hidden"><h2 class="title" data-i18n="dashboard">Field Dashboard</h2><div class="card"><div class="banner"><div class="sym" id="sym"></div><div><h3 id="stateName"></h3><p id="stateDesc"></p></div><span class="chip" id="pace"></span></div><div class="metrics"><div class="metric"><small>FRI</small><strong id="fri"></strong><small>Field Resonance</small></div><div class="metric"><small>FSI</small><strong id="fsi"></strong><small>Field Stability</small></div><div class="metric"><small>FTI</small><strong id="fti"></strong><small>Field Transition</small></div><div class="metric"><small>FAI</small><strong id="fai"></strong><small>Field Adaptability</small></div><div class="metric"><small data-i18n="confidence">模型置信度</small><strong id="conf"></strong><small>Model Confidence</small></div></div><div class="grid"><div><h3 data-i18n="patterns">Most Resonant Patterns</h3><div class="patterns" id="patterns"></div></div><div><h3 data-i18n="evolutionPath">Field Evolution Path</h3><div class="path" id="path"></div></div></div></div>
-<h2 class="title" data-i18n="coachBrief">AI 教練簡報</h2><div class="grid2"><div class="brief"><h4>EXECUTIVE SUMMARY</h4><p id="exec"></p></div><div class="brief"><h4>AI OBSERVATION</h4><p id="obs"></p></div></div><div class="card" style="margin-top:18px"><h3 data-i18n="keyInsights">Key Insights</h3><div class="insights" id="insights"></div></div>
-<h2 class="title" data-i18n="emotionalSupport">情緒陪伴</h2><div class="grid2"><div class="emotion"><div class="kicker" data-i18n="emotionReadingTitle">AI 心境解讀</div><div class="quote" id="emotion"></div><p class="sub" id="emotion2"></p></div><div class="emotion"><div class="kicker" data-i18n="permissionTitle">今天允許自己</div><div class="quote" id="permission"></div><p class="sub" id="company"></p></div></div>
-<h2 class="title" data-i18n="personalPractice">SUOU 個人修煉</h2><div class="grid4"><div class="practice"><div class="pi">🫁</div><h4 data-i18n="bodyPractice">身體修煉</h4><p id="bodyP"></p></div><div class="practice"><div class="pi">💗</div><h4 data-i18n="emotionPractice">情緒修煉</h4><p id="emoP"></p></div><div class="practice"><div class="pi">🧭</div><h4 data-i18n="actionPractice">行動修煉</h4><p id="actP"></p></div><div class="practice"><div class="pi">✨</div><h4 data-i18n="spiritPractice">心靈修煉</h4><p id="spiP"></p></div></div><div class="card" style="margin-top:18px"><h3 data-i18n="todaysPractice">Today's Practice</h3><div id="tasks"></div></div><div class="gift" style="margin-top:18px"><div class="kicker" data-i18n="dailyGift">SUOU 今日贈言</div><div class="gt" id="gift"></div></div>
-<h2 class="title" data-i18n="tomorrowSection">明日觀察與期待</h2><div class="grid2"><div class="card"><h3 data-i18n="tomorrowFocus">Tomorrow Focus</h3><div class="sub" data-i18n="notPrediction">這不是預言，而是提醒你留意場態開始改變的微小訊號。</div><div id="focuses"></div></div><div class="brief"><h4 data-i18n="tomorrowHope">給明天的期待</h4><p id="hope"></p></div></div>
-<h2 class="title" data-i18n="dailyReflection">每日反思</h2><div class="card reflection"><h3 data-i18n="fitQuestion">這份分析對你有多符合？</h3><div class="stars" id="stars"></div><label data-i18n="gainLabel">今天最大的收穫</label><textarea id="gain"></textarea><label data-i18n="resistanceLabel">今天最大的阻力</label><textarea id="resist"></textarea><label data-i18n="improveLabel">明天最想改善的事情</label><textarea id="improve"></textarea><div class="actions"><button class="btn pri no-print" id="save" data-i18n="saveJournal">儲存到場態日記</button><button class="btn sec no-print" id="clearR" data-i18n="clearReflection">清除反思</button></div></div><div class="meta"><div><span>Report ID</span><b id="rid"></b></div><div><span>Life Field</span><b id="rfield"></b></div><div><span>AI Coach</span><b id="rcoach"></b></div><div><span>Version</span><b>2.2 Global Edition</b></div></div></section>
-<section id="journal" class="hidden"><h2 class="title" data-i18n="fieldJournal">Field Journal</h2><div class="grid"><div class="card"><div class="headrow"><div><h3 data-i18n="journalTitle">場態日記</h3><div class="sub" data-i18n="journalHelp">每一次量測都是理解自己的新資料。</div></div><button class="btn sec" id="clearJ" data-i18n="clearAll">清除全部</button></div><div class="journal" id="jlist"></div></div><div class="card"><h3 data-i18n="fieldEvolution">Field Evolution</h3><div class="timeline" id="timeline"></div></div></div></section>
-<div class="footer" data-i18n="footer">Copyright © 2026 周易先 · SUOU FieldSense™ · All Rights Reserved. 僅供自我覺察與決策整理，不構成醫療、投資或心理治療建議。</div></div>
 <script>
-window.addEventListener('error',function(event){
-  var box=document.getElementById('appError');
-  if(box){
-    box.classList.add('show');
-    box.textContent='程式執行錯誤：'+(event.message||'未知錯誤')+'。目前仍顯示基本繁體中文內容。';
-  }
-});
-window.addEventListener('unhandledrejection',function(){
-  var box=document.getElementById('appError');
-  if(box){
-    box.classList.add('show');
-    box.textContent='程式載入未完成。目前仍顯示基本繁體中文內容，請重新整理頁面。';
-  }
-});
-'use strict';
-const $=id=>document.getElementById(id);
-const UI={
-'zh-TW':{print:'列印／匯出 PDF',start:'開始量測',demo:'載入示範數據',viewJournal:'查看場態日記',analyze:'產生完整 Field Report',measureHelp:'請依照此刻真實感受調整；0 很低，10 很高。',fieldRadar:'Field Radar',radarHelp:'七個維度共同形成你此刻的情境場態。',dashboard:'Field Dashboard',confidence:'模型置信度',patterns:'Most Resonant Patterns',evolutionPath:'Field Evolution Path',coachBrief:'AI 教練簡報',keyInsights:'Key Insights',emotionalSupport:'情緒陪伴',emotionReadingTitle:'AI 心境解讀',permissionTitle:'今天允許自己',personalPractice:'SUOU 個人修煉',bodyPractice:'身體修煉',emotionPractice:'情緒修煉',actionPractice:'行動修煉',spiritPractice:'心靈修煉',todaysPractice:"Today's Practice",dailyGift:'SUOU 今日贈言',tomorrowSection:'明日觀察與期待',tomorrowFocus:'Tomorrow Focus',notPrediction:'這不是預言，而是提醒你留意場態開始改變的微小訊號。',tomorrowHope:'給明天的期待',dailyReflection:'每日反思',fitQuestion:'這份分析對你有多符合？',gainLabel:'今天最大的收穫',resistanceLabel:'今天最大的阻力',improveLabel:'明天最想改善的事情',saveJournal:'儲存到場態日記',clearReflection:'清除反思',fieldJournal:'Field Journal',journalTitle:'場態日記',journalHelp:'每一次量測都是理解自己的新資料。',clearAll:'清除全部',fieldEvolution:'Field Evolution',emptyJournal:'尚未儲存任何場態紀錄。',saved:'已儲存到場態日記。',confirmClear:'確定清除全部場態日記？',reportNeeded:'請先產生分析報告。',current:'目前',possible:'可能發展',long:'長期方向',pace:'節奏：',measure:'場態量測',footer:'Copyright © 2026 周易先 · SUOU FieldSense™ · All Rights Reserved. 僅供自我覺察與決策整理，不構成醫療、投資或心理治療建議。'},
-'zh-CN':{print:'打印／导出 PDF',start:'开始测量',demo:'载入示范数据',viewJournal:'查看场态日记',analyze:'生成完整 Field Report',measureHelp:'请依照此刻真实感受调整；0 很低，10 很高。',fieldRadar:'Field Radar',radarHelp:'七个维度共同形成你此刻的情境场态。',dashboard:'Field Dashboard',confidence:'模型置信度',patterns:'共振模式',evolutionPath:'场态演化路径',coachBrief:'AI 教练简报',keyInsights:'关键洞察',emotionalSupport:'情绪陪伴',emotionReadingTitle:'AI 心境解读',permissionTitle:'今天允许自己',personalPractice:'SUOU 个人修炼',bodyPractice:'身体修炼',emotionPractice:'情绪修炼',actionPractice:'行动修炼',spiritPractice:'心灵修炼',todaysPractice:'今日修炼',dailyGift:'SUOU 今日赠言',tomorrowSection:'明日观察与期待',tomorrowFocus:'明日观察',notPrediction:'这不是预言，而是提醒你留意场态开始改变的微小信号。',tomorrowHope:'给明天的期待',dailyReflection:'每日反思',fitQuestion:'这份分析与你有多符合？',gainLabel:'今天最大的收获',resistanceLabel:'今天最大的阻力',improveLabel:'明天最想改善的事情',saveJournal:'保存到场态日记',clearReflection:'清除反思',fieldJournal:'Field Journal',journalTitle:'场态日记',journalHelp:'每一次测量都是理解自己的新数据。',clearAll:'清除全部',fieldEvolution:'Field Evolution',emptyJournal:'尚未保存任何场态记录。',saved:'已保存到场态日记。',confirmClear:'确定清除全部场态日记？',reportNeeded:'请先生成分析报告。',current:'目前',possible:'可能发展',long:'长期方向',pace:'节奏：',measure:'场态测量',footer:'Copyright © 2026 周易先 · SUOU FieldSense™ · All Rights Reserved. 仅供自我觉察与决策整理，不构成医疗、投资或心理治疗建议。'},
-en:{print:'Print / Export PDF',start:'Start Assessment',demo:'Load Demo Data',viewJournal:'View Field Journal',analyze:'Generate Full Field Report',measureHelp:'Adjust to how you truly feel now; 0 is very low and 10 is very high.',fieldRadar:'Field Radar',radarHelp:'Seven dimensions form your current contextual field state.',dashboard:'Field Dashboard',confidence:'Model Confidence',patterns:'Most Resonant Patterns',evolutionPath:'Field Evolution Path',coachBrief:'AI Coach Brief',keyInsights:'Key Insights',emotionalSupport:'Emotional Support',emotionReadingTitle:'AI Emotional Reading',permissionTitle:'Permission for Today',personalPractice:'SUOU Personal Practice',bodyPractice:'Body Practice',emotionPractice:'Emotional Practice',actionPractice:'Action Practice',spiritPractice:'Inner Practice',todaysPractice:"Today's Practice",dailyGift:'SUOU Daily Message',tomorrowSection:"Tomorrow's Focus and Hope",tomorrowFocus:'Tomorrow Focus',notPrediction:'This is not a prediction. It helps you notice small signals that your field may be changing.',tomorrowHope:'Hope for Tomorrow',dailyReflection:'Daily Reflection',fitQuestion:'How well does this analysis fit you?',gainLabel:"Today's greatest gain",resistanceLabel:"Today's greatest resistance",improveLabel:'What I want to improve tomorrow',saveJournal:'Save to Field Journal',clearReflection:'Clear Reflection',fieldJournal:'Field Journal',journalTitle:'Field Journal',journalHelp:'Each assessment gives you new data for understanding yourself.',clearAll:'Clear All',fieldEvolution:'Field Evolution',emptyJournal:'No field-state entries saved yet.',saved:'Saved to the Field Journal.',confirmClear:'Clear all Field Journal entries?',reportNeeded:'Please generate a report first.',current:'Current',possible:'Possible',long:'Long term',pace:'Pace: ',measure:' Assessment',footer:'Copyright © 2026 周易先 · SUOU FieldSense™ · All Rights Reserved. For self-reflection and decision organization only; not medical, investment, or psychotherapy advice.'},
-ja:{print:'印刷／PDF出力',start:'測定を始める',demo:'デモデータを読み込む',viewJournal:'フィールド日記を見る',analyze:'完全なフィールドレポートを作成',measureHelp:'今の正直な感覚に合わせてください。0は非常に低く、10は非常に高い状態です。',fieldRadar:'フィールド・レーダー',radarHelp:'7つの次元が、今の状況における場の状態を形づくります。',dashboard:'フィールド・ダッシュボード',confidence:'モデル信頼度',patterns:'共鳴パターン',evolutionPath:'フィールドの変化',coachBrief:'AIコーチ・ブリーフ',keyInsights:'重要な気づき',emotionalSupport:'心のサポート',emotionReadingTitle:'AIによる心の読み解き',permissionTitle:'今日の自分に許すこと',personalPractice:'SUOU パーソナル実践',bodyPractice:'身体の実践',emotionPractice:'感情の実践',actionPractice:'行動の実践',spiritPractice:'心の実践',todaysPractice:'今日の実践',dailyGift:'SUOU 今日の言葉',tomorrowSection:'明日の観察と希望',tomorrowFocus:'明日の注目点',notPrediction:'これは予言ではありません。場が変わり始める小さな兆しに気づくためのものです。',tomorrowHope:'明日への希望',dailyReflection:'一日の振り返り',fitQuestion:'この分析は今のあなたにどの程度当てはまりますか？',gainLabel:'今日いちばん得たこと',resistanceLabel:'今日いちばん大きかった抵抗',improveLabel:'明日改善したいこと',saveJournal:'フィールド日記に保存',clearReflection:'振り返りを消去',fieldJournal:'フィールド日記',journalTitle:'場の状態の日記',journalHelp:'一回ごとの測定が、自分を理解する新しいデータになります。',clearAll:'すべて消去',fieldEvolution:'フィールドの変化',emptyJournal:'保存された記録はまだありません。',saved:'フィールド日記に保存しました。',confirmClear:'フィールド日記をすべて消去しますか？',reportNeeded:'先に分析レポートを作成してください。',current:'現在',possible:'可能性',long:'長期方向',pace:'ペース：',measure:' 測定',footer:'Copyright © 2026 周易先 · SUOU FieldSense™ · All Rights Reserved. 自己理解と意思決定整理のためのもので、医療・投資・心理療法の助言ではありません。'},
-ko:{print:'인쇄 / PDF 내보내기',start:'측정 시작',demo:'데모 데이터 불러오기',viewJournal:'필드 저널 보기',analyze:'전체 필드 리포트 생성',measureHelp:'지금의 솔직한 느낌에 맞추세요. 0은 매우 낮고 10은 매우 높습니다.',fieldRadar:'필드 레이더',radarHelp:'7개의 차원이 현재 상황의 필드 상태를 형성합니다.',dashboard:'필드 대시보드',confidence:'모델 신뢰도',patterns:'공명 패턴',evolutionPath:'필드 변화 경로',coachBrief:'AI 코치 브리프',keyInsights:'핵심 인사이트',emotionalSupport:'정서적 지원',emotionReadingTitle:'AI 감정 해석',permissionTitle:'오늘 나에게 허락할 것',personalPractice:'SUOU 개인 수련',bodyPractice:'몸 수련',emotionPractice:'감정 수련',actionPractice:'행동 수련',spiritPractice:'마음 수련',todaysPractice:'오늘의 수련',dailyGift:'SUOU 오늘의 메시지',tomorrowSection:'내일의 관찰과 기대',tomorrowFocus:'내일의 관찰',notPrediction:'이것은 예언이 아닙니다. 필드가 변하기 시작하는 작은 신호를 알아차리기 위한 안내입니다.',tomorrowHope:'내일에 대한 기대',dailyReflection:'하루 성찰',fitQuestion:'이 분석이 현재의 나와 얼마나 잘 맞나요?',gainLabel:'오늘 가장 큰 수확',resistanceLabel:'오늘 가장 큰 저항',improveLabel:'내일 개선하고 싶은 것',saveJournal:'필드 저널에 저장',clearReflection:'성찰 내용 지우기',fieldJournal:'필드 저널',journalTitle:'필드 상태 기록',journalHelp:'매번의 측정은 나를 이해하는 새로운 데이터가 됩니다.',clearAll:'모두 지우기',fieldEvolution:'필드 변화',emptyJournal:'저장된 기록이 없습니다.',saved:'필드 저널에 저장했습니다.',confirmClear:'필드 저널의 모든 기록을 지울까요?',reportNeeded:'먼저 분석 리포트를 생성하세요.',current:'현재',possible:'가능성',long:'장기 방향',pace:'속도: ',measure:' 측정',footer:'Copyright © 2026 周易先 · SUOU FieldSense™ · All Rights Reserved. 자기 성찰과 의사결정 정리용이며 의료·투자·심리치료 조언이 아닙니다.'}
-};
-const FIELD_BASE={
-work:{icon:'💼',color:'#63a9ff',rgb:'99,169,255'},finance:{icon:'📈',color:'#f1bf55',rgb:'241,191,85'},relationship:{icon:'❤️',color:'#ff83a8',rgb:'255,131,168'},family:{icon:'👨‍👩‍👧',color:'#ff9d5c',rgb:'255,157,92'},health:{icon:'🩺',color:'#54d69b',rgb:'84,214,155'},social:{icon:'🤝',color:'#a88cff',rgb:'168,140,255'}
-};
-const FIELDS={
-'zh-TW':{work:['工作','工作教練','整理工作動能、支持系統與職涯方向。','工作模式聚焦執行、支持、穩定、成長、應變、壓力與轉型。',[['執行力','我現在有多想把事情真正推進？'],['資源支持','我是否擁有足夠時間、資訊、工具或協助？'],['工作穩定','目前節奏與環境是否讓我安心？'],['學習成長','我是否願意吸收新方法並提升能力？'],['應變能力','面對變動時，我能否調整做法？'],['工作壓力','責任、衝突或期限壓力有多高？'],['職涯轉型','我有多強烈想改變角色、方向或工作方式？']]],finance:['投資','財富教練','辨識資金配置、風險承受與市場決策節奏。','只做決策整理，不提供買賣指示或報酬保證。',[['進場信心','我對目前判斷與策略有多少信心？'],['資金配置','可投入與保留資金是否安排妥當？'],['風險控制','部位與最壞情境是否可承受？'],['市場敏感','我是否願意接收並修正新資訊？'],['策略彈性','市場改變時能否調整而不追價？'],['市場波動','行情造成的心理壓力有多高？'],['調整需求','重新配置或改變策略的需求有多強？']]],relationship:['感情','感情教練','理解連結、安全感、摩擦與關係變化。','感情中的資源是信任、時間、交流與靠近的意願。',[['主動表達','我是否願意真誠說出關心、感受與需要？'],['情感連結','我們之間是否仍有信任與支持？'],['關係安全','我在關係中是否感到安心？'],['敞開心扉','我是否願意誠實表達並傾聽？'],['包容理解','我是否能理解差異而不急著爭對錯？'],['情緒摩擦','誤解、期待落差或壓力有多高？'],['關係變化','重新定位或改變關係的需求有多強？']]],family:['家庭','家庭教練','看見家庭支持、溝通方式與共同承擔。','家庭模式關注支持與界線，不歸咎單一成員。',[['關心投入','我是否願意用時間與行動表達關心？'],['家庭支持','家人之間是否有實際與情感支持？'],['家庭穩定','生活、責任與秩序是否穩定？'],['互相信任','我們是否願意分享真實狀況？'],['溝通彈性','意見不同時能否調整說法？'],['家庭衝突','責任、金錢或價值衝突有多高？'],['家庭轉折','是否正面臨角色或結構改變？']]],health:['健康','健康教練','照顧活力、睡眠、習慣、壓力與恢復。','只做生活狀態整理；持續或嚴重不適應尋求醫療協助。',[['身體活力','今天的精神、專注與體力如何？'],['身體能量','我是否有足夠能量完成日常？'],['睡眠恢復','最近睡眠是否真正恢復身體？'],['健康習慣','我是否願意維持飲食、活動與作息？'],['壓力調適','壓力後能否逐漸回到平衡？'],['身心負荷','持續緊繃與疲憊程度有多高？'],['改善意願','我是否願意從小步驟開始改善？']]],social:['人際','人際教練','辨識信任、互動品質、界線與社交壓力。','關注關係品質、信任與界線，而非認識多少人。',[['交流意願','我是否願意主動交流與保持連結？'],['信任程度','是否有人能讓我放心分享？'],['關係穩定','重要關係是否具有一致性？'],['同理開放','我是否願意聽見不同觀點？'],['合作彈性','合作或意見不同時能否調整？'],['人際壓力','人情、衝突或社交消耗有多高？'],['社交變化','我是否想重新整理人際圈？']]]},
-'zh-CN':{},en:{},ja:{},ko:{}
-};
-const FIELD_NAMES={
-en:{work:['Work','Career Coach'],finance:['Investing','Finance Coach'],relationship:['Relationship','Relationship Coach'],family:['Family','Family Coach'],health:['Health','Health Coach'],social:['Social','Social Coach']},
-ja:{work:['仕事','キャリアコーチ'],finance:['投資','ファイナンスコーチ'],relationship:['恋愛・パートナー','リレーションシップコーチ'],family:['家族','ファミリーコーチ'],health:['健康','ヘルスコーチ'],social:['人間関係','ソーシャルコーチ']},
-ko:{work:['일','커리어 코치'],finance:['투자','파이낸스 코치'],relationship:['연애','관계 코치'],family:['가족','패밀리 코치'],health:['건강','헬스 코치'],social:['인간관계','소셜 코치']},
-'zh-CN':{work:['工作','职业教练'],finance:['投资','财富教练'],relationship:['感情','感情教练'],family:['家庭','家庭教练'],health:['健康','健康教练'],social:['人际','人际教练']}
-};
-const GENERIC_DIMS={
-en:['Drive','Support','Stability','Openness','Adaptability','Pressure','Change'],ja:['推進力','支援','安定','開放性','適応力','負荷','変化'],ko:['추진력','지원','안정','개방성','적응력','압박','변화'],'zh-CN':['行动力','支持','稳定','开放','应变','压力','变化']};
-function localizedField(key,lang){const base=FIELDS['zh-TW'][key],meta=FIELD_BASE[key];if(lang==='zh-TW')return{label:base[0],coach:base[1],hero:base[2],notice:base[3],dims:base[4],...meta};const names=FIELD_NAMES[lang][key];const dims=GENERIC_DIMS[lang].map((n,i)=>[n,lang==='en'?`Rate your current ${n.toLowerCase()} in this life field.`:lang==='ja'?`この領域における現在の「${n}」を評価してください。`:lang==='ko'?`이 영역에서 현재의 ${n}을 평가하세요.`:`评估此领域目前的${n}。`]);return{label:names[0],coach:names[1],hero:lang==='en'?`Clarify your current ${names[0].toLowerCase()} field and next step.`:lang==='ja'?`${names[0]}の現在の状態と次の一歩を整理します。`:lang==='ko'?`${names[0]} 영역의 현재 상태와 다음 단계를 정리합니다。`:`整理${names[0]}领域的当前状态与下一步。`,notice:lang==='en'?'For reflection and decision organization only.':lang==='ja'?'自己理解と意思決定整理のためのモードです。':lang==='ko'?'자기 성찰과 의사결정 정리용입니다。':'仅用于自我觉察与决策整理。',dims,...meta};}
-const STATE_BASE={
-gradual:{sy:'🌱',hex:[['53','漸','Gradual Growth'],['61','中孚','Trust'],['46','升','Ascending']],path:['53 漸','42 益','46 升']},breakthrough:{sy:'⚡',hex:[['34','大壯','Momentum'],['43','夬','Breakthrough'],['14','大有','Abundance']],path:['34 大壯','43 夬','14 大有']},expansion:{sy:'🌟',hex:[['14','大有','Abundance'],['42','益','Increase'],['11','泰','Harmony']],path:['14 大有','42 益','11 泰']},conflict:{sy:'🔥',hex:[['38','睽','Difference'],['6','訟','Conflict'],['61','中孚','Trust']],path:['38 睽','6 訟','61 中孚']},overload:{sy:'🌧️',hex:[['47','困','Exhaustion'],['52','艮','Stillness'],['24','復','Return']],path:['47 困','52 艮','24 復']},recovery:{sy:'🌿',hex:[['24','復','Return'],['52','艮','Rest'],['53','漸','Growth']],path:['24 復','52 艮','53 漸']},transition:{sy:'🦋',hex:[['49','革','Transformation'],['40','解','Release'],['53','漸','Rebuilding']],path:['49 革','40 解','53 漸']},exploration:{sy:'🔭',hex:[['56','旅','Exploration'],['4','蒙','Learning'],['57','巽','Entry']],path:['56 旅','4 蒙','57 巽']},integration:{sy:'🏡',hex:[['63','既濟','Completion'],['8','比','Connection'],['32','恆','Continuity']],path:['63 既濟','8 比','32 恆']},waiting:{sy:'🌙',hex:[['5','需','Waiting'],['60','節','Boundary'],['53','漸','Timing']],path:['5 需','60 節','53 漸']}};
-const STATE_TEXT={
-'zh-TW':{
-gradual:['漸進蓄力','穩定累積，正在建立可持續結構','穩定推進','你不需要一次改變全部。保持節奏並集中力量，微小成果會開始彼此累積。','真正的成長來自持續，而不是突然加速。','你其實已經走了一段路。','只是成果尚未全部浮現。','允許自己慢一點，但不要否定已完成的努力。','我會陪你把焦點放回下一個可完成的小步驟。','真正的成長，是在普通日子裡仍願意繼續。'],
-breakthrough:['突破窗口','條件正在成熟，適合跨出關鍵一步','果斷試行','條件已接近突破窗口，適合採取明確且可控制的行動。','動能、支持與適應力正在互相加強；避免擴張過快。','你不是突然勇敢，而是準備已成熟。','不安很正常，因為你正在離開熟悉範圍。','允許自己相信一次準備好的自己。','把勇氣變成可承受的一步。','勇氣不是沒有害怕，而是帶著害怕前進。'],
-expansion:['資源擴張','支持、信任與動能正在增加','聚焦擴張','你具備較好的支持與擴張條件，把增加的資源投入最值得的方向。','支持度與行動力較強；避免選項變多後失去核心。','事情正在開始順起來。','這份順利也包含之前沒有被看見的努力。','允許自己接住好事。','珍惜資源，也保護自己不被過多機會拉散。','你值得接住生命給你的支持。'],
-conflict:['衝突整合','張力偏高，需要理解與建立界線','先降溫再處理','先降低情緒強度，再確認真正需要處理的問題。','高張力會放大每一個訊息；安全與界線優先。','你可能已經忍耐一段時間。','感受值得被看見，但不必用傷害證明。','允許自己暫時不回答、不爭辯。','把情緒與事實慢慢分開。','你可以溫柔，也可以有界線。'],
-overload:['過載降噪','負荷過高，需要停止增加並優先恢復','減量休整','不要再用提高效率解決過載，先停止增加負荷。','目前壓力已超過恢復能力。','你不是不夠努力，而是已努力太久。','身體與情緒正在提醒你改變方式。','允許自己今天只完成必要的事情。','你不必等到倒下才有資格被照顧。','你不需要耗盡自己來證明努力。'],
-recovery:['回復中心','能量偏低，適合恢復安全與基本節奏','溫和恢復','先恢復睡眠、規律與可控制感；恢復本身就是前進。','能量偏低不代表能力或未來消失。','你可能覺得自己退步了。','低潮不會抹去你曾經擁有的能力。','允許自己先把今天過好。','回到最小、最安全、最能做到的一步。','只要更願意照顧自己，今天就沒有白費。'],
-transition:['結構轉型','舊方法已不足，需要有序改變','分段轉型','先釋放舊負擔，再建立可測試的新結構。','轉型壓力偏高，需要保留退路與驗證點。','你可能正在告別熟悉卻不再適合的狀態。','捨不得與混亂不代表你做錯了。','允許自己一邊不確定，一邊重新選擇。','分辨什麼需要留下，什麼可以放下。','有些離開，是為新的可能騰出位置。'],
-exploration:['開放探索','好奇與適應力強，適合小型試驗','輕量探索','接觸新資訊與可能性，但不要把每個興趣都變成承諾。','透過低成本試驗判斷哪些方向真正有回應。','你可能同時被很多可能性吸引。','探索不是浪費，只要帶回可用經驗。','允許自己暫時不知道答案。','保留好奇，也設定資源上限。','方向常常在行走中浮現。'],
-integration:['成果整合','適合收斂、整理與鞏固成果','收斂整合','整理方法、關係與經驗，讓成果能夠延續。','穩定度與支持較好；整合可防止成果只停留在高峰。','你可能習慣完成後立即追趕下一目標。','但你值得停下來看見自己走到哪裡。','允許自己為成果感到滿足。','把經驗留下，讓未來不必重新摸索。','先擁抱一路走到這裡的自己。'],
-waiting:['時機等待','資訊或條件尚未成熟，適合觀察與準備','耐心等待','有些事情無法靠增加行動解決，完成可控制的準備即可。','外部支持或清晰度不足；設定重新評估日期。','最難受的可能是不知道還要等多久。','你不必每一分鐘都用焦慮陪它等待。','允許自己今天暫時沒有答案。','把等待變成有界線的準備。','不是所有沉默都代表拒絕。']},
-'en':{},'ja':{},'ko':{},'zh-CN':{}};
-const STATE_NAMES={en:{gradual:['Gradual Momentum','Steady accumulation is building a sustainable structure','Stable progress'],breakthrough:['Breakthrough Window','Conditions are ready for a key step','Decisive trial'],expansion:['Resource Expansion','Support, trust, and momentum are increasing','Focused expansion'],conflict:['Conflict Integration','Tension is high; understanding and boundaries come first','Cool down first'],overload:['Overload Reduction','The load is too high; prioritize recovery','Reduce and rest'],recovery:['Return to Center','Energy is low; restore safety and rhythm','Gentle recovery'],transition:['Structural Transition','Old methods are no longer enough','Stepwise transition'],exploration:['Open Exploration','Curiosity supports small experiments','Explore lightly'],integration:['Outcome Integration','Consolidate and stabilize achievements','Consolidate'],waiting:['Timing and Waiting','Information or conditions are not mature yet','Patient preparation']},ja:{gradual:['少しずつ蓄える時','持続可能な土台が育っています','安定して進む'],breakthrough:['突破のタイミング','大切な一歩の条件が整っています','小さく決断'],expansion:['支えが広がる時','信頼と支援が増えています','焦点を絞る'],conflict:['葛藤を整える時','緊張を下げ境界線を取り戻します','まず落ち着く'],overload:['負荷を減らす時','回復を最優先にします','減らして休む'],recovery:['中心へ戻る時','安心感と生活リズムを取り戻します','やさしく回復'],transition:['構造を変える時','古いやり方を手放す段階です','段階的に変える'],exploration:['可能性を探る時','好奇心を小さな体験へ変えます','軽く試す'],integration:['成果を整える時','経験を続けられる形にします','まとめて定着'],waiting:['時を待つ段階','条件が整うまで準備します','焦らず準備']},ko:{gradual:['점진적 축적','지속 가능한 구조가 형성되고 있습니다','안정적으로 전진'],breakthrough:['돌파의 창','중요한 한 걸음의 조건이 무르익었습니다','작게 결단'],expansion:['지원의 확장','신뢰와 지원이 증가하고 있습니다','집중해서 확장'],conflict:['갈등 통합','긴장을 낮추고 경계를 회복합니다','먼저 진정'],overload:['과부하 감소','회복을 우선해야 합니다','줄이고 쉬기'],recovery:['중심 회복','안전감과 생활 리듬을 되찾습니다','부드럽게 회복'],transition:['구조 전환','낡은 방식을 놓을 시기입니다','단계적으로 전환'],exploration:['열린 탐색','호기심을 작은 실험으로 바꿉니다','가볍게 탐색'],integration:['성과 통합','경험을 지속 가능한 형태로 만듭니다','정리하고 정착'],waiting:['시기 기다리기','조건이 성숙할 때까지 준비합니다','인내하며 준비']},'zh-CN':{gradual:['渐进蓄力','稳定积累，正在建立可持续结构','稳定推进'],breakthrough:['突破窗口','条件正在成熟，适合跨出关键一步','果断试行'],expansion:['资源扩张','支持、信任与动能正在增加','聚焦扩张'],conflict:['冲突整合','张力偏高，需要理解与边界','先降温'],overload:['过载降噪','负荷过高，需要优先恢复','减量休整'],recovery:['回到中心','能量偏低，适合恢复节奏','温和恢复'],transition:['结构转型','旧方法已不足，需要有序改变','分段转型'],exploration:['开放探索','好奇与适应力强，适合小型试验','轻量探索'],integration:['成果整合','适合整理与巩固成果','收敛整合'],waiting:['时机等待','信息或条件尚未成熟','耐心等待']}};
-function stateText(key,lang){const z=STATE_TEXT['zh-TW'][key];if(lang==='zh-TW')return z;const n=STATE_NAMES[lang][key];const template={en:[n[0],n[1],n[2],`Your current field is best understood as ${n[0].toLowerCase()}. Focus on one clear and sustainable next step.`,`The seven dimensions suggest that pacing and boundaries matter more than forcing a quick result.`,`You may be carrying more uncertainty than others can see.`,`That does not erase the progress already made.`,`Allow yourself to respond at a sustainable pace.`,`Use one small, verifiable action instead of trying to solve everything at once.`,`A clear next step is more valuable than a perfect answer.`],ja:[n[0],n[1],n[2],`今の場は「${n[0]}」として理解できます。無理のない一歩に集中しましょう。`,`七つの指標から、結果を急ぐよりペースと境界線を整えることが大切です。`,`周囲には見えない不安を抱えているかもしれません。`,`それでも、これまでの歩みが消えるわけではありません。`,`持続できる速度で応じる自分を許してください。`,`すべてを一度に解決せず、小さく確かめられる行動を選びましょう。`,`完璧な答えより、明確な次の一歩が大切です。`],ko:[n[0],n[1],n[2],`현재 필드는 ‘${n[0]}’ 상태로 이해할 수 있습니다. 지속 가능한 한 걸음에 집중하세요.`,`7개 지표는 빠른 결과보다 속도와 경계가 중요하다는 점을 보여 줍니다.`,`다른 사람이 보지 못하는 불확실성을 안고 있을 수 있습니다.`,`그렇다고 지금까지의 진전이 사라지는 것은 아닙니다.`,`지속 가능한 속도로 반응하는 자신을 허락하세요.`,`모든 것을 한 번에 해결하지 말고 검증 가능한 작은 행동을 선택하세요.`,`완벽한 답보다 분명한 다음 한 걸음이 더 중요합니다.`],'zh-CN':[n[0],n[1],n[2],`目前场态可理解为“${n[0]}”。请聚焦一个清楚且可持续的下一步。`,`七个维度显示，节奏与边界比强求快速结果更重要。`,`你可能承受着别人看不见的不确定。`,`但这不会抹去已经完成的努力。`,`允许自己以可持续的速度回应。`,`不要一次解决全部，先采取一个可验证的小行动。`,`清楚的下一步，比完美答案更有价值。`]};return template[lang];}
-let currentLang=localStorage.getItem('suouLang')||(()=>{const n=(navigator.language||'zh-TW').toLowerCase();return n.startsWith('ja')?'ja':n.startsWith('ko')?'ko':n.startsWith('en')?'en':n.includes('cn')?'zh-CN':'zh-TW'})();
-let field='work',vals=[7,6,6,8,8,4,7],rating=0,last=null;
-function t(){return UI[currentLang]||UI['zh-TW']}
-function renderCoaches(){$('coaches').innerHTML=Object.keys(FIELD_BASE).map(k=>{const f=localizedField(k,currentLang);return`<button class="coach ${k===field?'active':''}" data-k="${k}"><span class="i">${f.icon}</span><b>${f.label}</b><small>${f.coach}</small></button>`}).join('');document.querySelectorAll('.coach').forEach(b=>b.onclick=()=>selectField(b.dataset.k));}
-function selectField(k){field=k;const f=localizedField(k,currentLang);document.documentElement.style.setProperty('--a',f.color);document.documentElement.style.setProperty('--ar',f.rgb);document.querySelectorAll('.coach').forEach(b=>b.classList.toggle('active',b.dataset.k===k));$('heroTitle').textContent=`${f.icon} ${f.coach}`;$('heroText').textContent=f.hero;$('measureTitle').textContent=currentLang==='en'?f.label+t().measure:f.label+t().measure;$('coachName').textContent=f.coach;$('notice').textContent=f.notice;renderSliders();renderRadar();}
-function renderSliders(){const d=localizedField(field,currentLang).dims;$('sliders').innerHTML=d.map((x,i)=>`<div class="slider"><div class="lab"><div><b>${x[0]}</b><small>${x[1]}</small></div><span class="score" id="sc${i}">${vals[i]}</span></div><input type="range" min="0" max="10" value="${vals[i]}" data-i="${i}" aria-label="${x[0]}"></div>`).join('');document.querySelectorAll('input[type=range]').forEach(r=>r.oninput=e=>{const i=+e.target.dataset.i;vals[i]=+e.target.value;$('sc'+i).textContent=vals[i];renderRadar()});}
-function renderRadar(){const A=[-90,-38.57,12.86,64.29,115.71,167.14,218.57],M=116;$('shape').setAttribute('points',vals.map((v,i)=>{const r=M*v/10,a=A[i]*Math.PI/180;return`${(Math.cos(a)*r).toFixed(1)},${(Math.sin(a)*r).toFixed(1)}`}).join(' '));const C=[[0,-132],[108,-81],[134,31],[63,124],[-63,124],[-134,31],[-108,-81]],d=localizedField(field,currentLang).dims;$('labels').innerHTML=d.map((x,i)=>`<text x="${C[i][0]}" y="${C[i][1]}">${x[0]}</text>`).join('');}
-function determineState(){const[drive,support,stability,openness,adaptability,stress,change]=vals;if(stress>=8&&stability<=5)return'overload';if(drive<=4&&support<=5&&stability<=6)return'recovery';if(stress>=7)return'conflict';if(change>=8&&stability<=6)return'transition';if(drive>=8&&support>=7&&adaptability>=7)return'breakthrough';if(support>=8&&stability>=7&&drive>=7&&stress<=5)return'expansion';if(stability>=8&&stress<=3&&change<=6)return'integration';if(openness>=8&&adaptability>=8&&stability<8)return'exploration';if(drive>=6&&support<=4&&stress<=6&&change<8)return'waiting';return'gradual';}
-function reportId(){const n=new Date();return`SF-${n.getFullYear()}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}-${crypto.getRandomValues(new Uint32Array(1))[0].toString(16).slice(0,6).toUpperCase()}`;}
-function localizedExtras(s){const lang=currentLang;const generic={en:{ins:['Protect your attention and choose one priority.','Use boundaries to keep the next step sustainable.','Review real feedback before expanding further.'],tasks:['Complete one important action.','Remove one unnecessary demand.','Write down what changed today.'],focus:['Notice any clear new information.','Watch whether pressure is crossing your boundary.','Look for one sign of improved stability.'],practice:['Slow your breathing and release physical tension.','Name the strongest emotion without judging it.','Choose one reversible and verifiable step.','Treat progress as steady alignment, not instant arrival.'],hope:'Tomorrow does not need a complete answer—only one clearer signal.'},ja:{ins:['注意を守り、一つの優先事項を選びましょう。','次の一歩を続けられるよう境界線を整えましょう。','さらに広げる前に実際の反応を確認しましょう。'],tasks:['大切な行動を一つ終えましょう。','不要な負担を一つ減らしましょう。','今日変わったことを書き留めましょう。'],focus:['明確な新しい情報が現れるか。','負荷が境界線を越えていないか。','安定が増した小さな兆しがあるか。'],practice:['呼吸をゆっくりにし、体の緊張を解きましょう。','最も強い感情に名前をつけ、責めないでください。','後戻りでき、確かめられる一歩を選びましょう。','進歩を一気に到達することではなく、整い続けることと考えましょう。'],hope:'明日は完全な答えではなく、少し明確な兆しが一つあれば十分です。'},ko:{ins:['주의력을 지키고 한 가지 우선순위를 선택하세요.','다음 단계가 지속 가능하도록 경계를 정리하세요.','더 확장하기 전에 실제 피드백을 확인하세요.'],tasks:['중요한 행동 하나를 끝내세요.','불필요한 부담 하나를 줄이세요.','오늘 달라진 점을 적으세요.'],focus:['분명한 새 정보가 나타나는지.','부담이 경계를 넘고 있는지.','안정이 좋아진 작은 신호가 있는지.'],practice:['호흡을 늦추고 몸의 긴장을 풀어 주세요.','가장 강한 감정에 이름을 붙이고 판단하지 마세요.','되돌릴 수 있고 확인 가능한 한 걸음을 선택하세요.','진전을 즉시 도착하는 것이 아니라 꾸준히 정렬되는 것으로 보세요.'],hope:'내일은 완전한 답보다 조금 더 분명한 신호 하나면 충분합니다.'},'zh-CN':{ins:['保护注意力并选择一个优先事项。','用边界让下一步保持可持续。','继续扩张前先查看真实反馈。'],tasks:['完成一个重要行动。','减少一项不必要的负担。','记录今天发生的变化。'],focus:['是否出现明确的新信息。','压力是否正在越过边界。','是否出现稳定改善的小信号。'],practice:['放慢呼吸并释放身体紧张。','为最强烈的情绪命名，不做批判。','选择一个可逆、可验证的步骤。','把进步理解为持续对齐，而不是立刻到达。'],hope:'明天不需要完整答案，只需要一个更清楚的信号。'}};if(lang!=='zh-TW')return generic[lang];const byState={gradual:['真正限制你的可能是注意力分散。','減少干擾比增加任務更有效。','先完成可驗證成果。'],breakthrough:['你已具備開始的條件。','突破需要邊界而非孤注一擲。','把握最有槓桿的一個機會。'],expansion:['優勢是有人、有力、有機會。','擴張前先選主要成果。','互惠能讓好狀態更持久。'],conflict:['底層通常是未被理解的需要。','暫停可避免更大傷害。','界線與尊重可以同時存在。'],overload:['此刻最優先的是止損。','減少事情不代表失敗。','先恢復再做重要判斷。'],recovery:['先照顧基本需求。','小範圍可控制感能修復信心。','休息與重新開始不矛盾。'],transition:['舊方法已完成階段任務。','先停止消耗再談成長。','把重大改變拆成可逆步驟。'],exploration:['現在任務是探索而非定型。','保持好奇並設定資源上限。','真實回饋比完美計畫重要。'],integration:['把成功整理成可重複方法。','感謝與分享能鞏固支持。','完成後仍需維護與休息。'],waiting:['等待不是什麼都不做。','先準備可控制的部分。','設定重新評估日期。']};return{ins:byState[s],tasks:['完成一件最重要的小事。','減少一項不必要的負荷。','睡前記錄今天的變化。'],focus:['是否出現真正的新資訊。','壓力是否越過你的界線。','是否出現穩定改善的訊號。'],practice:['放慢呼吸，讓身體回到當下。','替最強烈的情緒命名。','採取一個可逆、可驗證的行動。','把進步理解為持續靠近。'],hope:'明天不必得到完整答案，只要看見一個更清楚的訊號。'};}
-function analyze(createNew=true){const avg=vals.reduce((a,b)=>a+b,0)/7,st=Math.round((vals[2]*.62+(10-vals[5])*.38)*10),tr=Math.round((vals[6]*.65+vals[0]*.35)*10),ad=Math.round((vals[3]*.4+vals[4]*.6)*10),fr=Math.max(30,Math.min(96,Math.round(avg*8.4+(Math.max(...vals)-Math.min(...vals))))),cf=Math.min(95,Math.round(60+avg*3));const key=determineState(),base=STATE_BASE[key],s=stateText(key,currentLang),f=localizedField(field,currentLang),ex=localizedExtras(key);if(createNew||!last)last={id:reportId(),iso:new Date().toISOString(),field,state:key,score:fr,vals:[...vals]};$('fri').textContent=fr;$('fsi').textContent=st;$('fti').textContent=tr;$('fai').textContent=ad;$('conf').textContent=cf+'%';$('sym').textContent=base.sy;$('stateName').textContent=s[0];$('stateDesc').textContent=s[1];$('pace').textContent=t().pace+s[2];const scores=[fr,Math.min(93,Math.round((st+ad)/2)),Math.min(90,Math.round((tr+ad)/2))];$('patterns').innerHTML=base.hex.map((p,i)=>`<div class="pat"><div class="patl"><div class="hex">${p[0]}</div><div style="flex:1"><b>${p[1]}</b><div class="sub">${p[2]}</div><div class="bar"><i style="width:${scores[i]}%"></i></div></div></div><b>${scores[i]}%</b></div>`).join('');const labels=[t().current,t().possible,t().long];$('path').innerHTML=base.path.map((x,i)=>`${i?'<span class="arrow">→</span>':''}<div class="node"><b>${x}</b><br><small>${labels[i]}</small></div>`).join('');[['exec',s[3]],['obs',s[4]],['emotion',s[5]],['emotion2',s[6]],['permission',s[7]],['company',s[8]],['gift',s[9]],['bodyP',ex.practice[0]],['emoP',ex.practice[1]],['actP',ex.practice[2]],['spiP',ex.practice[3]],['hope',ex.hope]].forEach(([id,v])=>$(id).textContent=v);$('insights').innerHTML=ex.ins.map((x,i)=>`<div class="insight"><b>${i+1}</b><div>${x}</div></div>`).join('');$('tasks').innerHTML=ex.tasks.map((x,i)=>`<div class="task"><b>${['①','②','③'][i]}</b><div>${x}</div></div>`).join('');$('focuses').innerHTML=ex.focus.map((x,i)=>`<div class="focus"><input type="checkbox" id="f${i}"><label for="f${i}">${x}</label></div>`).join('');$('rid').textContent=last.id;$('rfield').textContent=f.label;$('rcoach').textContent=f.coach;$('report').classList.remove('hidden');$('journal').classList.add('hidden');updateFunState(key);$('report').classList.remove('state-reveal');void $('report').offsetWidth;$('report').classList.add('state-reveal');if(createNew)$('report').scrollIntoView({behavior:'smooth'});}
-function stars(){$('stars').innerHTML=[1,2,3,4,5].map(n=>`<button class="star ${n<=rating?'on':''}" data-n="${n}">★</button>`).join('');document.querySelectorAll('.star').forEach(b=>b.onclick=()=>{rating=+b.dataset.n;stars()});}
-function getJournal(){try{return JSON.parse(localStorage.getItem('suouV22')||'[]')}catch{return[]}}
-function safeSet(key,value){try{localStorage.setItem(key,value);return true}catch(e){console.error(e);alert(currentLang==='en'?'Unable to save data in this browser.':'瀏覽器無法儲存資料。');return false}}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function renderJournal(){const j=getJournal();$('jlist').innerHTML=j.length?j.map(e=>{const f=localizedField(e.field,currentLang),sn=stateText(e.state,currentLang)[0];return`<div class="jitem"><div class="jhead"><b>${f.icon} ${f.label} · ${sn}</b><span class="chip">${e.score}</span></div><p>${new Date(e.iso).toLocaleString(currentLang)}${e.gain?'<br>'+esc(e.gain):''}${e.improve?'<br>'+esc(e.improve):''}</p></div>`}).join(''):`<div class="sub">${t().emptyJournal}</div>`;const c=[...j].reverse();$('timeline').innerHTML=c.length?c.map((e,i)=>`${i?'<span class="arrow">→</span>':''}<div class="tn"><b>${localizedField(e.field,currentLang).icon} ${stateText(e.state,currentLang)[0]}</b><br><small>${new Date(e.iso).toLocaleDateString(currentLang)} · FRI ${e.score}</small></div>`).join(''):`<div class="sub">${t().emptyJournal}</div>`;}
-function applyLanguage(lang){currentLang=UI[lang]?lang:'zh-TW';safeSet('suouLang',currentLang);document.documentElement.lang=currentLang;$('languageSelect').value=currentLang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t()[k])el.textContent=t()[k]});renderCoaches();selectField(field);if(last){updateFunState(last.state);if(!$('report').classList.contains('hidden'))analyze(false);}else{resetFunCopy();}renderJournal();}
+(function(){
+"use strict";
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
 
-/* ---- multilingual playful copy ---- */
-const FUN_COPY={
-  'zh-TW':{
-    moodLabel:'今日場感',moodIdle:'先量測，再看看今天的你是哪一種節奏。',badgeTitle:'每日徽章',badgeIdle:'完成分析後解鎖。',
-    badges:{
-      gradual:['🌱','穩定種子','你正在累積可持續的力量。'],breakthrough:['⚡','突破火花','今天適合跨出清楚的一步。'],
-      expansion:['🌟','資源磁場','支持與機會正在靠近。'],conflict:['🛡️','界線守護者','先保護平衡，再處理問題。'],
-      overload:['☁️','降噪模式','今天最重要的是減少負荷。'],recovery:['🌿','回心徽章','恢復本身就是進步。'],
-      transition:['🦋','轉型旅人','你正在為新結構騰出空間。'],exploration:['🔭','好奇探測器','用小實驗尋找真實回應。'],
-      integration:['🏡','成果收藏家','記得看見自己已完成的部分。'],waiting:['🌙','時機觀察者','不是停滯，而是等待成熟。']
-    }
-  },
-  'zh-CN':{
-    moodLabel:'今日场感',moodIdle:'先测量，再看看今天的你是哪一种节奏。',badgeTitle:'每日徽章',badgeIdle:'完成分析后解锁。',
-    badges:{
-      gradual:['🌱','稳定种子','你正在积累可持续的力量。'],breakthrough:['⚡','突破火花','今天适合跨出清楚的一步。'],
-      expansion:['🌟','资源磁场','支持与机会正在靠近。'],conflict:['🛡️','边界守护者','先保护平衡，再处理问题。'],
-      overload:['☁️','降噪模式','今天最重要的是减少负荷。'],recovery:['🌿','回心徽章','恢复本身就是进步。'],
-      transition:['🦋','转型旅人','你正在为新结构腾出空间。'],exploration:['🔭','好奇探测器','用小实验寻找真实反馈。'],
-      integration:['🏡','成果收藏家','记得看见自己已经完成的部分。'],waiting:['🌙','时机观察者','不是停滞，而是在等待成熟。']
-    }
-  },
-  en:{
-    moodLabel:"Today's Field",moodIdle:"Take the assessment to discover today's rhythm.",badgeTitle:'Daily Badge',badgeIdle:'Unlock it after generating your report.',
-    badges:{
-      gradual:['🌱','Steady Seed','You are building sustainable strength.'],breakthrough:['⚡','Breakthrough Spark','Today favors one clear step forward.'],
-      expansion:['🌟','Resource Magnet','Support and opportunity are gathering.'],conflict:['🛡️','Boundary Keeper','Protect your balance before resolving tension.'],
-      overload:['☁️','Quiet Mode','Reducing the load matters most today.'],recovery:['🌿','Return Badge','Recovery itself is progress.'],
-      transition:['🦋','Transition Traveler','You are making room for a new structure.'],exploration:['🔭','Curiosity Radar','Use small experiments to find real signals.'],
-      integration:['🏡','Outcome Keeper','Notice and preserve what you have completed.'],waiting:['🌙','Timing Watcher','This is preparation, not stagnation.']
-    }
-  },
-  ja:{
-    moodLabel:'今日のフィールド感覚',moodIdle:'測定して、今日の自分のリズムを見つけましょう。',badgeTitle:'今日のバッジ',badgeIdle:'分析レポートを作成すると解除されます。',
-    badges:{
-      gradual:['🌱','安定の種','持続できる力を少しずつ育てています。'],breakthrough:['⚡','突破のひらめき','今日は明確な一歩を踏み出す時です。'],
-      expansion:['🌟','支援の磁場','支えと機会が集まり始めています。'],conflict:['🛡️','境界線の守り手','問題を解く前に心の均衡を守りましょう。'],
-      overload:['☁️','静音モード','今日は負担を減らすことが最優先です。'],recovery:['🌿','中心へ戻るバッジ','回復すること自体が前進です。'],
-      transition:['🦋','変化の旅人','新しい構造のための余白を作っています。'],exploration:['🔭','好奇心レーダー','小さな実験から本当の反応を探しましょう。'],
-      integration:['🏡','成果の収集家','すでに完成したものをきちんと見つめましょう。'],waiting:['🌙','時機の観察者','停滞ではなく、成熟を待つ時間です。']
-    }
-  },
-  ko:{
-    moodLabel:'오늘의 필드 감각',moodIdle:'측정하고 오늘의 리듬을 확인해 보세요.',badgeTitle:'오늘의 배지',badgeIdle:'분석 리포트를 생성하면 잠금이 해제됩니다.',
-    badges:{
-      gradual:['🌱','안정의 씨앗','지속 가능한 힘을 차근차근 쌓고 있습니다.'],breakthrough:['⚡','돌파의 불꽃','오늘은 분명한 한 걸음을 내딛기 좋습니다.'],
-      expansion:['🌟','자원 자기장','지원과 기회가 가까워지고 있습니다.'],conflict:['🛡️','경계 수호자','문제를 풀기 전에 균형부터 지키세요.'],
-      overload:['☁️','소음 감소 모드','오늘은 부담을 줄이는 것이 가장 중요합니다.'],recovery:['🌿','중심 회복 배지','회복 자체가 전진입니다.'],
-      transition:['🦋','전환의 여행자','새로운 구조를 위한 공간을 만들고 있습니다.'],exploration:['🔭','호기심 레이더','작은 실험으로 실제 신호를 찾아보세요.'],
-      integration:['🏡','성과 수집가','이미 완성한 부분을 제대로 바라보세요.'],waiting:['🌙','타이밍 관찰자','정체가 아니라 성숙을 기다리는 시간입니다.']
-    }
-  }
-};
-function funPack(){return FUN_COPY[currentLang]||FUN_COPY['zh-TW'];}
-function resetFunCopy(){
-  const p=funPack();
-  if($('moodLabel'))$('moodLabel').textContent=p.moodLabel;
-  if($('moodText'))$('moodText').textContent=p.moodIdle;
-  if($('moodOrb'))$('moodOrb').textContent='✨';
-  if($('badgeTitle'))$('badgeTitle').textContent=p.badgeTitle;
-  if($('badgeText'))$('badgeText').textContent=p.badgeIdle;
-  if($('dailyBadge'))$('dailyBadge').textContent='🌱';
+var player = {x:0, speed:0, maxSpeed:185, accel:0.85, decel:0.28, brake:1.9, nitro:100, isNitro:false, isBraking:false};
+var gameState = "menu";
+var score = 0;
+var distance = 0;
+var best = 0;
+var keys = {};
+var roadOffset = 0;
+var frame = 0;
+var traffic = [];
+var particles = [];
+
+try {
+    var saved = localStorage.getItem("fieldsense_best");
+    if (saved) best = Number(saved) || 0;
+} catch(e) { best = 0; }
+document.getElementById("bestScore").textContent = "最佳：" + Math.floor(best) + " m";
+
+function resizeCanvas() {
+    var wrapper = document.getElementById("game-wrapper");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = wrapper.clientWidth * dpr;
+    canvas.height = wrapper.clientHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    canvas.style.width = wrapper.clientWidth + "px";
+    canvas.style.height = wrapper.clientHeight + "px";
 }
-function updateFunState(k){
-  const p=funPack(),d=p.badges[k]||p.badges.gradual;
-  if($('moodLabel'))$('moodLabel').textContent=p.moodLabel;
-  if($('moodText'))$('moodText').textContent=d[2];
-  if($('moodOrb'))$('moodOrb').textContent=d[0];
-  if($('badgeTitle'))$('badgeTitle').textContent=d[1];
-  if($('badgeText'))$('badgeText').textContent=d[2];
-  if($('dailyBadge')){
-    $('dailyBadge').textContent=d[0];
-    $('dailyBadge').classList.remove('badge-pop');
-    void $('dailyBadge').offsetWidth;
-    $('dailyBadge').classList.add('badge-pop');
-  }
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+window.addEventListener("keydown", function(e) {
+    keys[e.code] = true;
+    if ((e.code === "Space" || e.code === "ShiftLeft") && player.nitro > 5) player.isNitro = true;
+    if (e.code === "KeyS" || e.code === "ArrowDown") player.isBraking = true;
+});
+window.addEventListener("keyup", function(e) {
+    keys[e.code] = false;
+    if (e.code === "Space" || e.code === "ShiftLeft") player.isNitro = false;
+    if (e.code === "KeyS" || e.code === "ArrowDown") player.isBraking = false;
+});
+
+function setupTouch(id, keyName) {
+    var btn = document.getElementById(id);
+    function down(e) { e.preventDefault(); keys[keyName] = true; btn.classList.add("active"); }
+    function up(e) { e.preventDefault(); keys[keyName] = false; btn.classList.remove("active"); }
+    btn.addEventListener("pointerdown", down);
+    btn.addEventListener("pointerup", up);
+    btn.addEventListener("pointerleave", up);
+    btn.addEventListener("pointercancel", up);
+}
+setupTouch("btn-left", "ArrowLeft");
+setupTouch("btn-right", "ArrowRight");
+
+var brakeBtn = document.getElementById("btn-brake");
+brakeBtn.addEventListener("pointerdown", function(e) { e.preventDefault(); player.isBraking = true; brakeBtn.classList.add("active"); });
+brakeBtn.addEventListener("pointerup", function(e) { e.preventDefault(); player.isBraking = false; brakeBtn.classList.remove("active"); });
+brakeBtn.addEventListener("pointerleave", function() { player.isBraking = false; brakeBtn.classList.remove("active"); });
+
+var nitroBtn = document.getElementById("btn-nitro");
+nitroBtn.addEventListener("pointerdown", function(e) {
+    e.preventDefault();
+    if (player.nitro > 5) { player.isNitro = true; nitroBtn.classList.add("active"); }
+});
+nitroBtn.addEventListener("pointerup", function(e) { e.preventDefault(); player.isNitro = false; nitroBtn.classList.remove("active"); });
+nitroBtn.addEventListener("pointerleave", function() { player.isNitro = false; nitroBtn.classList.remove("active"); });
+
+function addParticle(x, y, color, size, vy, life) {
+    particles.push({x:x, y:y, vx:(Math.random()-0.5)*2.2, vy:vy||Math.random()*3+2, size:size||Math.random()*5+3, color:color, life:life||16});
 }
 
-function validateStateData(){const keys=Object.keys(STATE_BASE),expected=['gradual','breakthrough','expansion','conflict','overload','recovery','transition','exploration','integration','waiting'];const ok=expected.every(k=>keys.includes(k)&&STATE_TEXT['zh-TW'][k]);console[ok?'info':'error'](`SUOU state validation ${ok?'passed':'failed'}: ${keys.length} states`);return ok;}
-$('start').onclick=()=>$('input').scrollIntoView({behavior:'smooth'});$('demo').onclick=()=>{const D={work:[8,7,6,8,8,4,7],finance:[7,8,8,7,7,3,5],relationship:[6,6,5,7,6,8,7],family:[7,7,8,6,7,3,5],health:[4,4,5,6,5,8,7],social:[6,4,6,7,7,5,5]};vals=[...D[field]];renderSliders();renderRadar();analyze(true)};$('analyze').onclick=()=>analyze(true);$('print').onclick=()=>{if($('report').classList.contains('hidden'))analyze(true);setTimeout(()=>window.print(),200)};$('journalBtn').onclick=()=>{$('report').classList.add('hidden');$('journal').classList.remove('hidden');renderJournal();$('journal').scrollIntoView({behavior:'smooth'})};$('save').onclick=()=>{if(!last)return alert(t().reportNeeded);const j=getJournal();j.unshift({...last,rating,gain:$('gain').value.trim(),resist:$('resist').value.trim(),improve:$('improve').value.trim()});if(safeSet('suouV22',JSON.stringify(j.slice(0,60)))){renderJournal();alert(t().saved)}};$('clearR').onclick=()=>{rating=0;stars();['gain','resist','improve'].forEach(x=>$(x).value='')};$('clearJ').onclick=()=>{if(confirm(t().confirmClear)){localStorage.removeItem('suouV22');renderJournal()}};$('languageSelect').onchange=e=>applyLanguage(e.target.value);
-try{
-  stars();
-  applyLanguage(currentLang);
-  validateStateData();
-  const startupBox=document.getElementById('appError');
-  if(startupBox)startupBox.classList.remove('show');
-}catch(error){
-  console.error('SUOU startup error:',error);
-  const startupBox=document.getElementById('appError');
-  if(startupBox){
-    startupBox.classList.add('show');
-    startupBox.textContent='SUOU FieldSense 啟動失敗：'+error.message+'。目前仍顯示基本繁體中文內容。';
-  }
+function spawnTraffic() {
+    if (gameState !== "playing") return;
+    var lanes = [-0.62, -0.22, 0.22, 0.62];
+    var lane = lanes[Math.floor(Math.random() * lanes.length)];
+    if (Math.abs(lane - player.x) < 0.2 && Math.random() < 0.5) return;
+
+    // 80s 風格障礙車：不同車型
+    var types = [
+        {color:"#ef4444", speed:48, style:"sedan"},      // 紅色轎車
+        {color:"#a855f7", speed:62, style:"sports"},     // 紫色跑車
+        {color:"#f97316", speed:52, style:"truck"},      // 橘色小卡
+        {color:"#22d3ee", speed:70, style:"sports"},     // 青色跑車
+        {color:"#84cc16", speed:40, style:"van"},        // 綠色廂型
+        {color:"#eab308", speed:55, style:"sedan"}       // 黃色轎車
+    ];
+    var type = types[Math.floor(Math.random() * types.length)];
+    traffic.push({
+        x: lane,
+        y: 1050 + Math.random() * 180,
+        color: type.color,
+        speed: type.speed + (Math.random() * 10 - 5),
+        style: type.style
+    });
 }
-</script></body></html>
+
+function update() {
+    if (gameState !== "playing") return;
+    frame++;
+    var topSpeed = player.maxSpeed;
+    if (player.isNitro && player.nitro > 0) {
+        topSpeed = player.maxSpeed * 1.42;
+        player.nitro = Math.max(0, player.nitro - 0.78);
+        if (player.nitro <= 0) player.isNitro = false;
+    } else {
+        if (player.nitro < 100) player.nitro += 0.18;
+    }
+    if (keys["KeyW"] || keys["ArrowUp"] || (!player.isBraking && player.speed < 50)) {
+        player.speed = Math.min(topSpeed, player.speed + player.accel);
+    } else if (player.isBraking) {
+        player.speed = Math.max(0, player.speed - player.brake);
+    } else {
+        player.speed = Math.max(0, player.speed - player.decel);
+    }
+    var turnSpeed = 0.04 * (0.5 + player.speed / 170);
+    if (keys["KeyA"] || keys["ArrowLeft"]) player.x = Math.max(-0.82, player.x - turnSpeed);
+    if (keys["KeyD"] || keys["ArrowRight"]) player.x = Math.min(0.82, player.x + turnSpeed);
+    distance += player.speed * 0.0115;
+    score = Math.floor(distance * 9);
+    roadOffset = (roadOffset + player.speed * 0.14) % 80;
+
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.width / dpr;
+    var h = canvas.height / dpr;
+    if (player.speed > 28) {
+        var pX = w/2 + (player.x * (w * 0.34));
+        var pY = h - 54;
+        if (player.isNitro) {
+            addParticle(pX-13, pY, "#38bdf8", 8, 5.2, 15);
+            addParticle(pX+13, pY, "#0ea5e9", 8, 5.2, 15);
+            addParticle(pX, pY+2, "#bae6fd", 5, 4, 12);
+        } else {
+            addParticle(pX-11, pY, "#64748b", 4, 2.8, 13);
+            addParticle(pX+11, pY, "#64748b", 4, 2.8, 13);
+        }
+    }
+    for (var i = particles.length-1; i >= 0; i--) {
+        var p = particles[i];
+        p.y += p.vy; p.x += p.vx; p.life--; p.size *= 0.97;
+        if (p.life <= 0) particles.splice(i, 1);
+    }
+    for (var j = traffic.length-1; j >= 0; j--) {
+        var car = traffic[j];
+        car.y -= (player.speed - car.speed) * 1.38;
+        if (car.y < 125 && car.y > -5) {
+            if (Math.abs(car.x - player.x) < 0.245) {
+                triggerCrash();
+                return;
+            }
+        }
+        if (car.y < -180 || car.y > 1300) traffic.splice(j, 1);
+    }
+    document.getElementById("hudSpeed").textContent = Math.floor(player.speed);
+    document.getElementById("hudDist").textContent = Math.floor(distance);
+    document.getElementById("nitroBar").style.width = player.nitro + "%";
+}
+
+function triggerCrash() {
+    gameState = "crash";
+    if (distance > best) {
+        best = distance;
+        try { localStorage.setItem("fieldsense_best", best); } catch(e) {}
+    }
+    document.getElementById("finalDist").textContent = Math.floor(distance);
+    document.getElementById("finalScore").textContent = score;
+    document.getElementById("finalBest").textContent = Math.floor(best);
+    document.getElementById("bestScore").textContent = "最佳：" + Math.floor(best) + " m";
+    document.getElementById("crashOverlay").style.display = "flex";
+    document.getElementById("touchUI").style.display = "none";
+}
+
+// ===== 繪製 80s 風格車輛 =====
+function drawPlayerCar(sx, sy, pW, pH) {
+    // 陰影
+    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    ctx.beginPath();
+    ctx.ellipse(sx, sy + pH/2 + 2, pW*0.48, 6, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // 車身漸層
+    var carGrad = ctx.createLinearGradient(sx - pW/2, 0, sx + pW/2, 0);
+    if (player.isNitro) {
+        carGrad.addColorStop(0, "#0ea5e9");
+        carGrad.addColorStop(0.5, "#7dd3fc");
+        carGrad.addColorStop(1, "#0284c7");
+    } else {
+        carGrad.addColorStop(0, "#f59e0b");
+        carGrad.addColorStop(0.45, "#fef08a");
+        carGrad.addColorStop(1, "#d97706");
+    }
+    ctx.fillStyle = carGrad;
+
+    // 80s 跑車輪廓（前窄後寬 + 斜角）
+    ctx.beginPath();
+    ctx.moveTo(sx - pW*0.42, sy + pH*0.42);          // 左後
+    ctx.lineTo(sx - pW*0.48, sy + pH*0.1);            // 左後上
+    ctx.lineTo(sx - pW*0.38, sy - pH*0.15);           // 左腰
+    ctx.lineTo(sx - pW*0.22, sy - pH*0.42);           // 左前上
+    ctx.lineTo(sx + pW*0.22, sy - pH*0.42);           // 右前上
+    ctx.lineTo(sx + pW*0.38, sy - pH*0.15);           // 右腰
+    ctx.lineTo(sx + pW*0.48, sy + pH*0.1);            // 右後上
+    ctx.lineTo(sx + pW*0.42, sy + pH*0.42);           // 右後
+    ctx.closePath();
+    ctx.fill();
+
+    // 車頂 / 座艙
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath();
+    ctx.moveTo(sx - pW*0.22, sy - pH*0.08);
+    ctx.lineTo(sx - pW*0.16, sy - pH*0.32);
+    ctx.lineTo(sx + pW*0.16, sy - pH*0.32);
+    ctx.lineTo(sx + pW*0.22, sy - pH*0.08);
+    ctx.closePath();
+    ctx.fill();
+
+    // 擋風玻璃反光
+    ctx.fillStyle = "rgba(186,230,253,0.35)";
+    ctx.beginPath();
+    ctx.moveTo(sx - pW*0.14, sy - pH*0.12);
+    ctx.lineTo(sx - pW*0.1, sy - pH*0.28);
+    ctx.lineTo(sx + pW*0.02, sy - pH*0.28);
+    ctx.lineTo(sx - pW*0.02, sy - pH*0.12);
+    ctx.closePath();
+    ctx.fill();
+
+    // 頭燈
+    ctx.fillStyle = "#fef9c3";
+    ctx.shadowColor = "#fef08a";
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.ellipse(sx - pW*0.28, sy - pH*0.28, 5, 3, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(sx + pW*0.28, sy - pH*0.28, 5, 3, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // 尾燈
+    if (player.isBraking) {
+        ctx.fillStyle = "#ff0000";
+        ctx.shadowColor = "#ff0000";
+        ctx.shadowBlur = 14;
+    } else {
+        ctx.fillStyle = "#7f1d1d";
+        ctx.shadowBlur = 0;
+    }
+    ctx.fillRect(sx - pW*0.38, sy + pH*0.28, 12, 5);
+    ctx.fillRect(sx + pW*0.26, sy + pH*0.28, 12, 5);
+    ctx.shadowBlur = 0;
+
+    // 側邊線條（80s 感）
+    ctx.strokeStyle = "rgba(255,255,255,0.25)";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(sx - pW*0.4, sy + pH*0.05);
+    ctx.lineTo(sx - pW*0.25, sy - pH*0.2);
+    ctx.moveTo(sx + pW*0.4, sy + pH*0.05);
+    ctx.lineTo(sx + pW*0.25, sy - pH*0.2);
+    ctx.stroke();
+}
+
+function drawTrafficCar(sx, sy, cw, ch, color, style) {
+    // 陰影
+    ctx.fillStyle = "rgba(0,0,0,0.4)";
+    ctx.beginPath();
+    ctx.ellipse(sx, sy + ch/2 + 1, cw*0.45, 5, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle = color;
+
+    if (style === "sports") {
+        // 跑車：低矮、前尖
+        ctx.beginPath();
+        ctx.moveTo(sx - cw*0.4, sy + ch*0.4);
+        ctx.lineTo(sx - cw*0.45, sy + ch*0.05);
+        ctx.lineTo(sx - cw*0.3, sy - ch*0.25);
+        ctx.lineTo(sx - cw*0.15, sy - ch*0.4);
+        ctx.lineTo(sx + cw*0.15, sy - ch*0.4);
+        ctx.lineTo(sx + cw*0.3, sy - ch*0.25);
+        ctx.lineTo(sx + cw*0.45, sy + ch*0.05);
+        ctx.lineTo(sx + cw*0.4, sy + ch*0.4);
+        ctx.closePath();
+        ctx.fill();
+    } else if (style === "truck") {
+        // 小卡車：車頭 + 貨斗
+        ctx.beginPath();
+        ctx.roundRect(sx - cw*0.45, sy - ch*0.15, cw*0.5, ch*0.7, 3);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.roundRect(sx + cw*0.0, sy - ch*0.35, cw*0.42, ch*0.9, 2);
+        ctx.fill();
+    } else if (style === "van") {
+        // 廂型車：方正
+        ctx.beginPath();
+        ctx.roundRect(sx - cw*0.42, sy - ch*0.4, cw*0.84, ch*0.85, 4);
+        ctx.fill();
+    } else {
+        // 一般轎車
+        ctx.beginPath();
+        ctx.moveTo(sx - cw*0.42, sy + ch*0.4);
+        ctx.lineTo(sx - cw*0.45, sy + ch*0.05);
+        ctx.lineTo(sx - cw*0.35, sy - ch*0.2);
+        ctx.lineTo(sx - cw*0.2, sy - ch*0.38);
+        ctx.lineTo(sx + cw*0.2, sy - ch*0.38);
+        ctx.lineTo(sx + cw*0.35, sy - ch*0.2);
+        ctx.lineTo(sx + cw*0.45, sy + ch*0.05);
+        ctx.lineTo(sx + cw*0.42, sy + ch*0.4);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // 車窗
+    ctx.fillStyle = "rgba(15,23,42,0.75)";
+    if (style === "truck") {
+        ctx.beginPath();
+        ctx.roundRect(sx - cw*0.38, sy - ch*0.05, cw*0.32, ch*0.35, 2);
+        ctx.fill();
+    } else if (style === "van") {
+        ctx.beginPath();
+        ctx.roundRect(sx - cw*0.32, sy - ch*0.28, cw*0.64, ch*0.35, 2);
+        ctx.fill();
+    } else {
+        ctx.beginPath();
+        ctx.moveTo(sx - cw*0.22, sy - ch*0.05);
+        ctx.lineTo(sx - cw*0.15, sy - ch*0.28);
+        ctx.lineTo(sx + cw*0.15, sy - ch*0.28);
+        ctx.lineTo(sx + cw*0.22, sy - ch*0.05);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // 尾燈
+    ctx.fillStyle = "#ef4444";
+    ctx.shadowColor = "#ef4444";
+    ctx.shadowBlur = 4;
+    ctx.fillRect(sx - cw*0.38, sy + ch*0.28, cw*0.18, 3);
+    ctx.fillRect(sx + cw*0.2, sy + ch*0.28, cw*0.18, 3);
+    ctx.shadowBlur = 0;
+}
+
+function draw() {
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.width / dpr;
+    var h = canvas.height / dpr;
+    var horizonY = h * 0.36;
+
+    // 天空（80s 粉紫夕陽感）
+    var sky = ctx.createLinearGradient(0, 0, 0, horizonY);
+    sky.addColorStop(0, "#0f0a1e");
+    sky.addColorStop(0.4, "#2e1065");
+    sky.addColorStop(0.75, "#7c3aed");
+    sky.addColorStop(1, "#f472b6");
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, w, horizonY);
+
+    // 星星
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    for (var i = 0; i < 40; i++) {
+        var sx = (i * 97 + frame * 0.012) % w;
+        var sy = (i * 53) % (horizonY * 0.7);
+        ctx.beginPath();
+        ctx.arc(sx, sy, 0.6 + (i % 3) * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    // 霓虹太陽
+    var sunGlow = ctx.createRadialGradient(w/2, horizonY - 6, 4, w/2, horizonY - 6, 90);
+    sunGlow.addColorStop(0, "#fbbf24");
+    sunGlow.addColorStop(0.3, "#f472b6");
+    sunGlow.addColorStop(0.7, "#a78bfa");
+    sunGlow.addColorStop(1, "transparent");
+    ctx.fillStyle = sunGlow;
+    ctx.beginPath();
+    ctx.arc(w/2, horizonY - 6, 90, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 地面
+    ctx.fillStyle = "#0a1628";
+    ctx.fillRect(0, horizonY, w, h - horizonY);
+
+    // 賽道
+    var roadTopW = w * 0.16;
+    var roadBottomW = w * 0.88;
+    ctx.fillStyle = "#1e293b";
+    ctx.beginPath();
+    ctx.moveTo(w/2 - roadTopW/2, horizonY);
+    ctx.lineTo(w/2 + roadTopW/2, horizonY);
+    ctx.lineTo(w/2 + roadBottomW/2, h);
+    ctx.lineTo(w/2 - roadBottomW/2, h);
+    ctx.fill();
+
+    // 護欄（紅白）
+    var curbW = 12;
+    var curbFlash = Math.floor(roadOffset / 18) % 2 === 0;
+    ctx.fillStyle = curbFlash ? "#ef4444" : "#f8fafc";
+    ctx.beginPath();
+    ctx.moveTo(w/2 - roadTopW/2 - curbW, horizonY);
+    ctx.lineTo(w/2 - roadTopW/2, horizonY);
+    ctx.lineTo(w/2 - roadBottomW/2, h);
+    ctx.lineTo(w/2 - roadBottomW/2 - curbW*2.6, h);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(w/2 + roadTopW/2, horizonY);
+    ctx.lineTo(w/2 + roadTopW/2 + curbW, horizonY);
+    ctx.lineTo(w/2 + roadBottomW/2 + curbW*2.6, h);
+    ctx.lineTo(w/2 + roadBottomW/2, h);
+    ctx.fill();
+
+    // 車道線
+    ctx.strokeStyle = "rgba(226,232,240,0.85)";
+    ctx.lineWidth = 3;
+    ctx.setLineDash([22, 22]);
+    ctx.lineDashOffset = -roadOffset;
+    ctx.beginPath();
+    ctx.moveTo(w/2 - roadTopW/5.5, horizonY);
+    ctx.lineTo(w/2 - roadBottomW/5.5, h);
+    ctx.moveTo(w/2 + roadTopW/5.5, horizonY);
+    ctx.lineTo(w/2 + roadBottomW/5.5, h);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // 中央虛線
+    ctx.strokeStyle = "rgba(251,191,36,0.35)";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([10, 26]);
+    ctx.lineDashOffset = -roadOffset * 1.15;
+    ctx.beginPath();
+    ctx.moveTo(w/2, horizonY);
+    ctx.lineTo(w/2, h);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // NPC 車輛
+    traffic.sort(function(a,b){ return b.y - a.y; });
+    for (var t = 0; t < traffic.length; t++) {
+        var car = traffic[t];
+        var scale = 0.13 + (1000 - car.y) / 1000 * 0.87;
+        if (scale < 0.09 || scale > 1.12) continue;
+        var sx = w/2 + (car.x * (roadBottomW * 0.4) * scale);
+        var sy = horizonY + (1000 - car.y) * ((h - horizonY) / 1000);
+        var cw = 68 * scale;
+        var ch = 38 * scale;
+        drawTrafficCar(sx, sy, cw, ch, car.color, car.style || "sedan");
+    }
+
+    // 粒子
+    for (var pIdx = 0; pIdx < particles.length; pIdx++) {
+        var pt = particles[pIdx];
+        ctx.globalAlpha = Math.max(0, pt.life / 16);
+        ctx.fillStyle = pt.color;
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, Math.max(0.5, pt.size), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+    }
+
+    // 玩家車
+    var pSX = w/2 + (player.x * (roadBottomW * 0.4));
+    var pSY = h - 58;
+    drawPlayerCar(pSX, pSY, 74, 44);
+}
+
+function gameLoop() {
+    update();
+    draw();
+    if (gameState === "playing") requestAnimationFrame(gameLoop);
+}
+
+function resetRun() {
+    player.x = 0;
+    player.speed = 0;
+    player.nitro = 100;
+    player.isNitro = false;
+    player.isBraking = false;
+    traffic = [];
+    particles = [];
+    distance = 0;
+    score = 0;
+}
+
+function startGame() {
+    document.getElementById("startOverlay").style.display = "none";
+    resetRun();
+    gameState = "playing";
+    document.getElementById("touchUI").style.display = "flex";
+    gameLoop();
+}
+
+function restartGame() {
+    document.getElementById("crashOverlay").style.display = "none";
+    resetRun();
+    gameState = "playing";
+    document.getElementById("touchUI").style.display = "flex";
+    gameLoop();
+}
+
+document.getElementById("btnStart").addEventListener("click", startGame);
+document.getElementById("btnRestart").addEventListener("click", restartGame);
+
+setInterval(function() {
+    if (gameState === "playing" && Math.random() < 0.62) spawnTraffic();
+}, 1200);
+
+resizeCanvas();
+})();
+</script>
+</body>
+</html>
