@@ -17,9 +17,9 @@ canvas{width:100%;height:100%;display:block;background:#000}
 .touch-btn.nitro:active,.touch-btn.nitro.active{background:rgba(251,191,36,.95);box-shadow:0 0 20px rgba(251,191,36,.6)}
 .touch-btn.brake{background:rgba(239,68,68,.55);border-color:#f87171}
 .overlay{position:absolute;inset:0;background:rgba(3,7,18,.9);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:30;backdrop-filter:blur(12px);padding:20px;text-align:center}
-.overlay h1{margin:0 0 6px;font-size:1.75rem;letter-spacing:1px}
-.overlay .subtitle{color:#94a3b8;font-size:.95rem;margin-bottom:18px}
-.overlay .stats{background:rgba(15,23,42,.8);border:1px solid rgba(167,139,250,.3);border-radius:14px;padding:14px 20px;margin-bottom:18px;min-width:240px;font-size:1.05rem}
+.overlay h1{margin:0 0 6px;font-size:1.7rem;letter-spacing:1px}
+.overlay .subtitle{color:#94a3b8;font-size:.95rem;margin-bottom:16px}
+.overlay .stats{background:rgba(15,23,42,.8);border:1px solid rgba(167,139,250,.3);border-radius:14px;padding:14px 20px;margin-bottom:16px;min-width:250px;font-size:1.02rem}
 .btn-primary{background:linear-gradient(135deg,#f472b6,#a78bfa);color:#0f172a;border:none;padding:13px 32px;font-size:1.1rem;font-weight:700;border-radius:28px;cursor:pointer;box-shadow:0 0 22px rgba(167,139,250,.45);margin:5px}
 .btn-primary:active{transform:scale(.96)}
 .hud-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:12;pointer-events:none}
@@ -31,8 +31,8 @@ canvas{width:100%;height:100%;display:block;background:#000}
 .nitro-bg{height:7px;background:rgba(15,23,42,.85);border-radius:4px;overflow:hidden;border:1px solid rgba(251,191,36,.3)}
 .nitro-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:4px;transition:width .1s}
 .shield-ind{position:absolute;top:68px;left:12px;background:rgba(34,197,94,.25);border:1px solid #4ade80;color:#4ade80;padding:3px 9px;border-radius:10px;font-size:.72rem;font-weight:600;z-index:12;display:none}
-.float-text{position:absolute;font-weight:700;font-size:1.05rem;pointer-events:none;z-index:20;text-shadow:0 0 8px currentColor;animation:floatUp .85s ease-out forwards}
-@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-48px) scale(1.15)}}
+.float-text{position:absolute;font-weight:700;font-size:1.02rem;pointer-events:none;z-index:20;text-shadow:0 0 8px currentColor;animation:floatUp .9s ease-out forwards;max-width:200px;text-align:center}
+@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-52px) scale(1.12)}}
 </style>
 </head>
 <body>
@@ -63,31 +63,45 @@ canvas{width:100%;height:100%;display:block;background:#000}
 <div class="subtitle">Morning Drive Memories</div>
 <div class="stats" style="font-size:.88rem;color:#94a3b8;line-height:1.65">
 ◀▶ 移動 · 🔥 氮氣 · 🛑 煞車<br>
-收集金幣與護盾，跑越遠越好<br>
-避開其他車輛
+收集金幣與護盾，悠哉開就好<br>
+反正這條路也沒人催你
 </div>
-<button class="btn-primary" id="btnStart">開始狂飆 🏎️</button>
+<button class="btn-primary" id="btnStart">出發吧，少年 🏎️</button>
 </div>
 <div class="overlay" id="crashOverlay">
-<h1 style="color:#f87171">事故發生！</h1>
-<div class="subtitle">再來一次吧</div>
+<h1 style="color:#f87171" id="crashTitle">撞到了啦！</h1>
+<div class="subtitle" id="crashMsg">再來一次吧</div>
 <div class="stats">
 <div>距離：<span id="finalDist">0</span> m</div>
 <div>金幣：<span id="finalCoins" style="color:#fbbf24">0</span></div>
 <div>得分：<span id="finalScore">0</span></div>
 <div style="margin-top:6px;color:#a78bfa">最佳：<span id="finalBest">0</span> m</div>
 </div>
-<button class="btn-primary" id="btnRestart">再次挑戰</button>
+<button class="btn-primary" id="btnRestart">再給我一次機會</button>
 </div>
 </div>
 <script>
 (function(){
 "use strict";
 var canvas=document.getElementById("gameCanvas"),ctx=canvas.getContext("2d");
-var player={x:0,speed:0,maxSpeed:180,accel:0.82,decel:0.26,brake:1.85,nitro:100,isNitro:false,isBraking:false,shield:0};
+
+// 速度調慢：maxSpeed 55 感覺
+var player={x:0,speed:0,maxSpeed:55,accel:0.55,decel:0.18,brake:1.1,nitro:100,isNitro:false,isBraking:false,shield:0};
 var gameState="menu",score=0,distance=0,coins=0,best=0,keys={},roadOffset=0,frame=0,traffic=[],particles=[],pickups=[],milestonesReached={};
+
+var crashTitles=["撞到了啦！","阿母的！","完蛋了","又撞了欸","這台車是來搞笑的吧"];
+var crashMsgs=[
+"對方說他有優先權。",
+"這條路好像不太歡迎你。",
+"再慢一點就好了…大概。",
+"金幣沒掉，但自尊有。",
+"護盾呢？護盾呢？",
+"80年代的車也擋不住現代司機。",
+"早知道就搭公車了。"
+];
+var floatJokes=["悠哉～","穩穩的","還可以","不錯喔","繼續開","金幣！","護盾到！","氮氣來了","差點…","好險"];
+
 try{var s=localStorage.getItem("btt80_best");if(s)best=Number(s)||0}catch(e){}
-document.getElementById("bestScore")&& (document.getElementById("bestScore").textContent="最佳："+Math.floor(best)+" m");
 
 function resizeCanvas(){
 var w=document.getElementById("game-wrapper"),dpr=Math.min(window.devicePixelRatio||1,2);
@@ -126,104 +140,113 @@ nitroBtn.addEventListener("pointerdown",function(e){e.preventDefault();if(player
 nitroBtn.addEventListener("pointerup",function(e){e.preventDefault();player.isNitro=false;nitroBtn.classList.remove("active")});
 nitroBtn.addEventListener("pointerleave",function(){player.isNitro=false;nitroBtn.classList.remove("active")});
 
-function addParticle(x,y,color,size,vy,life){particles.push({x:x,y:y,vx:(Math.random()-0.5)*2.4,vy:vy||Math.random()*3+2,size:size||Math.random()*5+3,color:color,life:life||16})}
+function addParticle(x,y,color,size,vy,life){particles.push({x:x,y:y,vx:(Math.random()-0.5)*2.2,vy:vy||Math.random()*2.8+1.8,size:size||Math.random()*4+2.5,color:color,life:life||15})}
 function spawnFloat(text,x,y,color){
-var el=document.createElement("div");el.className="float-text";el.style.left=x+"px";el.style.top=y+"px";el.style.color=color||"#fbbf24";el.textContent=text;
-document.getElementById("game-wrapper").appendChild(el);setTimeout(function(){el.remove()},900);
+var el=document.createElement("div");el.className="float-text";el.style.left=(x||80)+"px";el.style.top=(y||160)+"px";el.style.color=color||"#fbbf24";el.textContent=text;
+document.getElementById("game-wrapper").appendChild(el);setTimeout(function(){el.remove()},950);
 }
 
 function spawnTraffic(){
 if(gameState!=="playing")return;
-var density=0.55+Math.min(distance/3000,0.3);
-if(Math.random()>density)return;
-var lanes=[-0.62,-0.22,0.22,0.62];
+// 難度大幅降低：密度低、間隔大
+if(Math.random()>0.38)return;
+var lanes=[-0.58,-0.2,0.2,0.58];
 var lane=lanes[Math.floor(Math.random()*lanes.length)];
-if(Math.abs(lane-player.x)<0.18&&Math.random()<0.55)return;
+// 更常避開玩家車道
+if(Math.abs(lane-player.x)<0.28&&Math.random()<0.7)return;
 var types=[
-{color:"#ef4444",speed:46,style:"sedan"},
-{color:"#a855f7",speed:64,style:"sports"},
-{color:"#f97316",speed:50,style:"truck"},
-{color:"#22d3ee",speed:72,style:"sports"},
-{color:"#84cc16",speed:38,style:"van"},
-{color:"#eab308",speed:54,style:"sedan"},
-{color:"#f472b6",speed:60,style:"sports"}
+{color:"#ef4444",speed:22,style:"sedan",name:"急件公車"},
+{color:"#a855f7",speed:28,style:"sports",name:"無效會議車"},
+{color:"#f97316",speed:24,style:"truck",name:"甩鍋小卡車"},
+{color:"#22d3ee",speed:30,style:"sports",name:"超車成癮車"},
+{color:"#84cc16",speed:18,style:"van",name:"慢慢開的廂型"},
+{color:"#eab308",speed:25,style:"sedan",name:"黃燈衝刺車"}
 ];
 var t=types[Math.floor(Math.random()*types.length)];
-traffic.push({x:lane,y:1080+Math.random()*160,color:t.color,speed:t.speed+(Math.random()*12-6),style:t.style});
+traffic.push({x:lane,y:1150+Math.random()*200,color:t.color,speed:t.speed+(Math.random()*6-3),style:t.style,name:t.name});
 }
 
 function spawnPickup(){
-if(gameState!=="playing"||Math.random()>0.42)return;
-var lanes=[-0.5,-0.18,0.18,0.5];
+if(gameState!=="playing"||Math.random()>0.48)return;
+var lanes=[-0.45,-0.15,0.15,0.45];
 var lane=lanes[Math.floor(Math.random()*lanes.length)];
 var r=Math.random();
-var type=r>0.82?"shield":(r>0.55?"nitro":"coin");
-pickups.push({x:lane,y:1120+Math.random()*120,type:type,collected:false});
+var type=r>0.78?"shield":(r>0.5?"nitro":"coin");
+pickups.push({x:lane,y:1180+Math.random()*140,type:type,collected:false});
 }
 
 function update(){
 if(gameState!=="playing")return;
 frame++;
 var top=player.maxSpeed;
-if(player.isNitro&&player.nitro>0){top=player.maxSpeed*1.4;player.nitro=Math.max(0,player.nitro-0.72);if(player.nitro<=0)player.isNitro=false}
-else if(player.nitro<100)player.nitro+=0.2;
+if(player.isNitro&&player.nitro>0){top=player.maxSpeed*1.55;player.nitro=Math.max(0,player.nitro-0.55);if(player.nitro<=0)player.isNitro=false}
+else if(player.nitro<100)player.nitro+=0.28;
 
-if(keys["KeyW"]||keys["ArrowUp"]||(!player.isBraking&&player.speed<48))player.speed=Math.min(top,player.speed+player.accel);
+if(keys["KeyW"]||keys["ArrowUp"]||(!player.isBraking&&player.speed<28))player.speed=Math.min(top,player.speed+player.accel);
 else if(player.isBraking)player.speed=Math.max(0,player.speed-player.brake);
 else player.speed=Math.max(0,player.speed-player.decel);
 
-var turn=0.038*(0.55+player.speed/160);
-if(keys["KeyA"]||keys["ArrowLeft"])player.x=Math.max(-0.82,player.x-turn);
-if(keys["KeyD"]||keys["ArrowRight"])player.x=Math.min(0.82,player.x+turn);
+var turn=0.042*(0.6+player.speed/80);
+if(keys["KeyA"]||keys["ArrowLeft"])player.x=Math.max(-0.8,player.x-turn);
+if(keys["KeyD"]||keys["ArrowRight"])player.x=Math.min(0.8,player.x+turn);
 
-distance+=player.speed*0.0112;
-score=Math.floor(distance*8+coins*12);
-roadOffset=(roadOffset+player.speed*0.135)%80;
+distance+=player.speed*0.014;
+score=Math.floor(distance*6+coins*10);
+roadOffset=(roadOffset+player.speed*0.11)%80;
 if(player.shield>0)player.shield--;
 
-// milestones
-var ms=[300,600,1000,1500,2000,3000,4000,5000];
+// milestones with humor
+var ms=[200,400,700,1000,1500,2000,3000];
 for(var m=0;m<ms.length;m++){
 if(distance>=ms[m]&&!milestonesReached[ms[m]]){
 milestonesReached[ms[m]]=true;
-var bonus=8+Math.floor(ms[m]/80);
+var bonus=6+Math.floor(ms[m]/100);
 coins+=bonus;
-spawnFloat("+"+bonus+" 金幣  "+ms[m]+"m!",canvas.width/4,180,"#a78bfa");
+var jokes=["穩！","還行","可以的","繼續","不錯喔","厲害了","真的假的"];
+spawnFloat(jokes[Math.min(m,jokes.length-1)]+" +"+bonus+" 金幣",90,170,"#a78bfa");
 }
 }
 
 var dpr=window.devicePixelRatio||1,w=canvas.width/dpr,h=canvas.height/dpr;
-if(player.speed>26){
+if(player.speed>18){
 var px=w/2+(player.x*(w*0.34)),py=h-52;
-if(player.isNitro){addParticle(px-14,py,"#38bdf8",8,5.3,15);addParticle(px+14,py,"#0ea5e9",8,5.3,15);addParticle(px,py+3,"#bae6fd",5,4,11)}
-else{addParticle(px-11,py,"#64748b",4,2.7,13);addParticle(px+11,py,"#64748b",4,2.7,13)}
+if(player.isNitro){addParticle(px-12,py,"#38bdf8",7,4.5,14);addParticle(px+12,py,"#0ea5e9",7,4.5,14)}
+else{addParticle(px-10,py,"#64748b",3.5,2.3,12);addParticle(px+10,py,"#64748b",3.5,2.3,12)}
 }
 
 for(var i=particles.length-1;i>=0;i--){var p=particles[i];p.y+=p.vy;p.x+=p.vx;p.life--;p.size*=0.97;if(p.life<=0)particles.splice(i,1)}
 
+// 碰撞更寬鬆
 for(var j=traffic.length-1;j>=0;j--){
 var car=traffic[j];
-car.y-=(player.speed-car.speed)*1.36;
-if(car.y<128&&car.y>-8){
-if(Math.abs(car.x-player.x)<0.24){
-if(player.shield>0){player.shield=0;car.x+=(car.x>player.x?0.45:-0.45);for(var k=0;k<10;k++)addParticle(w/2+car.x*w*0.3,h*0.7,"#4ade80",5,-2,18)}
-else{triggerCrash();return}
+car.y-=(player.speed-car.speed)*1.15;
+if(car.y<135&&car.y>5){
+if(Math.abs(car.x-player.x)<0.21){  // 更寬鬆
+if(player.shield>0){
+player.shield=0;
+car.x+=(car.x>player.x?0.5:-0.5);
+for(var k=0;k<8;k++)addParticle(w/2+car.x*w*0.28,h*0.68,"#4ade80",4,-1.5,16);
+spawnFloat("護盾擋下來了！",90,200,"#4ade80");
+}else{
+triggerCrash(car.name||"");
+return;
 }
 }
-if(car.y<-180||car.y>1320)traffic.splice(j,1);
+}
+if(car.y<-160||car.y>1400)traffic.splice(j,1);
 }
 
 for(var pi=pickups.length-1;pi>=0;pi--){
 var pk=pickups[pi];
-pk.y-=player.speed*1.22;
-if(pk.y<140&&pk.y>25&&!pk.collected&&Math.abs(pk.x-player.x)<0.22){
+pk.y-=player.speed*1.1;
+if(pk.y<145&&pk.y>30&&!pk.collected&&Math.abs(pk.x-player.x)<0.26){
 pk.collected=true;
-var sx=w/2+pk.x*w*0.3,sy=h*0.7;
-if(pk.type==="coin"){var g=4+Math.floor(Math.random()*5);coins+=g;spawnFloat("+"+g,sx,sy,"#fbbf24")}
-else if(pk.type==="shield"){player.shield=Math.max(player.shield,210);spawnFloat("護盾！",sx,sy,"#4ade80")}
-else{player.nitro=Math.min(100,player.nitro+40);spawnFloat("氮氣！",sx,sy,"#38bdf8")}
+var sx=w/2+pk.x*w*0.28,sy=h*0.68;
+if(pk.type==="coin"){var g=5+Math.floor(Math.random()*6);coins+=g;spawnFloat("+"+g+" 金幣  賺到了",sx-40,sy,"#fbbf24")}
+else if(pk.type==="shield"){player.shield=Math.max(player.shield,280);spawnFloat("護盾！ 暫時無敵",sx-50,sy,"#4ade80")}
+else{player.nitro=Math.min(100,player.nitro+45);spawnFloat("氮氣加滿！",sx-40,sy,"#38bdf8")}
 }
-if(pk.y<-60||pk.collected)pickups.splice(pi,1);
+if(pk.y<-50||pk.collected)pickups.splice(pi,1);
 }
 
 document.getElementById("hudSpeed").textContent=Math.floor(player.speed);
@@ -235,13 +258,17 @@ if(player.shield>0){sh.style.display="block";sh.textContent="🛡 "+Math.ceil(pl
 else sh.style.display="none";
 }
 
-function triggerCrash(){
+function triggerCrash(name){
 gameState="crash";
 if(distance>best){best=distance;try{localStorage.setItem("btt80_best",best)}catch(e){}}
 document.getElementById("finalDist").textContent=Math.floor(distance);
 document.getElementById("finalCoins").textContent=coins;
 document.getElementById("finalScore").textContent=score;
 document.getElementById("finalBest").textContent=Math.floor(best);
+document.getElementById("crashTitle").textContent=crashTitles[Math.floor(Math.random()*crashTitles.length)];
+var msg=crashMsgs[Math.floor(Math.random()*crashMsgs.length)];
+if(name)msg="被「"+name+"」撞到了。\n"+msg;
+document.getElementById("crashMsg").textContent=msg;
 document.getElementById("crashOverlay").style.display="flex";
 document.getElementById("touchUI").style.display="none";
 }
@@ -260,13 +287,13 @@ ctx.fillStyle="#0f172a";
 ctx.beginPath();ctx.moveTo(sx-pW*0.22,sy-pH*0.08);ctx.lineTo(sx-pW*0.16,sy-pH*0.32);ctx.lineTo(sx+pW*0.16,sy-pH*0.32);ctx.lineTo(sx+pW*0.22,sy-pH*0.08);ctx.closePath();ctx.fill();
 ctx.fillStyle="rgba(186,230,253,0.35)";
 ctx.beginPath();ctx.moveTo(sx-pW*0.14,sy-pH*0.12);ctx.lineTo(sx-pW*0.1,sy-pH*0.28);ctx.lineTo(sx+pW*0.02,sy-pH*0.28);ctx.lineTo(sx-pW*0.02,sy-pH*0.12);ctx.closePath();ctx.fill();
-ctx.fillStyle="#fef9c3";ctx.shadowColor="#fef08a";ctx.shadowBlur=10;
+ctx.fillStyle="#fef9c3";ctx.shadowColor="#fef08a";ctx.shadowBlur=9;
 ctx.beginPath();ctx.ellipse(sx-pW*0.28,sy-pH*0.28,5,3,0,0,Math.PI*2);ctx.fill();
 ctx.beginPath();ctx.ellipse(sx+pW*0.28,sy-pH*0.28,5,3,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
-if(player.isBraking){ctx.fillStyle="#ff0000";ctx.shadowColor="#ff0000";ctx.shadowBlur=14}
+if(player.isBraking){ctx.fillStyle="#ff0000";ctx.shadowColor="#ff0000";ctx.shadowBlur=12}
 else{ctx.fillStyle="#7f1d1d";ctx.shadowBlur=0}
 ctx.fillRect(sx-pW*0.38,sy+pH*0.28,12,5);ctx.fillRect(sx+pW*0.26,sy+pH*0.28,12,5);ctx.shadowBlur=0;
-if(player.shield>0){ctx.strokeStyle="rgba(74,222,128,0.55)";ctx.lineWidth=3;ctx.beginPath();ctx.arc(sx,sy,48,0,Math.PI*2);ctx.stroke()}
+if(player.shield>0){ctx.strokeStyle="rgba(74,222,128,0.5)";ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(sx,sy,46,0,Math.PI*2);ctx.stroke()}
 }
 
 function drawTrafficCar(sx,sy,cw,ch,color,style){
@@ -290,7 +317,7 @@ ctx.fillStyle="rgba(15,23,42,0.75)";
 if(style==="truck"){ctx.beginPath();ctx.roundRect(sx-cw*0.38,sy-ch*0.05,cw*0.32,ch*0.35,2);ctx.fill()}
 else if(style==="van"){ctx.beginPath();ctx.roundRect(sx-cw*0.32,sy-ch*0.28,cw*0.64,ch*0.35,2);ctx.fill()}
 else{ctx.beginPath();ctx.moveTo(sx-cw*0.22,sy-ch*0.05);ctx.lineTo(sx-cw*0.15,sy-ch*0.28);ctx.lineTo(sx+cw*0.15,sy-ch*0.28);ctx.lineTo(sx+cw*0.22,sy-ch*0.05);ctx.closePath();ctx.fill()}
-ctx.fillStyle="#ef4444";ctx.shadowColor="#ef4444";ctx.shadowBlur=4;
+ctx.fillStyle="#ef4444";ctx.shadowColor="#ef4444";ctx.shadowBlur=3;
 ctx.fillRect(sx-cw*0.38,sy+ch*0.28,cw*0.18,3);ctx.fillRect(sx+cw*0.2,sy+ch*0.28,cw*0.18,3);ctx.shadowBlur=0;
 }
 
@@ -300,41 +327,32 @@ var sky=ctx.createLinearGradient(0,0,0,horizonY);
 sky.addColorStop(0,"#0f0a1e");sky.addColorStop(0.35,"#2e1065");sky.addColorStop(0.7,"#7c3aed");sky.addColorStop(1,"#f472b6");
 ctx.fillStyle=sky;ctx.fillRect(0,0,w,horizonY);
 ctx.fillStyle="rgba(255,255,255,0.55)";
-for(var i=0;i<42;i++){var sx=(i*97+frame*0.012)%w,sy=(i*53)%(horizonY*0.65);ctx.beginPath();ctx.arc(sx,sy,0.55+(i%3)*0.4,0,Math.PI*2);ctx.fill()}
-var sun=ctx.createRadialGradient(w/2,horizonY-8,3,w/2,horizonY-8,95);
+for(var i=0;i<40;i++){var sx=(i*97+frame*0.01)%w,sy=(i*53)%(horizonY*0.65);ctx.beginPath();ctx.arc(sx,sy,0.55+(i%3)*0.35,0,Math.PI*2);ctx.fill()}
+var sun=ctx.createRadialGradient(w/2,horizonY-8,3,w/2,horizonY-8,90);
 sun.addColorStop(0,"#fbbf24");sun.addColorStop(0.25,"#f472b6");sun.addColorStop(0.6,"#a78bfa");sun.addColorStop(1,"transparent");
-ctx.fillStyle=sun;ctx.beginPath();ctx.arc(w/2,horizonY-8,95,0,Math.PI*2);ctx.fill();
-
-// simple palm silhouettes
-ctx.fillStyle="rgba(15,10,30,0.55)";
-for(var p=0;p<6;p++){
-var px=(p*w/5.5+frame*0.03)%(w+40)-20;
-ctx.beginPath();ctx.moveTo(px,horizonY);ctx.lineTo(px-3,horizonY-28-p%3*8);ctx.lineTo(px+3,horizonY-28-p%3*8);ctx.fill();
-ctx.beginPath();ctx.ellipse(px,horizonY-32-p%3*8,14,6,0,0,Math.PI*2);ctx.fill();
-}
-
+ctx.fillStyle=sun;ctx.beginPath();ctx.arc(w/2,horizonY-8,90,0,Math.PI*2);ctx.fill();
+ctx.fillStyle="rgba(15,10,30,0.5)";
+for(var p=0;p<5;p++){var px=(p*w/5+frame*0.02)%(w+30)-15;ctx.beginPath();ctx.moveTo(px,horizonY);ctx.lineTo(px-2.5,horizonY-24-p%2*6);ctx.lineTo(px+2.5,horizonY-24-p%2*6);ctx.fill();ctx.beginPath();ctx.ellipse(px,horizonY-28-p%2*6,12,5,0,0,Math.PI*2);ctx.fill()}
 ctx.fillStyle="#0a1628";ctx.fillRect(0,horizonY,w,h-horizonY);
 var roadTopW=w*0.16,roadBottomW=w*0.88;
 ctx.fillStyle="#1e293b";
 ctx.beginPath();ctx.moveTo(w/2-roadTopW/2,horizonY);ctx.lineTo(w/2+roadTopW/2,horizonY);ctx.lineTo(w/2+roadBottomW/2,h);ctx.lineTo(w/2-roadBottomW/2,h);ctx.fill();
-var curbW=12,curbFlash=Math.floor(roadOffset/18)%2===0;
+var curbW=11,curbFlash=Math.floor(roadOffset/18)%2===0;
 ctx.fillStyle=curbFlash?"#ef4444":"#f8fafc";
-ctx.beginPath();ctx.moveTo(w/2-roadTopW/2-curbW,horizonY);ctx.lineTo(w/2-roadTopW/2,horizonY);ctx.lineTo(w/2-roadBottomW/2,h);ctx.lineTo(w/2-roadBottomW/2-curbW*2.6,h);ctx.fill();
-ctx.beginPath();ctx.moveTo(w/2+roadTopW/2,horizonY);ctx.lineTo(w/2+roadTopW/2+curbW,horizonY);ctx.lineTo(w/2+roadBottomW/2+curbW*2.6,h);ctx.lineTo(w/2+roadBottomW/2,h);ctx.fill();
-ctx.strokeStyle="rgba(226,232,240,0.85)";ctx.lineWidth=3;ctx.setLineDash([22,22]);ctx.lineDashOffset=-roadOffset;
+ctx.beginPath();ctx.moveTo(w/2-roadTopW/2-curbW,horizonY);ctx.lineTo(w/2-roadTopW/2,horizonY);ctx.lineTo(w/2-roadBottomW/2,h);ctx.lineTo(w/2-roadBottomW/2-curbW*2.5,h);ctx.fill();
+ctx.beginPath();ctx.moveTo(w/2+roadTopW/2,horizonY);ctx.lineTo(w/2+roadTopW/2+curbW,horizonY);ctx.lineTo(w/2+roadBottomW/2+curbW*2.5,h);ctx.lineTo(w/2+roadBottomW/2,h);ctx.fill();
+ctx.strokeStyle="rgba(226,232,240,0.8)";ctx.lineWidth=2.5;ctx.setLineDash([20,22]);ctx.lineDashOffset=-roadOffset;
 ctx.beginPath();ctx.moveTo(w/2-roadTopW/5.5,horizonY);ctx.lineTo(w/2-roadBottomW/5.5,h);ctx.moveTo(w/2+roadTopW/5.5,horizonY);ctx.lineTo(w/2+roadBottomW/5.5,h);ctx.stroke();ctx.setLineDash([]);
-ctx.strokeStyle="rgba(251,191,36,0.35)";ctx.lineWidth=2;ctx.setLineDash([10,26]);ctx.lineDashOffset=-roadOffset*1.15;
+ctx.strokeStyle="rgba(251,191,36,0.3)";ctx.lineWidth=2;ctx.setLineDash([9,24]);ctx.lineDashOffset=-roadOffset*1.1;
 ctx.beginPath();ctx.moveTo(w/2,horizonY);ctx.lineTo(w/2,h);ctx.stroke();ctx.setLineDash([]);
 
-// pickups
 for(var pi=0;pi<pickups.length;pi++){
-var pk=pickups[pi];
-var scale=0.12+(1000-pk.y)/1000*0.88;if(scale<0.08||scale>1.15)continue;
+var pk=pickups[pi];var scale=0.12+(1000-pk.y)/1000*0.88;if(scale<0.08||scale>1.15)continue;
 var sx=w/2+(pk.x*(roadBottomW*0.4)*scale),sy=horizonY+(1000-pk.y)*((h-horizonY)/1000),r=10*scale;
 ctx.save();
-if(pk.type==="coin"){ctx.fillStyle="#fbbf24";ctx.shadowColor="#fbbf24";ctx.shadowBlur=10*scale;ctx.beginPath();ctx.arc(sx,sy,r,0,Math.PI*2);ctx.fill();ctx.fillStyle="#fef08a";ctx.beginPath();ctx.arc(sx-2*scale,sy-2*scale,r*0.35,0,Math.PI*2);ctx.fill()}
-else if(pk.type==="shield"){ctx.fillStyle="#4ade80";ctx.shadowColor="#4ade80";ctx.shadowBlur=12*scale;ctx.beginPath();ctx.arc(sx,sy,r*1.1,0,Math.PI*2);ctx.fill();ctx.fillStyle="#166534";ctx.font="bold "+(13*scale)+"px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("🛡",sx,sy+1)}
-else{ctx.fillStyle="#38bdf8";ctx.shadowColor="#38bdf8";ctx.shadowBlur=12*scale;ctx.beginPath();ctx.arc(sx,sy,r*1.05,0,Math.PI*2);ctx.fill();ctx.fillStyle="#0c4a6e";ctx.font="bold "+(12*scale)+"px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("🔥",sx,sy+1)}
+if(pk.type==="coin"){ctx.fillStyle="#fbbf24";ctx.shadowColor="#fbbf24";ctx.shadowBlur=9*scale;ctx.beginPath();ctx.arc(sx,sy,r,0,Math.PI*2);ctx.fill();ctx.fillStyle="#fef08a";ctx.beginPath();ctx.arc(sx-2*scale,sy-2*scale,r*0.35,0,Math.PI*2);ctx.fill()}
+else if(pk.type==="shield"){ctx.fillStyle="#4ade80";ctx.shadowColor="#4ade80";ctx.shadowBlur=11*scale;ctx.beginPath();ctx.arc(sx,sy,r*1.1,0,Math.PI*2);ctx.fill();ctx.fillStyle="#166534";ctx.font="bold "+(12*scale)+"px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("🛡",sx,sy+1)}
+else{ctx.fillStyle="#38bdf8";ctx.shadowColor="#38bdf8";ctx.shadowBlur=11*scale;ctx.beginPath();ctx.arc(sx,sy,r*1.05,0,Math.PI*2);ctx.fill();ctx.fillStyle="#0c4a6e";ctx.font="bold "+(11*scale)+"px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("🔥",sx,sy+1)}
 ctx.restore();
 }
 
@@ -342,21 +360,21 @@ traffic.sort(function(a,b){return b.y-a.y});
 for(var t=0;t<traffic.length;t++){
 var car=traffic[t],scale=0.13+(1000-car.y)/1000*0.87;if(scale<0.09||scale>1.12)continue;
 var sx=w/2+(car.x*(roadBottomW*0.4)*scale),sy=horizonY+(1000-car.y)*((h-horizonY)/1000);
-drawTrafficCar(sx,sy,68*scale,38*scale,car.color,car.style||"sedan");
+drawTrafficCar(sx,sy,66*scale,36*scale,car.color,car.style||"sedan");
 }
 
-for(var pIdx=0;pIdx<particles.length;pIdx++){var pt=particles[pIdx];ctx.globalAlpha=Math.max(0,pt.life/16);ctx.fillStyle=pt.color;ctx.beginPath();ctx.arc(pt.x,pt.y,Math.max(0.5,pt.size),0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
-drawPlayerCar(w/2+(player.x*(roadBottomW*0.4)),h-58,74,44);
+for(var pIdx=0;pIdx<particles.length;pIdx++){var pt=particles[pIdx];ctx.globalAlpha=Math.max(0,pt.life/15);ctx.fillStyle=pt.color;ctx.beginPath();ctx.arc(pt.x,pt.y,Math.max(0.5,pt.size),0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+drawPlayerCar(w/2+(player.x*(roadBottomW*0.4)),h-58,72,42);
 }
 
 function gameLoop(){update();draw();if(gameState==="playing")requestAnimationFrame(gameLoop)}
 function resetRun(){player.x=0;player.speed=0;player.nitro=100;player.isNitro=false;player.isBraking=false;player.shield=0;traffic=[];particles=[];pickups=[];distance=0;score=0;coins=0;milestonesReached={}}
-function startGame(){document.getElementById("startOverlay").style.display="none";resetRun();player.shield=120;gameState="playing";document.getElementById("touchUI").style.display="flex";gameLoop()}
-function restartGame(){document.getElementById("crashOverlay").style.display="none";resetRun();player.shield=90;gameState="playing";document.getElementById("touchUI").style.display="flex";gameLoop()}
+function startGame(){document.getElementById("startOverlay").style.display="none";resetRun();player.shield=180;gameState="playing";document.getElementById("touchUI").style.display="flex";gameLoop()}
+function restartGame(){document.getElementById("crashOverlay").style.display="none";resetRun();player.shield=150;gameState="playing";document.getElementById("touchUI").style.display="flex";gameLoop()}
 document.getElementById("btnStart").addEventListener("click",startGame);
 document.getElementById("btnRestart").addEventListener("click",restartGame);
-setInterval(function(){if(gameState==="playing")spawnTraffic()},1100);
-setInterval(function(){if(gameState==="playing")spawnPickup()},1700);
+setInterval(function(){if(gameState==="playing")spawnTraffic()},1600);  // 更稀疏
+setInterval(function(){if(gameState==="playing")spawnPickup()},1400);
 resizeCanvas();
 })();
 </script>
