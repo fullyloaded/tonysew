@@ -9,29 +9,29 @@
 body,html{margin:0;padding:0;width:100%;height:100%;background:#05050d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Helvetica,Arial,sans-serif;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e2e8f0}
 #game-wrapper{position:relative;width:100%;max-width:480px;height:100%;max-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#030712}
 canvas{width:100%;height:100%;display:block;background:#000}
-.touch-ui{position:absolute;bottom:20px;left:0;right:0;padding:0 16px;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none;z-index:15}
+.touch-ui{position:absolute;bottom:18px;left:0;right:0;padding:0 14px;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none;z-index:15}
 .btn-group{display:flex;gap:12px;pointer-events:auto}
-.touch-btn{width:68px;height:68px;border-radius:50%;background:rgba(15,23,42,.8);border:2px solid rgba(148,163,184,.35);color:#f1f5f9;font-size:1.5rem;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(8px);box-shadow:0 6px 16px rgba(0,0,0,.45);transition:transform .08s,background .1s}
-.touch-btn:active,.touch-btn.active{transform:scale(.88);background:rgba(56,189,248,.55);border-color:#38bdf8}
-.touch-btn.nitro{background:linear-gradient(145deg,rgba(217,119,6,.9),rgba(245,158,11,.8));border-color:#fbbf24;width:78px;height:78px;font-size:1.7rem}
-.touch-btn.nitro:active,.touch-btn.nitro.active{background:rgba(251,191,36,.95);box-shadow:0 0 20px rgba(251,191,36,.6)}
+.touch-btn{width:72px;height:72px;border-radius:50%;background:rgba(15,23,42,.82);border:2px solid rgba(148,163,184,.4);color:#f1f5f9;font-size:1.55rem;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(8px);box-shadow:0 6px 16px rgba(0,0,0,.45);transition:transform .07s,background .1s}
+.touch-btn:active,.touch-btn.active{transform:scale(.86);background:rgba(56,189,248,.6);border-color:#38bdf8}
+.touch-btn.nitro{background:linear-gradient(145deg,rgba(217,119,6,.92),rgba(245,158,11,.82));border-color:#fbbf24;width:82px;height:82px;font-size:1.75rem}
+.touch-btn.nitro:active,.touch-btn.nitro.active{background:rgba(251,191,36,.95);box-shadow:0 0 22px rgba(251,191,36,.6)}
 .touch-btn.brake{background:rgba(239,68,68,.55);border-color:#f87171}
 .overlay{position:absolute;inset:0;background:rgba(3,7,18,.9);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:30;backdrop-filter:blur(12px);padding:20px;text-align:center}
 .overlay h1{margin:0 0 6px;font-size:1.7rem;letter-spacing:1px}
-.overlay .subtitle{color:#94a3b8;font-size:.95rem;margin-bottom:16px}
+.overlay .subtitle{color:#94a3b8;font-size:.95rem;margin-bottom:16px;white-space:pre-line}
 .overlay .stats{background:rgba(15,23,42,.8);border:1px solid rgba(167,139,250,.3);border-radius:14px;padding:14px 20px;margin-bottom:16px;min-width:250px;font-size:1.02rem}
 .btn-primary{background:linear-gradient(135deg,#f472b6,#a78bfa);color:#0f172a;border:none;padding:13px 32px;font-size:1.1rem;font-weight:700;border-radius:28px;cursor:pointer;box-shadow:0 0 22px rgba(167,139,250,.45);margin:5px}
 .btn-primary:active{transform:scale(.96)}
-.hud-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:12;pointer-events:none}
-.hud-panel{background:rgba(15,23,42,.72);border:1px solid rgba(148,163,184,.2);border-radius:11px;padding:7px 11px;backdrop-filter:blur(6px);font-size:.82rem}
-.hud-panel .label{color:#94a3b8;font-size:.68rem}
-.hud-panel .value{font-weight:700;font-size:1.15rem;color:#f1f5f9}
-.speed-value{color:#38bdf8}.dist-value{color:#a78bfa}.coin-value{color:#fbbf24}
-.nitro-wrap{position:absolute;top:68px;right:12px;width:105px;z-index:12;pointer-events:none}
+.hud-top{position:absolute;top:12px;left:10px;right:10px;display:flex;justify-content:space-between;z-index:12;pointer-events:none;gap:6px}
+.hud-panel{background:rgba(15,23,42,.75);border:1px solid rgba(148,163,184,.2);border-radius:10px;padding:6px 10px;backdrop-filter:blur(6px);font-size:.78rem;flex:1;text-align:center}
+.hud-panel .label{color:#94a3b8;font-size:.65rem}
+.hud-panel .value{font-weight:700;font-size:1.08rem;color:#f1f5f9}
+.speed-value{color:#38bdf8}.dist-value{color:#a78bfa}.coin-value{color:#fbbf24}.shield-value{color:#4ade80}
+.nitro-wrap{position:absolute;top:70px;right:12px;width:100px;z-index:12;pointer-events:none}
 .nitro-bg{height:7px;background:rgba(15,23,42,.85);border-radius:4px;overflow:hidden;border:1px solid rgba(251,191,36,.3)}
 .nitro-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:4px;transition:width .1s}
-.shield-ind{position:absolute;top:68px;left:12px;background:rgba(34,197,94,.25);border:1px solid #4ade80;color:#4ade80;padding:3px 9px;border-radius:10px;font-size:.72rem;font-weight:600;z-index:12;display:none}
-.float-text{position:absolute;font-weight:700;font-size:1.02rem;pointer-events:none;z-index:20;text-shadow:0 0 8px currentColor;animation:floatUp .9s ease-out forwards;max-width:200px;text-align:center}
+.shield-ind{position:absolute;top:70px;left:12px;background:rgba(34,197,94,.25);border:1px solid #4ade80;color:#4ade80;padding:3px 9px;border-radius:10px;font-size:.72rem;font-weight:600;z-index:12;display:none}
+.float-text{position:absolute;font-weight:700;font-size:1rem;pointer-events:none;z-index:20;text-shadow:0 0 8px currentColor;animation:floatUp .9s ease-out forwards;max-width:200px;text-align:center}
 @keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-52px) scale(1.12)}}
 </style>
 </head>
@@ -40,10 +40,11 @@ canvas{width:100%;height:100%;display:block;background:#000}
 <canvas id="gameCanvas"></canvas>
 <div class="hud-top">
 <div class="hud-panel"><div class="label">時速</div><div class="value speed-value" id="hudSpeed">0</div></div>
-<div class="hud-panel" style="text-align:center"><div class="label">金幣</div><div class="value coin-value" id="hudCoins">0</div></div>
-<div class="hud-panel" style="text-align:right"><div class="label">距離</div><div class="value dist-value" id="hudDist">0</div></div>
+<div class="hud-panel"><div class="label">金幣</div><div class="value coin-value" id="hudCoins">0</div></div>
+<div class="hud-panel"><div class="label">護盾</div><div class="value shield-value" id="hudShields">0</div></div>
+<div class="hud-panel"><div class="label">距離</div><div class="value dist-value" id="hudDist">0</div></div>
 </div>
-<div class="shield-ind" id="shieldInd">🛡 護盾</div>
+<div class="shield-ind" id="shieldInd">🛡 護盾中</div>
 <div class="nitro-wrap">
 <div style="font-size:.62rem;color:#fbbf24;margin-bottom:2px;text-align:right">NITRO</div>
 <div class="nitro-bg"><div class="nitro-fill" id="nitroBar" style="width:100%"></div></div>
@@ -62,9 +63,9 @@ canvas{width:100%;height:100%;display:block;background:#000}
 <h1 style="background:linear-gradient(90deg,#f472b6,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Back to the ’80s</h1>
 <div class="subtitle">Morning Drive Memories</div>
 <div class="stats" style="font-size:.88rem;color:#94a3b8;line-height:1.65">
-◀▶ 移動 · 🔥 氮氣 · 🛑 煞車<br>
-收集金幣與護盾，悠哉開就好<br>
-反正這條路也沒人催你
+◀▶ 左右移動 · 🔥 氮氣 · 🛑 煞車<br>
+會自動慢慢加速，悠哉開就好<br>
+收集金幣與護盾
 </div>
 <button class="btn-primary" id="btnStart">出發吧，少年 🏎️</button>
 </div>
@@ -74,6 +75,7 @@ canvas{width:100%;height:100%;display:block;background:#000}
 <div class="stats">
 <div>距離：<span id="finalDist">0</span> m</div>
 <div>金幣：<span id="finalCoins" style="color:#fbbf24">0</span></div>
+<div>護盾：<span id="finalShields" style="color:#4ade80">0</span> 個</div>
 <div>得分：<span id="finalScore">0</span></div>
 <div style="margin-top:6px;color:#a78bfa">最佳：<span id="finalBest">0</span> m</div>
 </div>
@@ -85,21 +87,12 @@ canvas{width:100%;height:100%;display:block;background:#000}
 "use strict";
 var canvas=document.getElementById("gameCanvas"),ctx=canvas.getContext("2d");
 
-// 速度調慢：maxSpeed 55 感覺
-var player={x:0,speed:0,maxSpeed:55,accel:0.55,decel:0.18,brake:1.1,nitro:100,isNitro:false,isBraking:false,shield:0};
-var gameState="menu",score=0,distance=0,coins=0,best=0,keys={},roadOffset=0,frame=0,traffic=[],particles=[],pickups=[],milestonesReached={};
+var player={x:0,speed:0,maxSpeed:55,accel:0.52,decel:0.16,brake:1.05,nitro:100,isNitro:false,isBraking:false,shield:0};
+var gameState="menu",score=0,distance=0,coins=0,shieldsCollected=0,best=0,keys={},roadOffset=0,frame=0,traffic=[],particles=[],pickups=[],milestonesReached={};
+var leftHeld=false,rightHeld=false; // 手機左右更穩定
 
 var crashTitles=["撞到了啦！","阿母的！","完蛋了","又撞了欸","這台車是來搞笑的吧"];
-var crashMsgs=[
-"對方說他有優先權。",
-"這條路好像不太歡迎你。",
-"再慢一點就好了…大概。",
-"金幣沒掉，但自尊有。",
-"護盾呢？護盾呢？",
-"80年代的車也擋不住現代司機。",
-"早知道就搭公車了。"
-];
-var floatJokes=["悠哉～","穩穩的","還可以","不錯喔","繼續開","金幣！","護盾到！","氮氣來了","差點…","好險"];
+var crashMsgs=["對方說他有優先權。","這條路好像不太歡迎你。","再慢一點就好了…大概。","金幣沒掉，但自尊有。","護盾呢？護盾呢？","80年代的車也擋不住現代司機。","早知道就搭公車了。"];
 
 try{var s=localStorage.getItem("btt80_best");if(s)best=Number(s)||0}catch(e){}
 
@@ -115,63 +108,76 @@ window.addEventListener("keydown",function(e){
 keys[e.code]=true;
 if((e.code==="Space"||e.code==="ShiftLeft")&&player.nitro>5)player.isNitro=true;
 if(e.code==="KeyS"||e.code==="ArrowDown")player.isBraking=true;
+if(e.code==="KeyA"||e.code==="ArrowLeft")leftHeld=true;
+if(e.code==="KeyD"||e.code==="ArrowRight")rightHeld=true;
 });
 window.addEventListener("keyup",function(e){
 keys[e.code]=false;
 if(e.code==="Space"||e.code==="ShiftLeft")player.isNitro=false;
 if(e.code==="KeyS"||e.code==="ArrowDown")player.isBraking=false;
+if(e.code==="KeyA"||e.code==="ArrowLeft")leftHeld=false;
+if(e.code==="KeyD"||e.code==="ArrowRight")rightHeld=false;
 });
 
-function setupTouch(id,key){
+// 手機左右：用 pointer 事件 + 持續標記，手感更穩
+function bindDir(id,dir){
 var btn=document.getElementById(id);
-function d(e){e.preventDefault();keys[key]=true;btn.classList.add("active")}
-function u(e){e.preventDefault();keys[key]=false;btn.classList.remove("active")}
-btn.addEventListener("pointerdown",d);btn.addEventListener("pointerup",u);btn.addEventListener("pointerleave",u);btn.addEventListener("pointercancel",u);
+function down(e){e.preventDefault();e.stopPropagation();if(dir==="left"){leftHeld=true;keys["ArrowLeft"]=true}else{rightHeld=true;keys["ArrowRight"]=true}btn.classList.add("active")}
+function up(e){e.preventDefault();if(dir==="left"){leftHeld=false;keys["ArrowLeft"]=false}else{rightHeld=false;keys["ArrowRight"]=false}btn.classList.remove("active")}
+btn.addEventListener("pointerdown",down);
+btn.addEventListener("pointerup",up);
+btn.addEventListener("pointerleave",up);
+btn.addEventListener("pointercancel",up);
+btn.addEventListener("touchstart",function(e){e.preventDefault();down(e)},{passive:false});
+btn.addEventListener("touchend",function(e){e.preventDefault();up(e)},{passive:false});
 }
-setupTouch("btn-left","ArrowLeft");setupTouch("btn-right","ArrowRight");
+bindDir("btn-left","left");
+bindDir("btn-right","right");
 
 var brakeBtn=document.getElementById("btn-brake");
-brakeBtn.addEventListener("pointerdown",function(e){e.preventDefault();player.isBraking=true;brakeBtn.classList.add("active")});
-brakeBtn.addEventListener("pointerup",function(e){e.preventDefault();player.isBraking=false;brakeBtn.classList.remove("active")});
-brakeBtn.addEventListener("pointerleave",function(){player.isBraking=false;brakeBtn.classList.remove("active")});
+function brakeDown(e){e.preventDefault();player.isBraking=true;brakeBtn.classList.add("active")}
+function brakeUp(e){e.preventDefault();player.isBraking=false;brakeBtn.classList.remove("active")}
+brakeBtn.addEventListener("pointerdown",brakeDown);brakeBtn.addEventListener("pointerup",brakeUp);brakeBtn.addEventListener("pointerleave",brakeUp);brakeBtn.addEventListener("pointercancel",brakeUp);
+brakeBtn.addEventListener("touchstart",function(e){e.preventDefault();brakeDown(e)},{passive:false});
+brakeBtn.addEventListener("touchend",function(e){e.preventDefault();brakeUp(e)},{passive:false});
 
 var nitroBtn=document.getElementById("btn-nitro");
-nitroBtn.addEventListener("pointerdown",function(e){e.preventDefault();if(player.nitro>5){player.isNitro=true;nitroBtn.classList.add("active")}});
-nitroBtn.addEventListener("pointerup",function(e){e.preventDefault();player.isNitro=false;nitroBtn.classList.remove("active")});
-nitroBtn.addEventListener("pointerleave",function(){player.isNitro=false;nitroBtn.classList.remove("active")});
+function nitroDown(e){e.preventDefault();if(player.nitro>5){player.isNitro=true;nitroBtn.classList.add("active")}}
+function nitroUp(e){e.preventDefault();player.isNitro=false;nitroBtn.classList.remove("active")}
+nitroBtn.addEventListener("pointerdown",nitroDown);nitroBtn.addEventListener("pointerup",nitroUp);nitroBtn.addEventListener("pointerleave",nitroUp);nitroBtn.addEventListener("pointercancel",nitroUp);
+nitroBtn.addEventListener("touchstart",function(e){e.preventDefault();nitroDown(e)},{passive:false});
+nitroBtn.addEventListener("touchend",function(e){e.preventDefault();nitroUp(e)},{passive:false});
 
 function addParticle(x,y,color,size,vy,life){particles.push({x:x,y:y,vx:(Math.random()-0.5)*2.2,vy:vy||Math.random()*2.8+1.8,size:size||Math.random()*4+2.5,color:color,life:life||15})}
 function spawnFloat(text,x,y,color){
-var el=document.createElement("div");el.className="float-text";el.style.left=(x||80)+"px";el.style.top=(y||160)+"px";el.style.color=color||"#fbbf24";el.textContent=text;
+var el=document.createElement("div");el.className="float-text";el.style.left=(x||70)+"px";el.style.top=(y||155)+"px";el.style.color=color||"#fbbf24";el.textContent=text;
 document.getElementById("game-wrapper").appendChild(el);setTimeout(function(){el.remove()},950);
 }
 
 function spawnTraffic(){
 if(gameState!=="playing")return;
-// 難度大幅降低：密度低、間隔大
-if(Math.random()>0.38)return;
+if(Math.random()>0.36)return;
 var lanes=[-0.58,-0.2,0.2,0.58];
 var lane=lanes[Math.floor(Math.random()*lanes.length)];
-// 更常避開玩家車道
-if(Math.abs(lane-player.x)<0.28&&Math.random()<0.7)return;
+if(Math.abs(lane-player.x)<0.28&&Math.random()<0.72)return;
 var types=[
-{color:"#ef4444",speed:22,style:"sedan",name:"急件公車"},
-{color:"#a855f7",speed:28,style:"sports",name:"無效會議車"},
-{color:"#f97316",speed:24,style:"truck",name:"甩鍋小卡車"},
-{color:"#22d3ee",speed:30,style:"sports",name:"超車成癮車"},
-{color:"#84cc16",speed:18,style:"van",name:"慢慢開的廂型"},
-{color:"#eab308",speed:25,style:"sedan",name:"黃燈衝刺車"}
+{color:"#ef4444",speed:20,style:"sedan",name:"急件公車"},
+{color:"#a855f7",speed:26,style:"sports",name:"無效會議車"},
+{color:"#f97316",speed:22,style:"truck",name:"甩鍋小卡車"},
+{color:"#22d3ee",speed:28,style:"sports",name:"超車成癮車"},
+{color:"#84cc16",speed:16,style:"van",name:"慢慢開的廂型"},
+{color:"#eab308",speed:23,style:"sedan",name:"黃燈衝刺車"}
 ];
 var t=types[Math.floor(Math.random()*types.length)];
-traffic.push({x:lane,y:1150+Math.random()*200,color:t.color,speed:t.speed+(Math.random()*6-3),style:t.style,name:t.name});
+traffic.push({x:lane,y:1160+Math.random()*200,color:t.color,speed:t.speed+(Math.random()*5-2),style:t.style,name:t.name});
 }
 
 function spawnPickup(){
-if(gameState!=="playing"||Math.random()>0.48)return;
+if(gameState!=="playing"||Math.random()>0.5)return;
 var lanes=[-0.45,-0.15,0.15,0.45];
 var lane=lanes[Math.floor(Math.random()*lanes.length)];
 var r=Math.random();
-var type=r>0.78?"shield":(r>0.5?"nitro":"coin");
+var type=r>0.75?"shield":(r>0.48?"nitro":"coin");
 pickups.push({x:lane,y:1180+Math.random()*140,type:type,collected:false});
 }
 
@@ -179,23 +185,28 @@ function update(){
 if(gameState!=="playing")return;
 frame++;
 var top=player.maxSpeed;
-if(player.isNitro&&player.nitro>0){top=player.maxSpeed*1.55;player.nitro=Math.max(0,player.nitro-0.55);if(player.nitro<=0)player.isNitro=false}
-else if(player.nitro<100)player.nitro+=0.28;
+if(player.isNitro&&player.nitro>0){top=player.maxSpeed*1.55;player.nitro=Math.max(0,player.nitro-0.52);if(player.nitro<=0)player.isNitro=false}
+else if(player.nitro<100)player.nitro+=0.3;
 
-if(keys["KeyW"]||keys["ArrowUp"]||(!player.isBraking&&player.speed<28))player.speed=Math.min(top,player.speed+player.accel);
-else if(player.isBraking)player.speed=Math.max(0,player.speed-player.brake);
-else player.speed=Math.max(0,player.speed-player.decel);
+// 自動緩慢加速（手機更友好）
+if(!player.isBraking){
+if(player.speed<28)player.speed=Math.min(top,player.speed+player.accel*1.15);
+else if(keys["KeyW"]||keys["ArrowUp"])player.speed=Math.min(top,player.speed+player.accel);
+else player.speed=Math.max(0,player.speed-player.decel*0.6);
+}else{
+player.speed=Math.max(0,player.speed-player.brake);
+}
 
-var turn=0.042*(0.6+player.speed/80);
-if(keys["KeyA"]||keys["ArrowLeft"])player.x=Math.max(-0.8,player.x-turn);
-if(keys["KeyD"]||keys["ArrowRight"])player.x=Math.min(0.8,player.x+turn);
+// 左右：用 leftHeld / rightHeld，手機更穩
+var turn=0.044*(0.65+player.speed/70);
+if(leftHeld||keys["KeyA"]||keys["ArrowLeft"])player.x=Math.max(-0.8,player.x-turn);
+if(rightHeld||keys["KeyD"]||keys["ArrowRight"])player.x=Math.min(0.8,player.x+turn);
 
 distance+=player.speed*0.014;
-score=Math.floor(distance*6+coins*10);
+score=Math.floor(distance*6+coins*10+shieldsCollected*15);
 roadOffset=(roadOffset+player.speed*0.11)%80;
 if(player.shield>0)player.shield--;
 
-// milestones with humor
 var ms=[200,400,700,1000,1500,2000,3000];
 for(var m=0;m<ms.length;m++){
 if(distance>=ms[m]&&!milestonesReached[ms[m]]){
@@ -203,12 +214,12 @@ milestonesReached[ms[m]]=true;
 var bonus=6+Math.floor(ms[m]/100);
 coins+=bonus;
 var jokes=["穩！","還行","可以的","繼續","不錯喔","厲害了","真的假的"];
-spawnFloat(jokes[Math.min(m,jokes.length-1)]+" +"+bonus+" 金幣",90,170,"#a78bfa");
+spawnFloat(jokes[Math.min(m,jokes.length-1)]+" +"+bonus+" 金幣",80,160,"#a78bfa");
 }
 }
 
 var dpr=window.devicePixelRatio||1,w=canvas.width/dpr,h=canvas.height/dpr;
-if(player.speed>18){
+if(player.speed>16){
 var px=w/2+(player.x*(w*0.34)),py=h-52;
 if(player.isNitro){addParticle(px-12,py,"#38bdf8",7,4.5,14);addParticle(px+12,py,"#0ea5e9",7,4.5,14)}
 else{addParticle(px-10,py,"#64748b",3.5,2.3,12);addParticle(px+10,py,"#64748b",3.5,2.3,12)}
@@ -216,17 +227,16 @@ else{addParticle(px-10,py,"#64748b",3.5,2.3,12);addParticle(px+10,py,"#64748b",3
 
 for(var i=particles.length-1;i>=0;i--){var p=particles[i];p.y+=p.vy;p.x+=p.vx;p.life--;p.size*=0.97;if(p.life<=0)particles.splice(i,1)}
 
-// 碰撞更寬鬆
 for(var j=traffic.length-1;j>=0;j--){
 var car=traffic[j];
-car.y-=(player.speed-car.speed)*1.15;
+car.y-=(player.speed-car.speed)*1.12;
 if(car.y<135&&car.y>5){
-if(Math.abs(car.x-player.x)<0.21){  // 更寬鬆
+if(Math.abs(car.x-player.x)<0.205){
 if(player.shield>0){
 player.shield=0;
 car.x+=(car.x>player.x?0.5:-0.5);
 for(var k=0;k<8;k++)addParticle(w/2+car.x*w*0.28,h*0.68,"#4ade80",4,-1.5,16);
-spawnFloat("護盾擋下來了！",90,200,"#4ade80");
+spawnFloat("護盾擋下來了！",80,190,"#4ade80");
 }else{
 triggerCrash(car.name||"");
 return;
@@ -238,13 +248,13 @@ if(car.y<-160||car.y>1400)traffic.splice(j,1);
 
 for(var pi=pickups.length-1;pi>=0;pi--){
 var pk=pickups[pi];
-pk.y-=player.speed*1.1;
-if(pk.y<145&&pk.y>30&&!pk.collected&&Math.abs(pk.x-player.x)<0.26){
+pk.y-=player.speed*1.08;
+if(pk.y<145&&pk.y>30&&!pk.collected&&Math.abs(pk.x-player.x)<0.28){
 pk.collected=true;
 var sx=w/2+pk.x*w*0.28,sy=h*0.68;
-if(pk.type==="coin"){var g=5+Math.floor(Math.random()*6);coins+=g;spawnFloat("+"+g+" 金幣  賺到了",sx-40,sy,"#fbbf24")}
-else if(pk.type==="shield"){player.shield=Math.max(player.shield,280);spawnFloat("護盾！ 暫時無敵",sx-50,sy,"#4ade80")}
-else{player.nitro=Math.min(100,player.nitro+45);spawnFloat("氮氣加滿！",sx-40,sy,"#38bdf8")}
+if(pk.type==="coin"){var g=5+Math.floor(Math.random()*6);coins+=g;spawnFloat("+"+g+" 金幣",sx-30,sy,"#fbbf24")}
+else if(pk.type==="shield"){player.shield=Math.max(player.shield,300);shieldsCollected++;spawnFloat("護盾 +1  共"+shieldsCollected+"個",sx-50,sy,"#4ade80")}
+else{player.nitro=Math.min(100,player.nitro+48);spawnFloat("氮氣加滿！",sx-35,sy,"#38bdf8")}
 }
 if(pk.y<-50||pk.collected)pickups.splice(pi,1);
 }
@@ -252,6 +262,7 @@ if(pk.y<-50||pk.collected)pickups.splice(pi,1);
 document.getElementById("hudSpeed").textContent=Math.floor(player.speed);
 document.getElementById("hudDist").textContent=Math.floor(distance);
 document.getElementById("hudCoins").textContent=coins;
+document.getElementById("hudShields").textContent=shieldsCollected;
 document.getElementById("nitroBar").style.width=player.nitro+"%";
 var sh=document.getElementById("shieldInd");
 if(player.shield>0){sh.style.display="block";sh.textContent="🛡 "+Math.ceil(player.shield/60)+"s"}
@@ -263,6 +274,7 @@ gameState="crash";
 if(distance>best){best=distance;try{localStorage.setItem("btt80_best",best)}catch(e){}}
 document.getElementById("finalDist").textContent=Math.floor(distance);
 document.getElementById("finalCoins").textContent=coins;
+document.getElementById("finalShields").textContent=shieldsCollected;
 document.getElementById("finalScore").textContent=score;
 document.getElementById("finalBest").textContent=Math.floor(best);
 document.getElementById("crashTitle").textContent=crashTitles[Math.floor(Math.random()*crashTitles.length)];
@@ -368,13 +380,13 @@ drawPlayerCar(w/2+(player.x*(roadBottomW*0.4)),h-58,72,42);
 }
 
 function gameLoop(){update();draw();if(gameState==="playing")requestAnimationFrame(gameLoop)}
-function resetRun(){player.x=0;player.speed=0;player.nitro=100;player.isNitro=false;player.isBraking=false;player.shield=0;traffic=[];particles=[];pickups=[];distance=0;score=0;coins=0;milestonesReached={}}
+function resetRun(){player.x=0;player.speed=0;player.nitro=100;player.isNitro=false;player.isBraking=false;player.shield=0;leftHeld=false;rightHeld=false;traffic=[];particles=[];pickups=[];distance=0;score=0;coins=0;shieldsCollected=0;milestonesReached={}}
 function startGame(){document.getElementById("startOverlay").style.display="none";resetRun();player.shield=180;gameState="playing";document.getElementById("touchUI").style.display="flex";gameLoop()}
 function restartGame(){document.getElementById("crashOverlay").style.display="none";resetRun();player.shield=150;gameState="playing";document.getElementById("touchUI").style.display="flex";gameLoop()}
 document.getElementById("btnStart").addEventListener("click",startGame);
 document.getElementById("btnRestart").addEventListener("click",restartGame);
-setInterval(function(){if(gameState==="playing")spawnTraffic()},1600);  // 更稀疏
-setInterval(function(){if(gameState==="playing")spawnPickup()},1400);
+setInterval(function(){if(gameState==="playing")spawnTraffic()},1650);
+setInterval(function(){if(gameState==="playing")spawnPickup()},1350);
 resizeCanvas();
 })();
 </script>
